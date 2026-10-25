@@ -294,7 +294,7 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
             <div id="qFeedback" class="feedback" hidden></div>
           </div>
         </div>
-        <div class="keys hide-sm">Keys: <kbd>A</kbd>&ndash;<kbd>D</kbd> choose &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review screen</div>
+        <div class="keys hide-sm">Keys: <kbd>A</kbd>&ndash;<kbd>E</kbd> choose &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review screen</div>
       </div>
     </section>
 
@@ -448,7 +448,7 @@ const COMP = {
  "IV.B":["Assessing the AI system","Review impact assessments for a chosen system, key vendor and licensing terms, and the extra duties and liability of deploying your own proprietary model."],
  "IV.C":["Governing deployment and use","Focus on post-deployment governance: monitoring for drift and new risks, incident handling, secondary uses and downstream harm, external communication and deactivation controls."]
 };
-const L = ["A","B","C","D"];
+const L = ["A","B","C","D","E"];
 const $ = id => document.getElementById(id);
 
 let S = null;                     // attempt state
@@ -725,8 +725,8 @@ document.addEventListener("keydown",e=>{
   if(!$("sBreak").hidden) return;
   if($("sQ").hidden) { if(e.key.toLowerCase()==="r") show("sQ"); return; }
   const k=e.key.toLowerCase();
-  const idx="abcd".indexOf(k)>-1?"abcd".indexOf(k):"1234".indexOf(k);
-  if(idx>-1 && k.length===1){ choose(idx); e.preventDefault(); }
+  const idx="abcde".indexOf(k)>-1?"abcde".indexOf(k):"12345".indexOf(k);
+  if(idx>-1 && k.length===1 && idx<QUESTIONS[S.order[S.cur]].options.length){ choose(idx); e.preventDefault(); }
   else if(k==="arrowright") { $("btnNext").click(); e.preventDefault(); }
   else if(k==="arrowleft") { go(S.cur-1); e.preventDefault(); }
   else if(k==="f") $("btnFlag").click();

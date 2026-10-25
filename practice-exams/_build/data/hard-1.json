@@ -1,0 +1,1389 @@
+[
+ {
+  "n": 1,
+  "q": "What does the term “ground truth” refer to in the context of machine learning?",
+  "options": [
+   "The labeled data or accurate information used as a benchmark to evaluate the model’s predictions.",
+   "The rules and algorithms programmed into the model for decision-making.",
+   "The process of cleaning and normalizing data to improve model accuracy.",
+   "The predictions made by a machine learning model after training is complete."
+  ],
+  "answer": 0,
+  "explanation": "This answer is correct because ground truth refers to reliable, labeled data or facts that serve as a standard for assessing the performance of a machine learning model. It provides the basis for measuring how well the model’s predictions align with actual outcomes.",
+  "c": "I.A"
+ },
+ {
+  "n": 2,
+  "q": "What roles and responsibilities does the company now assume under the EU AI Act?",
+  "options": [
+   "Importer.",
+   "Distributor.",
+   "Provider.",
+   "Deployer."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. By integrating the AI system into its own hardware and placing the combined product on the market, the company assumes the role of a provider under the EU AI Act.",
+  "c": "II.C",
+  "scenario": "A company that specializes in manufacturing hardware for medical imaging devices procures an AI-powered diagnostic system from a third-party developer. The company integrates the AI system into its hardware to enhance its imaging capabilities and begins selling the combined product to hospitals and clinics."
+ },
+ {
+  "n": 3,
+  "q": "Which liability regime is being used in this case?",
+  "options": [
+   "Fault liability.",
+   "Strict liability.",
+   "General Data Protection Regulation (GDPR).",
+   "AI Liability Directive."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Strict liability holds manufacturers accountable for harm caused by defective products, regardless of negligence or intent, as long as the defect and harm are proven.",
+  "c": "II.B",
+  "scenario": "A consumer in the European Union is injured due to a defect in an AI-powered household appliance. The defect existed at the time the product was released, and the consumer seeks compensation. Under this liability regime, the consumer does not need to prove that the manufacturer was negligent, only that the defect caused the harm."
+ },
+ {
+  "n": 4,
+  "q": "What type of model is being described?",
+  "options": [
+   "Proprietary model.",
+   "Federated model.",
+   "Public model.",
+   "Open-source model."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A proprietary model is developed, owned, and controlled by a specific organization, with its underlying components kept confidential and not publicly accessible.",
+  "c": "IV.A",
+  "scenario": "An AI company has developed a sophisticated recommendation system for e-commerce platforms. The model is exclusively owned and controlled by the company, with its underlying source code, algorithms, and architecture kept confidential. The organization licenses the model to clients but does not provide direct access to the internal workings of the system."
+ },
+ {
+  "n": 5,
+  "q": "Under which type of intellectual property does this invention fall?",
+  "options": [
+   "Patent.",
+   "Trademark.",
+   "Copyright.",
+   "Trade secret."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A patent protects inventions or processes, granting exclusive rights to the inventor to make, use, or sell the invention for a specified period.",
+  "c": "II.B",
+  "scenario": "A lawyer is reviewing an application submitted by an engineer for exclusive rights to a new type of renewable energy device. The device incorporates an innovative mechanism that significantly increases energy efficiency. The lawyer is ensuring that the application meets the necessary legal standards for protecting the invention and preventing others from manufacturing or selling similar devices without permission."
+ },
+ {
+  "n": 6,
+  "q": "Which law may the company be violating?",
+  "options": [
+   "Fair Credit Reporting Act (FCRA).",
+   "Americans with Disabilities Act (ADA).",
+   "Title VII of the Civil Rights Act of 1964.",
+   "Age Discrimination in Employment Act (ADEA)."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Title VII prohibits employment discrimination based on race, color, religion, sex, or national origin and applies to practices, such as AI hiring models, that result in adverse impact.",
+  "c": "II.B",
+  "scenario": "An AI company develops a hiring model that screens job applicants for a large corporation. The model disproportionately disqualifies candidates from certain racial and ethnic groups, despite their qualifications. This unintentional bias results in fewer opportunities for these groups, demonstrating adverse impact. Additionally, the company does not notify the affected individuals or provide an avenue for them to understand or contest the decision."
+ },
+ {
+  "n": 7,
+  "q": "Which of the following statements best describes the data labeling process in the context of supervised learning?",
+  "options": [
+   "Data labeling involves automatically assigning labels to data points based on an AI model’s predictions.",
+   "Data labeling is a process unique to reinforcement learning where rewards and penalties act as implicit labels for the data.",
+   "Data labeling ensures all datasets used in training are free from any errors or inconsistencies.",
+   "Data labeling enriches data by manually or automatically assigning labels that provide context, making it usable for training, validation, and testing."
+  ],
+  "answer": 3,
+  "explanation": "This answer is correct because data labeling involves assigning meaningful labels to data points, providing the context necessary for supervised learning. These labels are critical for training AI models to recognize patterns and make accurate predictions.",
+  "c": "III.B"
+ },
+ {
+  "n": 8,
+  "q": "The term _______ refers to software that is made freely available to the public, allowing anyone to view, modify, and distribute its source code.",
+  "options": [
+   "Proprietary",
+   "Encrypted",
+   "Commercial",
+   "Open Source"
+  ],
+  "answer": 3,
+  "explanation": "This answer is correct because open-source software is characterized by its accessibility and transparency, enabling developers to view, modify, and improve its source code. It fosters collaboration and innovation through community contributions.",
+  "c": "IV.A"
+ },
+ {
+  "n": 9,
+  "q": "Under the EU AI Act, which category does this system fall under?",
+  "options": [
+   "Unacceptable risk level.",
+   "Minimal risk level.",
+   "High risk level.",
+   "Limited risk level."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The system is used for personal device authentication, which does not significantly impact fundamental rights or safety and falls under the limited-risk category.",
+  "c": "II.C",
+  "scenario": "A technology company deploys an AI system that uses facial geometry to authenticate users and unlock mobile devices such as smartphones, tablets, and smartwatches. The system scans the user’s facial features to verify their identity and grant access to the device. It operates locally on the device and does not store or transmit the facial data to external servers."
+ },
+ {
+  "n": 10,
+  "q": "What stage of the incident response plan is the analyst in with regards to handling this specific incident?",
+  "options": [
+   "Identification.",
+   "Eradication.",
+   "Containment.",
+   "Recovery."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. The containment stage involves isolating the issue to prevent further damage, such as disabling access, suspending operations, and mitigating immediate threats, as described in the scenario.",
+  "c": "IV.C",
+  "scenario": "An AI incident response analyst is responding to a security breach involving a customer service chatbot that has been manipulated to provide unauthorized access to sensitive customer data. To minimize the impact, the analyst disables external access to the chatbot, temporarily suspends its operations, and implements firewall rules to block unauthorized connections. Additionally, the analyst ensures that compromised accounts are flagged and access permissions are revoked."
+ },
+ {
+  "n": 11,
+  "q": "Which of the following scenarios would NOT qualify as a substantial modification under the EU AI Act?",
+  "options": [
+   "Updating the AI system’s algorithm to improve decision-making accuracy in high-risk applications.",
+   "Changing the intended use of the AI system from internal data analysis to public decision-making.",
+   "Adjusting the graphical user interface (GUI) without altering the system’s functionality or decision-making process.",
+   "Replacing the training dataset with one containing different demographic distributions."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Adjusting the GUI is not considered a substantial modification under the EU AI Act, as it does not affect the system’s core functionality, performance, or compliance.",
+  "c": "II.C",
+  "scenario": "Under the EU AI Act, providers and other stakeholders are required to assess whether changes to an AI system qualify as a “substantial modification.”"
+ },
+ {
+  "n": 12,
+  "q": "Which privacy concept does this approach illustrate?",
+  "options": [
+   "Use Limitation.",
+   "Data Minimization.",
+   "Privacy by Design.",
+   "Privacy by Default."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Privacy by Design focuses on embedding privacy and data protection measures proactively throughout the development and operation of IT systems.",
+  "c": "II.A",
+  "scenario": "A technology company is developing a new mobile app. During the planning phase, the product team ensures that all privacy concerns are addressed by embedding privacy features into the app’s architecture. These features include data encryption, strict access controls, and privacy-preserving default settings. The team emphasizes integrating these measures throughout the app’s development lifecycle to prevent future privacy risks."
+ },
+ {
+  "n": 13,
+  "q": "What key consideration has the team overlooked?",
+  "options": [
+   "Data.",
+   "Stakeholder alignment.",
+   "Technical infrastructure.",
+   "Regulatory compliance."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Data is a fundamental consideration for AI projects, as it serves as the foundation for training and operating AI systems. Without assessing data availability, quality, and relevance, the project cannot progress effectively.",
+  "c": "III.A",
+  "scenario": "An AI project team is in the early stages of a new initiative. They have identified the business problem, aligned the project with the organization’s mission, assessed gaps in existing capabilities, defined the project’s scope, and started establishing a governance body to oversee the project. However, they have not yet discussed a critical component necessary for successful AI implementation."
+ },
+ {
+  "n": 14,
+  "q": "An AI model refines its performance using a dataset containing a small number of labeled examples of complaints alongside a larger dataset of unlabeled feedback. Which training methodology does this scenario describe?",
+  "options": [
+   "Supervised Learning",
+   "Unsupervised Learning",
+   "Reinforcement Learning",
+   "Semi-supervised Learning"
+  ],
+  "answer": 3,
+  "explanation": "This answer is correct because semi-supervised learning combines a small amount of labeled data with a larger set of unlabeled data to improve model performance.",
+  "c": "I.A"
+ },
+ {
+  "n": 15,
+  "q": "What type of harm does this consequence reflect?",
+  "options": [
+   "Reputational",
+   "Economic",
+   "Legal",
+   "Cultural"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because the regulatory investigation, fines, and required changes to hiring practices clearly indicate legal harm, as they involve non- compliance with anti-discrimination laws.",
+  "c": "I.A",
+  "scenario": "A large e-commerce company deployed an AI system to screen job applications and rank candidates for interviews. The system had been trained on historical hiring data, which contained biases against certain demographic groups. Despite warnings from some employees about potential fairness issues, the company’s leadership fully trusted the AI system, assuming its algorithmic precision would ensure impartial decisions. Regulators launched an investigation into the company after complaints were filed about discriminatory hiring practices. The investigation found that the AI system violated anti- discrimination laws, resulting in significant fines and mandated changes to the hiring process."
+ },
+ {
+  "n": 16,
+  "q": "Which critical factor has the professional overlooked?",
+  "options": [
+   "End-user feedback.",
+   "Third-party integration.",
+   "Legal and regulatory requirements.",
+   "Data pipeline dependencies."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Legal and regulatory requirements are essential to ensure compliance with applicable laws and standards, which were not considered in this scenario.",
+  "c": "IV.C",
+  "scenario": "An AI governance professional is preparing for an internal audit of a newly deployed AI system. The professional is reviewing various factors to determine which types of testing are necessary. They analyze the system’s purpose, evaluate associated risks, and consider testing methodologies to validate the algorithm type."
+ },
+ {
+  "n": 17,
+  "q": "What term best describes the process used to analyze the user’s behavior and infer that they are shopping for “back to school” items?",
+  "options": [
+   "Inference",
+   "Profiling",
+   "Secondary Use",
+   "Data Aggregation"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because profiling involves analyzing an individual’s behavior, purchases, and patterns to infer characteristics or categorize them into a specific group. In this scenario, the system analyzed the user’s purchases and inferred that they are preparing for “back to school” shopping, which aligns with the concept of profiling.",
+  "c": "II.A",
+  "scenario": "A user begins receiving targeted advertisements for school supplies, backpacks, and children’s clothing shortly after purchasing a set of notebooks, lunchboxes, and sneakers online. The user never explicitly shared that they are shopping for children or preparing for the school year, but the timing and nature of their purchases seem to have been analyzed to identify them as someone preparing for “back to school” season."
+ },
+ {
+  "n": 18,
+  "q": "Which requirement of the Act should the company be LEAST concerned with?",
+  "options": [
+   "Disclosing the sources of training data.",
+   "Describing the types of data used in training.",
+   "Ensuring the training data complies with intellectual property laws.",
+   "Providing a detailed explanation of the algorithm’s source code."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The Act focuses on transparency of training data rather than requiring disclosure of the algorithm’s source code, making this a less critical concern for the company under this law.",
+  "c": "II.C",
+  "scenario": "Under California’s Generative AI: Training Data Transparency Act (AB 2013), a Silicon Valley- based company developing generative AI tools must comply with multiple requirements. These tools rely on extensive datasets to train their models and are widely used for generating text, images, and videos."
+ },
+ {
+  "n": 19,
+  "q": "What stage of the incident response plan is the analyst in with regards to handling this specific incident?",
+  "options": [
+   "Eradication.",
+   "Containment.",
+   "Lessons learned.",
+   "Recovery."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. The lessons learned stage focuses on reviewing and documenting the incident to improve future incident response practices and prevent recurrence, as described in the scenario.",
+  "c": "IV.C",
+  "scenario": "After fully resolving an incident involving a compromised recommendation system that produced biased product suggestions, an AI incident response analyst gathers the team to review the incident. The team identifies the root causes, such as weak data validation processes and insufficient monitoring. They document these findings and recommend changes to strengthen data validation procedures, enhance logging capabilities, and improve staff training. These recommendations are incorporated into updated incident response plans to prevent similar incidents in the future."
+ },
+ {
+  "n": 20,
+  "q": "Based on this conversation, which Fair Information Practice (FIP) is being described?",
+  "options": [
+   "Notice/Openness.",
+   "Use Limitation.",
+   "Access/Individual Participation.",
+   "Data Minimization."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Data minimization refers to collecting only the data necessary for a specific purpose and retaining it only for as long as it is required.",
+  "c": "II.A",
+  "scenario": "An AI analyst is collaborating with a data engineer to design a dataset for training a new machine learning model. The analyst emphasizes that only the essential data required for the model’s purpose should be collected and stored, avoiding any unnecessary information. They also suggest that once the data is no longer useful, it should be securely deleted."
+ },
+ {
+  "n": 21,
+  "q": "Which of the following activities is NOT required under the data governance requirements?",
+  "options": [
+   "Regular monitoring of system performance for safety risks.",
+   "Establishing procedures for the collection and labeling of datasets.",
+   "Ensuring datasets are free of errors and relevant to the intended purpose.",
+   "Implementing safeguards to prevent bias in training data."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Monitoring system performance for safety risks is part of risk management, not data governance, which focuses specifically on the management and quality of datasets.",
+  "c": "II.C",
+  "scenario": "Under the EU AI Act, data governance requirements for high-risk AI systems include ensuring the quality, accuracy, and relevance of datasets used for training, validation, and testing."
+ },
+ {
+  "n": 22,
+  "q": "What is the legal term that justifies this use of the copyrighted material?",
+  "options": [
+   "Derivative Work.",
+   "Public Domain.",
+   "Copyright Infringement.",
+   "Fair Use."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Fair Use permits the use of copyrighted material without permission for purposes such as criticism, commentary, teaching, or research, as long as it meets specific legal criteria.",
+  "c": "II.B",
+  "scenario": "A journalist includes short excerpts from a copyrighted book in an article critiquing the author’s arguments. The excerpts are properly attributed, and their inclusion is essential to support the journalist’s analysis. The journalist does not seek permission from the author or publisher to use these excerpts."
+ },
+ {
+  "n": 23,
+  "q": "What rights does the court have to adjudicate the victim’s claim under the AI Liability Directive?",
+  "options": [
+   "The court can dismiss claims if the product is not deemed a physical good.",
+   "The court can only adjudicate claims involving strict liability.",
+   "The court can presume fault only when intentional harm is proven.",
+   "The court can grant victims access to relevant evidence from the manufacturer to support their claim."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Under the AI Liability Directive, courts are empowered to require companies to provide evidence about their AI systems when such information is necessary to adjudicate claims.",
+  "c": "II.B",
+  "scenario": "A consumer uses an AI-powered navigation system while driving. Due to a programming error, the system directs the user to drive onto an unsafe, unmarked private road, resulting in a severe accident. The consumer files a claim against the manufacturer, alleging that the company failed to comply with safety standards and neglected to provide sufficient warnings about potential inaccuracies in the AI system."
+ },
+ {
+  "n": 24,
+  "q": "What is the term for the approach the algorithm is using?",
+  "options": [
+   "Gradient descent.",
+   "Heuristic search.",
+   "Dynamic programming.",
+   "Greedy algorithm."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. A greedy algorithm makes the locally optimal choice (e.g., the earliest available operating room) at each step, which can result in suboptimal overall outcomes.",
+  "c": "I.A",
+  "scenario": "A machine learning engineer is designing a scheduling algorithm for a hospital to assign operating rooms to surgeons. The algorithm selects the earliest available operating room for each surgery without evaluating whether this choice leads to the most efficient overall schedule for the day. As a result, the schedule often works but can sometimes leave longer gaps between surgeries than necessary."
+ },
+ {
+  "n": 25,
+  "q": "What is the professional trying to determine?",
+  "options": [
+   "The technical feasibility of deploying the AI system.",
+   "The compliance requirements for deploying the AI system.",
+   "The business problem the AI system is intended to address.",
+   "The risk factors associated with deploying the AI system."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. The professional’s questions aim to uncover the underlying challenges, inefficiencies, and desired outcomes, which are key to identifying the business problem.",
+  "c": "III.A",
+  "scenario": "An AI governance professional is meeting with a team to discuss the implementation of a new AI initiative. During the meeting, the professional asks, “What challenges are we trying to solve with this AI system?” They also inquire, “What inefficiencies or gaps in our current processes are impacting our performance?” Additionally, the professional asks, “What specific outcomes would indicate that this initiative is successful?”"
+ },
+ {
+  "n": 26,
+  "q": "Which of the following best describes the term “data transformation” in the context of AI?",
+  "options": [
+   "The conversion of data from its raw format into a format suitable for analysis or modeling.",
+   "The real-time monitoring of data pipelines to detect anomalies.",
+   "The process of securing data to prevent unauthorized access.",
+   "The labeling of data for use in supervised learning tasks."
+  ],
+  "answer": 0,
+  "explanation": "This answer is correct because data transformation involves converting raw data into a usable format for analysis, such as scaling, normalization, or feature extraction, ensuring that the data is compatible with AI models.",
+  "c": "III.B"
+ },
+ {
+  "n": 27,
+  "q": "Which legal theory is being described?",
+  "options": [
+   "Strict liability.",
+   "Breach of warranty.",
+   "Negligence.",
+   "Intentional tort."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Strict liability holds manufacturers and sellers accountable for defective products that cause harm, regardless of their level of care or intent.",
+  "c": "II.B",
+  "scenario": "A legal theory in the United States holds manufacturers and sellers accountable for injuries caused by defective products, regardless of whether they exercised reasonable care in designing, manufacturing, or distributing the product. Under this theory, liability is based solely on the existence of a defect and the harm it causes, rather than on negligence or intent."
+ },
+ {
+  "n": 28,
+  "q": "What privacy-enhancing technique is the engineer implementing?",
+  "options": [
+   "Differential privacy.",
+   "Secure multi-party computation.",
+   "Federated learning.",
+   "Homomorphic encryption."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Homomorphic encryption enables computations to be performed directly on encrypted data, protecting sensitive information throughout the process.",
+  "c": "III.B",
+  "scenario": "A privacy engineer is working on a sensitive healthcare dataset to enable a third-party AI model developer to perform computations without exposing the underlying patient information. To achieve this, the engineer applies cryptographic techniques that allow the data to remain encrypted while computations are performed directly on the encrypted values. Once the computations are complete, the encrypted results can be decrypted only by authorized parties, ensuring that the raw patient data is never exposed during the process."
+ },
+ {
+  "n": 29,
+  "q": "Which type of model is being described in this scenario?",
+  "options": [
+   "Generative Model",
+   "Regression Model",
+   "Clustering Model",
+   "Decision Tree"
+  ],
+  "answer": 3,
+  "explanation": "This answer is correct because a decision tree uses a branching structure where each node represents a question or condition, and each branch leads to further questions or a final decision. In this case, the model evaluates patient data to decide whether to admit or discharge a patient.",
+  "c": "I.A",
+  "scenario": "A healthcare provider uses an AI model to determine whether a patient should be admitted to the hospital based on their symptoms, medical history, and test results. The model works by asking a series of yes/no questions, such as “Is the blood pressure above 140?” or “Does the patient have a history of heart disease?” The path through the questions leads to a decision, such as “admit” or “discharge.”"
+ },
+ {
+  "n": 30,
+  "q": "What process is the team performing?",
+  "options": [
+   "Transparency Audit.",
+   "Privacy by Design.",
+   "Data Protection Impact Assessment (DPIA).",
+   "Data Minimization Review."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. A DPIA is a tool and process used to identify, assess, and mitigate privacy risks in systems, projects, or initiatives, particularly when they involve the processing of personal data.",
+  "c": "II.A",
+  "scenario": "A company is designing a new AI-powered recommendation system and is concerned about privacy risks. To address these concerns, the project team conducts an evaluation to identify potential risks to personal data during the system’s design phase. They assess how data will be collected, processed, and stored, and propose measures to mitigate identified risks. The team also documents the entire process to ensure compliance with applicable privacy regulations."
+ },
+ {
+  "n": 31,
+  "q": "Which type of data is being described in this scenario?",
+  "options": [
+   "Unstructured Data",
+   "Semi-structured Data",
+   "Structured Data",
+   "Raw Data"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because structured data is highly organized and stored in a predefined format, such as rows and columns in a relational database. It is easily searchable and frequently used in applications like customer databases and financial records.",
+  "c": "III.B",
+  "scenario": "A retail company maintains a database of customer information, including customer IDs, names, email addresses, purchase histories, and loyalty points. Each piece of information is organized into rows and columns within a relational database, allowing for easy querying and analysis."
+ },
+ {
+  "n": 32,
+  "q": "Which law is being described?",
+  "options": [
+   "New York City Local Law 144.",
+   "Colorado AI Act.",
+   "California Consumer Privacy Act (CCPA).",
+   "California AI Transparency Act (SB 942)."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. The Colorado AI Act focuses on the responsible deployment of high-risk AI systems, requiring impact assessments and safeguards to prevent bias and discrimination.",
+  "c": "II.C",
+  "scenario": "A U.S. state law requires businesses deploying high-risk AI systems to conduct impact assessments and implement safeguards to mitigate bias and discriminatory outcomes. The law emphasizes transparency, accountability, and the responsible use of AI in applications such as hiring, lending, and public services. It also mandates that businesses provide clear documentation of their AI systems’ purposes and limitations."
+ },
+ {
+  "n": 33,
+  "q": "What type of model has been described?",
+  "options": [
+   "Large language model.",
+   "Open-source AI model.",
+   "Reinforcement learning model.",
+   "Generative AI model."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A large language model (LLM) processes and generates human-like language by leveraging deep learning techniques and extensive training datasets, which matches the system described.",
+  "c": "IV.A",
+  "scenario": "A customer support company implements an AI system capable of generating responses to customer queries in real-time. The system uses deep learning techniques and has been trained on billions of conversational examples, enabling it to handle complex queries and provide context-aware responses. The system’s primary function is to process and generate human language effectively across a wide range of contexts."
+ },
+ {
+  "n": 34,
+  "q": "Under which legal theory could the company be held liable for the harm caused?",
+  "options": [
+   "Breach of warranty.",
+   "Strict liability.",
+   "Negligence.",
+   "Intentional tort."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Strict liability applies when a defect in a product causes harm, regardless of whether the manufacturer exercised reasonable care during production.",
+  "c": "II.B",
+  "scenario": "A company develops an autonomous delivery robot equipped with AI for navigation. While in operation, a defect in the AI system causes the robot to misinterpret traffic signals, resulting in a collision with a pedestrian and causing serious injuries. Investigators determine that the defect was present during manufacturing and not due to any misuse or negligence by the company."
+ },
+ {
+  "n": 35,
+  "q": "What tool is being described?",
+  "options": [
+   "OECD Model Card Regulatory Check.",
+   "AI Verify.",
+   "ISO/IEC 42001 Compliance Toolkit.",
+   "NIST AI Risk Management Framework."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. The OECD Model Card Regulatory Check is a tool designed to evaluate AI systems against the OECD’s principles for ethical and trustworthy AI.",
+  "c": "II.D",
+  "scenario": "A tool designed to evaluate AI systems against international guidelines for ethical and trustworthy AI is widely used to ensure compliance with key principles like transparency, fairness, and accountability. This tool helps organizations generate standardized documentation to communicate the characteristics, risks, and limitations of their AI systems. Developed to align with recommendations from a leading global organization, it is particularly useful for regulatory and governance purposes."
+ },
+ {
+  "n": 36,
+  "q": "What is the software company doing under this arrangement?",
+  "options": [
+   "Registering the AI model for intellectual property protection.",
+   "Acquiring a license for the AI model.",
+   "Purchasing the AI model outright.",
+   "Engaging in open-source collaboration."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. By entering into this agreement, the company is acquiring a license that grants permissions and sets limitations on the use of the AI model.",
+  "c": "IV.B",
+  "scenario": "A software development company enters into an agreement with a third-party provider to gain access to an AI model for integration into its product. The agreement specifies how the company can use the model, prohibits modifications without approval, and includes provisions to address liability and confidentiality. The company is allowed to use the model only for purposes explicitly outlined in the agreement."
+ },
+ {
+  "n": 37,
+  "q": "What type of harm is the user experiencing in this scenario?",
+  "options": [
+   "Economic Harm",
+   "Subjective Harm",
+   "Objective Harm",
+   "Legal Harm"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because objective harm refers to tangible, measurable impacts caused by an event, such as financial losses, fraud, or damage to a person’s credit. In this scenario, the unauthorized credit cards and loans, along with the financial losses, are clear examples of objective harm.",
+  "c": "I.A",
+  "scenario": "A user is notified that their Social Security number and credit card information were stolen in a data breach at a major retailer. Shortly after, the user discovers that multiple unauthorized credit cards and loans have been opened in their name. The identity theft has caused significant financial loss and damage to their credit score, requiring extensive effort to resolve."
+ },
+ {
+  "n": 38,
+  "q": "Which ethical AI principle listed below best describes this scenario?",
+  "options": [
+   "Accountability",
+   "Fairness",
+   "Transparency",
+   "Contestability"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because fairness ensures that AI systems treat all individuals equitably and do not produce biased or discriminatory outcomes. In this scenario, the organization demonstrates fairness by testing for bias, removing demographic factors, and auditing the system to ensure equitable treatment for all patients.",
+  "c": "I.A",
+  "scenario": "A healthcare organization develops an AI system to prioritize patients for organ transplants. To ensure the system operates without bias, the organization conducts extensive testing to identify and eliminate patterns that could disproportionately favor certain groups over others. The AI model is designed to prioritize patients based solely on medical need and urgency, rather than demographic factors such as age, gender, or socioeconomic status. Additionally, the organization regularly audits the system to ensure equitable outcomes for all patients."
+ },
+ {
+  "n": 39,
+  "q": "Which type of organizational model does this scenario best describe?",
+  "options": [
+   "Hybrid",
+   "Centralized",
+   "Decentralized",
+   "Distributed"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because a centralized organizational model concentrates decision-making and authority within a single governing body. In this scenario, the dedicated AI governance team has sole responsibility and authority over AI policies and decisions across the corporation, which aligns with the centralized model.",
+  "c": "I.B",
+  "scenario": "A multinational corporation establishes a dedicated AI governance team headquartered at its main office. This team is responsible for creating and enforcing AI policies, monitoring compliance, and overseeing AI initiatives across all divisions and regions. The team has full authority to approve or reject AI projects and requires all departments to align with the standards and guidelines it sets. Decisions regarding AI development and deployment are made exclusively by this centralized team, ensuring consistency across the organization."
+ },
+ {
+  "n": 40,
+  "q": "Which of the following scenarios best illustrates the concept of transfer learning in artificial intelligence?",
+  "options": [
+   "Training a new AI model from scratch using a large dataset specific to the target task.",
+   "Using an AI model to group unlabeled data points into clusters based on their similarities.",
+   "Training an AI model to maximize rewards by interacting with its environment through trial and error.",
+   "Applying the knowledge gained from training an AI model on a large general dataset to a related but specific task, such as fine-tuning a model trained on images of animals to recognize breeds of dogs."
+  ],
+  "answer": 3,
+  "explanation": "This answer is correct because transfer learning involves leveraging knowledge from one task (e.g., training on a general dataset) to improve performance on a related task (e.g., recognizing specific dog breeds). It allows for efficient use of pre-trained models, saving time and resources.",
+  "c": "I.A"
+ },
+ {
+  "n": 41,
+  "q": "What is the analyst reading about?",
+  "options": [
+   "Data residency",
+   "Know Your Customer (KYC) requirements.",
+   "Data governance.",
+   "Privacy by design."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Know Your Customer (KYC) requirements involve verifying customer identities to prevent fraud, money laundering, and other illegal activities in compliance with financial regulations.",
+  "c": "II.B",
+  "scenario": "An AI governance professional is reviewing compliance requirements for a new financial services AI tool. The regulations mandate that the company must verify the identity of its customers by collecting and validating personal information, such as government-issued IDs, proof of address, and financial records. The professional notes that these measures are crucial for preventing fraud, money laundering, and other illicit activities."
+ },
+ {
+  "n": 42,
+  "q": "What type of system has been described?",
+  "options": [
+   "Classic AI system.",
+   "Open-source AI system.",
+   "Reinforcement learning system.",
+   "Generative AI system."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A classic AI system relies on pre-defined rules and structured algorithms to perform specific tasks without dynamically adapting or generating new outputs.",
+  "c": "I.A",
+  "scenario": "A team of engineers develops a system to optimize traffic signals in a city. The system uses pre-defined algorithms and rule-based logic, such as if-then statements and linear programming, to determine the timing of traffic lights based on historical traffic patterns. It does not adapt dynamically or generate new solutions beyond its programmed parameters."
+ },
+ {
+  "n": 43,
+  "q": "What term best describes this process?",
+  "options": [
+   "Oversight.",
+   "Assurance.",
+   "Audit.",
+   "Risk assessment."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. An audit is a formal and periodic assessment to ensure that an AI system complies with regulations, policies, and ethical standards.",
+  "c": "IV.C",
+  "scenario": "An organization has deployed a new AI system and is conducting a formal assessment to evaluate its compliance with regulatory requirements, internal policies, and ethical standards. This assessment is performed periodically and involves reviewing system documentation, performance metrics, and risk management strategies."
+ },
+ {
+  "n": 44,
+  "q": "What technology is being described?",
+  "options": [
+   "Generative adversarial networks (GANs).",
+   "Narrow AI.",
+   "General-purpose AI (GPAI).",
+   "Expert systems."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. General-purpose AI models are designed to perform a broad range of tasks across multiple domains, exhibiting versatility and adaptability without task-specific training.",
+  "c": "I.A",
+  "scenario": "A cutting-edge AI model is designed to perform a wide range of tasks across multiple domains without requiring task-specific training. This model can generate text, analyze data, translate languages, and even assist in creative processes like writing and coding, all while adapting to user inputs and contexts seamlessly. Its versatility and ability to generalize across diverse applications make it a breakthrough in artificial intelligence."
+ },
+ {
+  "n": 45,
+  "q": "What requirement under the EU AI Act has the provider failed to comply with?",
+  "options": [
+   "Data governance obligations.",
+   "Post-market monitoring and corrective actions.",
+   "Transparency and information provision.",
+   "Technical documentation."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Under the EU AI Act, providers are required to implement a post-market monitoring plan and take corrective actions to address malfunctions or risks associated with their high-risk AI systems.",
+  "c": "II.C",
+  "scenario": "A healthcare technology company deploys a high-risk AI system used to assist in diagnosing medical conditions. After the system is launched, reports from hospitals indicate that it frequently misclassifies certain conditions, leading to incorrect diagnostic suggestions. Despite these reports, the company does not investigate the root cause of the problem or address the malfunction."
+ },
+ {
+  "n": 46,
+  "q": "Which line of defense is being described?",
+  "options": [
+   "First line of defense.",
+   "Third line of defense.",
+   "Fourth line of defense.",
+   "Second line of defense."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The second line of defense involves risk management and compliance functions that provide oversight and guidance but do not directly own or manage risks.",
+  "c": "I.B",
+  "scenario": "A company implementing a new AI system assigns a team to oversee the risk management process. This team ensures that the policies and procedures established by the operational teams are effective and comply with regulatory requirements. They provide guidance, monitor risk controls, and offer support to the teams directly managing the system, but they do not own the risks themselves."
+ },
+ {
+  "n": 47,
+  "q": "What phase of the AI development life cycle does this describe?",
+  "options": [
+   "Development.",
+   "Planning.",
+   "Design",
+   "Deployment."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Deployment refers to the phase in the AI development life cycle where the system is integrated into a production environment, made operational, and monitored for ongoing performance and compliance.",
+  "c": "III.C",
+  "scenario": "An AI system has completed development and testing and is now being integrated into a production environment. During this phase, the organization configures the system for real- world use, monitors its performance in operational settings, and establishes mechanisms for continuous monitoring to ensure ongoing compliance, safety, and reliability."
+ },
+ {
+  "n": 48,
+  "q": "What type of disclosure is the writer drafting?",
+  "options": [
+   "Jurisdiction-specific disclosure.",
+   "Sector-specific disclosure.",
+   "End user disclosure.",
+   "System-specific disclosure."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Jurisdiction-specific disclosures are tailored to meet the legal and regulatory requirements of specific regions, such as the EU AI Act, and include rights applicable under those laws.",
+  "c": "III.C",
+  "scenario": "A technical writer at a multinational corporation is drafting a document to comply with the EU AI Act for its AI-powered recruitment system deployed across Europe. The system analyzes resumes and interview recordings to recommend candidates for job openings. The document provides information on the system’s functionality and outlines subject rights, including the right to receive an explanation of decisions made by the system, the right to contest decisions, and the right to access and correct personal data. It is designed to meet transparency requirements specific to the European Union."
+ },
+ {
+  "n": 49,
+  "q": "In which of the following cases is algorithmic disgorgement most likely to be applied?",
+  "options": [
+   "A company collects minimal user data to train an AI model but retains the data longer than necessary.",
+   "An e-commerce company transfers user purchase history to a third party without providing users an option to opt out.",
+   "A financial institution anonymizes its customer data to train an AI fraud detection model.",
+   "A social media company collects children’s data without obtaining parental consent and uses it to train child-specific recommendation algorithms."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Algorithmic disgorgement is likely to be applied here because the data was collected in violation of privacy laws, and regulatory authorities may require the deletion of both the data and the AI models trained on it.",
+  "c": "II.B"
+ },
+ {
+  "n": 50,
+  "q": "What type of data is being discussed?",
+  "options": [
+   "Semi-structured data.",
+   "Structured data.",
+   "Unstructured data.",
+   "Real-time data."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Structured data is highly organized, often stored in tabular formats with clearly defined fields, as described in the scenario.",
+  "c": "III.B",
+  "scenario": "An AI development team is reviewing the data recently ingested for their project. One team member says, “The dataset includes clear categories, such as names, dates, and numerical values, all organized into rows and columns within a database.” Another adds, “Since the information is so well-organized, it’s easy to query and use for analysis without much preprocessing.”"
+ },
+ {
+  "n": 51,
+  "q": "Which type of AI model is best suited for the business owner’s requirements?",
+  "options": [
+   "Large Language Model (LLM)",
+   "Small Language Model (SLM)",
+   "Generative Pre-trained Transformer (GPT)",
+   "Clustering Model"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because a Small Language Model (SLM) is lightweight, cost- effective, and designed for efficient natural language processing tasks. It aligns well with the business’s budget constraints, infrastructure, and privacy requirements.",
+  "c": "IV.A",
+  "scenario": "A small business owner wants to deploy an AI system to help manage customer inquiries via email. Due to budget constraints, they select an AI model that is lightweight, requires less computational power, and can be deployed on their local servers to ensure data privacy. This AI model has fewer parameters compared to large-scale models and is specifically designed for efficient natural language processing tasks like responding to emails and summarizing text."
+ },
+ {
+  "n": 52,
+  "q": "What activity is taking place?",
+  "options": [
+   "Feature engineering.",
+   "Data collection.",
+   "Data labeling.",
+   "Hyperparameter tuning."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Feature engineering is the process of transforming raw data into meaningful inputs, or features, that improve the model’s predictive performance.",
+  "c": "III.B",
+  "scenario": "A data scientist is preparing a dataset for training an AI model. They begin by selecting key variables from the raw data, such as timestamps and purchase amounts, and transforming them into meaningful inputs, such as daily averages and total spend per customer. The scientist removes irrelevant variables, creates new ones that might improve the model’s performance, and ensures all inputs are formatted for compatibility with the machine learning algorithm."
+ },
+ {
+  "n": 53,
+  "q": "What weakness does the system suffer from?",
+  "options": [
+   "Brittleness.",
+   "Bias.",
+   "Overfitting.",
+   "Latency."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Brittleness refers to a system’s inability to handle variations or unexpected inputs, leading to failures in scenarios outside its training data or standard conditions.",
+  "c": "III.C",
+  "scenario": "An analyst is evaluating an AI system designed to classify customer sentiment based on product reviews. During testing, the analyst observes that the system performs well with typical inputs, such as reviews written in standard, grammatically correct sentences. However, when presented with slightly unusual inputs, such as reviews written in slang, mixed languages, or with intentional misspellings, the system fails to classify the sentiment accurately. This inability to handle diverse or unexpected inputs raises concerns about the system’s reliability."
+ },
+ {
+  "n": 54,
+  "q": "Which privacy- enhancing technology can best solve the organization’s problem?",
+  "options": [
+   "Differential privacy.",
+   "Federated learning.",
+   "Secure multi-party computation.",
+   "Homomorphic encryption."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Secure multi-party computation enables multiple parties to collaboratively perform computations on their private data without revealing the raw data to each other, making it ideal for this scenario.",
+  "c": "III.B",
+  "scenario": "A consortium of financial institutions is collaborating to develop a machine learning model to detect fraudulent transactions. Each institution holds a proprietary dataset containing sensitive customer information, which they cannot share due to strict privacy regulations and competitive concerns. They need to build the model using the combined data from all institutions while ensuring that no raw data is disclosed to any party."
+ },
+ {
+  "n": 55,
+  "q": "Under the strict liability regime in the European Union, a consumer is injured by a defective AI-powered device. To seek compensation, what must the victim prove?",
+  "options": [
+   "That the manufacturer was negligent in producing the product.",
+   "That the product violated the General Data Protection Regulation (GDPR).",
+   "That the product was defective and caused the harm.",
+   "That the harm was caused intentionally by the manufacturer."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Under strict liability, victims only need to prove that the product was defective and that the defect caused their harm, regardless of negligence or intent.",
+  "c": "II.B"
+ },
+ {
+  "n": 56,
+  "q": "What type of output is the analyst observing in this scenario?",
+  "options": [
+   "Probabilistic Output",
+   "Deterministic Output",
+   "Binary Output",
+   "Categorical Output"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because deterministic outputs provide fixed, definitive results without any expression of uncertainty or confidence levels. In this scenario, the LLM produces a single clear response to the query, exemplifying deterministic output.",
+  "c": "I.A",
+  "scenario": "An analyst is reviewing the outputs of a large language model (LLM) designed to answer customer support questions. When asked, “What is the return policy for electronics?” the model provides a single, definitive response: “The return policy for electronics allows returns within 30 days of purchase, provided the item is in its original packaging.” The analyst observes that the model generates one clear and fixed answer without expressing uncertainty or providing alternative responses."
+ },
+ {
+  "n": 57,
+  "q": "What best describes the concept of a “socio-technical system” in the context of Artificial Intelligence (AI)?",
+  "options": [
+   "A system that relies solely on technical components like algorithms and data for decision-making, excluding human roles.",
+   "A system in which human and societal factors interact with AI technology, shaping and being shaped by its design, development, and implementation.",
+   "A purely technical framework where AI systems function without any human influence or intervention.",
+   "A theoretical concept that suggests AI systems operate independently of societal and ethical considerations."
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because the concept of a “socio-technical system” emphasizes the interaction between humans and AI, where humans influence AI through design and implementation, and AI impacts human behavior and societal norms.",
+  "c": "I.A"
+ },
+ {
+  "n": 58,
+  "q": "How is the professional trying to determine the project’s scope?",
+  "options": [
+   "By analyzing the project’s effort.",
+   "By assessing the project’s fit.",
+   "By identifying technical requirements.",
+   "By evaluating the project’s impact."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The professional’s focus on benefits, measurable outcomes, and value aligns with evaluating the project’s impact as part of determining its scope.",
+  "c": "III.A",
+  "scenario": "An AI governance professional is meeting with stakeholders to evaluate a proposed AI project. During the meeting, the professional asks, “What benefits will this system bring to the organization, and how will it improve our overall operations?” They also inquire, “What measurable outcomes can we expect, and who will be the primary beneficiaries of this initiative?” The professional emphasizes understanding how the project aligns with organizational priorities and delivers value."
+ },
+ {
+  "n": 59,
+  "q": "Which of the following does NOT determine whether a GPAI model has high-impact capabilities?",
+  "options": [
+   "The computational power required for training the model.",
+   "The number of parameters in the model.",
+   "The specific downstream applications the model is integrated into.",
+   "The size and quality of the dataset used for training the model."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Unlike AI systems, the EU AI Act determines a GPAI model’s high-impact capabilities based on its technical architecture and training parameters, not the specific downstream applications it may be used for.",
+  "c": "II.C",
+  "scenario": "The determination of whether a General-Purpose AI (GPAI) model possesses high-impact capabilities under the EU AI Act involves multiple factors. These include technical attributes, benchmarks, and system-level metrics."
+ },
+ {
+  "n": 60,
+  "q": "What is the auditor observing?",
+  "options": [
+   "False negatives.",
+   "False positives.",
+   "True negatives.",
+   "True positives."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. False negatives occur when a system fails to identify fraudulent instances, as described in the scenario.",
+  "c": "III.B",
+  "scenario": "An AI auditor is reviewing the logs of a classification system used to detect fraudulent transactions. In the logs, they notice that the system is failing to flag numerous fraudulent transactions, allowing them to go unnoticed and unaddressed. The auditor is concerned that this pattern could result in significant financial losses and harm to the organization’s reputation."
+ },
+ {
+  "n": 61,
+  "q": "Which of the following best describes the typical calculation method used in risk scoring?",
+  "options": [
+   "Probability ÷ Severity.",
+   "(Likelihood × Severity) ÷ Mitigation effort.",
+   "Severity + Likelihood.",
+   "Severity × Likelihood."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The typical method for risk scoring involves multiplying the severity of the harm by the likelihood of its occurrence to produce a risk score.",
+  "c": "III.A"
+ },
+ {
+  "n": 62,
+  "q": "Which traditional exception to software licensing best describes the action taken by the company?",
+  "options": [
+   "Modifications.",
+   "Unauthorized combination with other software.",
+   "Failure to meet performance requirements.",
+   "Use beyond the authorized scope."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Modifications refer to changes or alterations made to the licensed software or model, which can breach the licensing agreement if performed without authorization.",
+  "c": "IV.B",
+  "scenario": "A company licenses a pre-trained AI model from a third-party provider to use in its customer support system. After procuring the model, the company refines the model by re-training it with proprietary customer interaction data to improve its performance for specific use cases. This change significantly alters the model’s behavior and functionality."
+ },
+ {
+  "n": 63,
+  "q": "The team is evaluating each group’s level of influence, interest, and responsibility in the project to ensure effective engagement throughout the system’s development and deployment. What is the team doing?",
+  "options": [
+   "Stakeholder mapping.",
+   "Governance framework design.",
+   "Risk assessment.",
+   "Data governance planning."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Stakeholder mapping involves identifying and analyzing the individuals or groups impacted by a project to understand their roles, influence, and engagement needs.",
+  "c": "III.A",
+  "scenario": "An AI governance team is working on a new project and is identifying the groups and individuals who will be impacted by the AI system. They list internal teams such as operations, marketing, and IT, as well as external entities like customers, regulatory bodies, and vendors."
+ },
+ {
+  "n": 64,
+  "q": "Why should unnecessary features not be developed?",
+  "options": [
+   "They simplify the model’s architecture.",
+   "They increase resource usage, add complexity, and may cause overfitting.",
+   "They decrease the training time required for the model.",
+   "They reduce the model’s ability to generalize to new data."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Unnecessary features can waste computational resources, make the model more complex to manage, and increase the risk of overfitting by introducing noise into the data.",
+  "c": "III.B",
+  "scenario": "An AI project team is discussing their feature engineering process and debating whether to include additional features that may not directly improve the model’s performance."
+ },
+ {
+  "n": 65,
+  "q": "What type of system has been described?",
+  "options": [
+   "Proprietary system.",
+   "Generative AI system.",
+   "Open-source system.",
+   "Classic AI system."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A proprietary system restricts access to its internal workings, including algorithms and data, and is fully controlled by the vendor, as described in the scenario.",
+  "c": "IV.A",
+  "scenario": "A technology vendor offers an AI solution to banks for fraud detection. The banks receive predictions and alerts generated by the system but have no visibility into the underlying algorithms, data sources, or decision-making processes. The vendor retains full control over the system’s design and operation, preventing the banks from modifying or auditing it."
+ },
+ {
+  "n": 66,
+  "q": "Which neural network is being described?",
+  "options": [
+   "Graph neural network.",
+   "Convolutional neural network.",
+   "Feedforward neural network.",
+   "Recurrent neural network."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. A convolutional neural network (CNN) is designed to process spatial data using convolutional layers to detect patterns and features in images.",
+  "c": "I.A",
+  "scenario": "This type of neural network is specifically designed to process spatial data, such as images. It uses specialized layers that apply filters to small regions of the input data, detecting patterns like edges, shapes, and textures. These patterns are then combined in deeper layers to recognize more complex features. This architecture is widely used for image recognition, object detection, and other visual data tasks."
+ },
+ {
+  "n": 67,
+  "q": "What is the most likely explanation for the video the user has encountered?",
+  "options": [
+   "An official statement intentionally leaked early",
+   "A video altered by poor-quality compression",
+   "A deepfake created to manipulate public opinion",
+   "A legitimate video edited for clarity"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because a deepfake is a manipulated video or audio clip created using advanced AI techniques to make it appear as though someone said or did something they did not. The unusual visual and audio inconsistencies, combined with the lack of verification from reputable sources, strongly suggest that this video is a deepfake intended to mislead viewers.",
+  "c": "I.A",
+  "scenario": "A user watches a viral video on social media showing a well-known political leader making controversial statements that conflict with their usual stance on key issues. The video looks realistic, but the user notices slight inconsistencies, such as unusual facial expressions, awkward lip-syncing, and a voice tone that occasionally seems robotic. After searching online, the user cannot find any reputable news sources verifying the video or reporting the leader making these statements."
+ },
+ {
+  "n": 68,
+  "q": "Which law is the AI product most likely violating?",
+  "options": [
+   "Title VII of the Civil Rights Act of 1964.",
+   "Fair Credit Reporting Act (FCRA).",
+   "Americans with Disabilities Act (ADA).",
+   "Equal Credit Opportunity Act (ECOA)."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. The ECOA prohibits discrimination in lending decisions based on protected characteristics such as race, color, religion, national origin, sex, marital status, or age.",
+  "c": "II.B",
+  "scenario": "A financial technology company deploys an AI-based lending platform to evaluate loan applications. The platform’s algorithm unintentionally assigns lower creditworthiness scores to applicants from certain racial and ethnic groups, despite equivalent financial qualifications compared to other applicants. This results in a disproportionate number of loan denials for individuals in these groups."
+ },
+ {
+  "n": 69,
+  "q": "Which document is being described?",
+  "options": [
+   "Federal Trade Commission Act (Section 5).",
+   "Dodd-Frank Act.",
+   "Basel III Framework.",
+   "SR 11-7: Guidance on Model Risk Management."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. SR 11-7 provides comprehensive guidance on managing model risk, including validation and governance practices for banking organizations supervised by the Federal Reserve.",
+  "c": "II.B",
+  "scenario": "A regulatory guidance document issued by the Federal Reserve in 2011 provides standards for managing risks associated with advanced statistical models. It outlines principles for model development, implementation, validation, and governance, emphasizing the need for “effective challenge” by objective and informed parties. This document applies to all banking organizations supervised by the Federal Reserve."
+ },
+ {
+  "n": 70,
+  "q": "Which system architecture is being described?",
+  "options": [
+   "Convolutional neural network.",
+   "Graph neural network.",
+   "Recurrent neural network.",
+   "Transformer."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. A transformer neural network uses self-attention to efficiently process sequential data, making it ideal for tasks in natural language processing and beyond.",
+  "c": "I.A",
+  "scenario": "This type of neural network is designed to handle sequential data but does so without relying on recurrent connections. Instead, it uses a mechanism called self-attention to focus on relevant parts of the input sequence, enabling efficient parallel processing. This architecture is highly effective for natural language processing tasks, such as machine translation, text summarization, and question answering, as well as image processing."
+ },
+ {
+  "n": 71,
+  "q": "Which type of AI is being described in this scenario?",
+  "options": [
+   "Artificial General Intelligence",
+   "Artificial Narrow Intelligence",
+   "Artificial Super Intelligence",
+   "Semi-supervised Learning"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because Artificial Super Intelligence (ASI) refers to an AI system that surpasses human intelligence in all domains, including creativity, problem-solving, and decision-making. The AI in this scenario demonstrates these superhuman capabilities.",
+  "c": "I.A",
+  "scenario": "An AI system is developed that can outperform humans in every conceivable domain, from science and art to decision-making and strategic thinking. It can create groundbreaking technologies, solve previously unsolvable problems, and improve itself without human intervention, making it far superior to human intelligence in every respect."
+ },
+ {
+  "n": 72,
+  "q": "Which country has proposed this legislation?",
+  "options": [
+   "Japan.",
+   "India.",
+   "Singapore.",
+   "Canada."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Canada’s Bill C-27 includes the CPPA, PIDPTA, and AIDA to modernize privacy laws and regulate AI systems.",
+  "c": "II.C",
+  "scenario": "This proposed legislation consists of three key components: the Consumer Privacy Protection Act (CPPA), which updates privacy protections for individuals; the Personal Information and Data Protection Tribunal Act (PIDPTA), which establishes a tribunal to enforce privacy-related decisions; and the Artificial Intelligence and Data Act (AIDA), which regulates the design, development, and deployment of AI systems to ensure they are safe and accountable."
+ },
+ {
+  "n": 73,
+  "q": "Which two EU laws specifically address transparency requirements for online platforms?",
+  "options": [
+   "Digital Services Act (DSA) and Digital Markets Act (DMA).",
+   "Digital Markets Act (DMA) and AI Liability Directive.",
+   "Digital Services Act (DSA) and General Data Protection Regulation (GDPR).",
+   "General Data Protection Regulation (GDPR) and AI Liability Directive."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Both the DSA and GDPR include provisions to increase transparency for online platforms, with the DSA focusing on platform operations and the GDPR addressing data privacy and user profiling.",
+  "c": "II.B",
+  "scenario": "Several European Union laws aim to increase transparency in how online platforms operate, including providing users with more information about how their data influences recommender systems and online advertising."
+ },
+ {
+  "n": 74,
+  "q": "What is the consultancy team evaluating?",
+  "options": [
+   "Product category.",
+   "Technical specifications.",
+   "Data.",
+   "Security and safety."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Evaluating technical specifications involves analyzing the system’s architecture, algorithms, compatibility, scalability, and computational efficiency.",
+  "c": "IV.B",
+  "scenario": "A third-party consultancy is assisting a large healthcare organization in evaluating an agreement with a vendor for a new AI-driven diagnostic tool. As part of the review, the team investigates the system’s design and infrastructure, including the algorithms it employs, its computational requirements, and the compatibility of the system with the organization’s existing hardware and software. They also assess how efficiently the tool can process large volumes of medical records and its overall scalability."
+ },
+ {
+  "n": 75,
+  "q": "Which country’s AI governance framework is being described?",
+  "options": [
+   "Brazil.",
+   "Singapore.",
+   "India.",
+   "Japan."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. Singapore’s Model AI Governance Framework focuses on ethical AI development and governance, supported by practical tools like AI Verify and the generative AI sandbox.",
+  "c": "II.D",
+  "scenario": "This framework, introduced in 2019 and regularly updated, provides implementable guidance on key ethical and governance issues for AI systems. It emphasizes principles such as transparency, fairness, accountability, and data governance. The framework is supported by tools like a self-assessment guide, a compendium of use cases, and AI Verify, a testing toolkit for compliance and performance evaluation. It also includes a generative AI sandbox to address emerging AI concerns while encouraging innovation."
+ },
+ {
+  "n": 76,
+  "q": "What type of attack is the malicious actor conducting in this scenario?",
+  "options": [
+   "Malware Injection",
+   "Adversarial Attack",
+   "Phishing",
+   "Data Breach"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because an adversarial attack involves manipulating inputs to exploit an AI system and extract sensitive information, such as details embedded in its training data. The attacker deliberately crafts their queries to deceive the system into revealing confidential information.",
+  "c": "III.C",
+  "scenario": "A malicious actor interacts with an AI model deployed as a chatbot for a customer service application. By carefully crafting a series of questions and inputs, the attacker exploits the system’s responses to infer sensitive details about the training data, such as customers’ names, account details, and transaction histories. The company becomes aware of the issue after noticing suspiciously specific queries directed at the chatbot."
+ },
+ {
+  "n": 77,
+  "q": "Which type of AI use case is being described in this scenario?",
+  "options": [
+   "Goal-driven",
+   "Optimization",
+   "Detection",
+   "Forecasting",
+   "Recommendation"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because detection involves identifying anomalies, patterns, or specific events in data. In this case, the AI system detects potentially fraudulent transactions by analyzing patterns that deviate from a user’s typical spending habits.",
+  "c": "IV.A",
+  "scenario": "A credit card company employs an AI system to analyze transaction data and identify fraudulent activities. The system flags transactions with unusual spending patterns or locations that deviate significantly from the cardholder’s typical behavior."
+ },
+ {
+  "n": 78,
+  "q": "Which statute has most likely been violated?",
+  "options": [
+   "Health Insurance Portability and Accountability Act (HIPAA).",
+   "21st Century Cures Act.",
+   "Affordable Care Act (ACA).",
+   "Civil Rights Act of 1964."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. The 21st Century Cures Act mandates accessibility and transparency of health data, ensuring patients have the right to access their own health information without unreasonable barriers.",
+  "c": "II.B",
+  "scenario": "A hospital adopts an AI-powered patient portal that uses predictive analytics to provide health insights. However, the system restricts patients’ access to their own health data by requiring a subscription fee, making it difficult for patients to obtain the information necessary to manage their care. This practice limits accessibility and transparency of health data for patients."
+ },
+ {
+  "n": 79,
+  "q": "In AI systems, the term _______ refers to a situation where the system’s goals, behaviors, or outputs deviate from human values, ethical principles, or the objectives of the organization deploying it.",
+  "options": [
+   "Adaptation",
+   "Optimization",
+   "Misalignment",
+   "Error"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because misalignment occurs when an AI system’s actions or outputs fail to align with the intended values or goals, potentially leading to harmful or unintended consequences.",
+  "c": "I.A"
+ },
+ {
+  "n": 80,
+  "q": "In the context of neural networks, _______ are values that determine the strength of the connection between nodes and are adjusted during training to optimize the model’s predictions.",
+  "options": [
+   "Weights",
+   "Features",
+   "Labels",
+   "Hyperparameters"
+  ],
+  "answer": 0,
+  "explanation": "This answer is correct because weights are key parameters in neural networks that define the strength of connections between nodes. They are adjusted during training to minimize errors and improve model predictions.",
+  "c": "I.A"
+ },
+ {
+  "n": 81,
+  "q": "Based on this transformation, which data protection controls under the GDPR must be implemented?",
+  "options": [
+   "None of these.",
+   "Ensure data subject consent is obtained.",
+   "Conduct a Data Protection Impact Assessment (DPIA).",
+   "Implement safeguards for pseudonymized data."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. The GDPR does not apply to data that has been sufficiently transformed to ensure it cannot be linked back to any individual, as described in this scenario.",
+  "c": "II.A",
+  "scenario": "An AI company collects data from a variety of sources to train a machine learning model. Before using the data, the company applies advanced techniques to ensure that the data cannot be linked back to any individual, even indirectly. The company also confirms that the transformed data cannot be used to re-identify any person, no matter what external datasets or tools are applied."
+ },
+ {
+  "n": 82,
+  "q": "Which data controller obligation under the GDPR has the company failed to fulfill?",
+  "options": [
+   "Breach notification.",
+   "Conducting a Data Protection Impact Assessment (DPIA).",
+   "Providing data subjects with access to their data.",
+   "Ensuring appropriate safeguards."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. Under the GDPR, data controllers are required to notify regulatory authorities within 72 hours of discovering a data breach and inform affected individuals without undue delay.",
+  "c": "II.A",
+  "scenario": "A health-tech company collects and processes patient data to develop a predictive health analytics platform. As part of its operations, the company experiences a data breach in which unauthorized actors access sensitive patient information. Upon investigation, it is revealed that the company failed to notify affected individuals and regulatory authorities within the required timeframe after discovering the breach."
+ },
+ {
+  "n": 83,
+  "q": "Under the EU AI Act, what risk level would this system fall under?",
+  "options": [
+   "High risk level.",
+   "Minimal risk level.",
+   "Limited risk level.",
+   "Unacceptable risk level."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. AI systems that exploit the vulnerabilities of specific groups, such as minors, using emotion recognition technology are classified as posing an unacceptable risk under the EU AI Act and are prohibited due to their potential to violate fundamental rights.",
+  "c": "II.C",
+  "scenario": "An AI governance professional at an education technology company is reviewing a proposal for a new AI system. The system would use machine learning technology to monitor high school students during class by analyzing their facial expressions, vocal tones, and body language. The collected data would be used to assess students’ levels of engagement, emotional states, and attentiveness, with results reported to teachers and school administrators."
+ },
+ {
+  "n": 84,
+  "q": "What term best describes this characteristic of data?",
+  "options": [
+   "Data volume.",
+   "Data velocity.",
+   "Data veracity.",
+   "Data validity."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Data veracity refers to the accuracy, reliability, and trustworthiness of a dataset, ensuring it is suitable for analysis and modeling.",
+  "c": "III.B",
+  "scenario": "An AI development team is evaluating the reliability of their dataset. They assess whether the data is accurate, trustworthy, and free from inconsistencies or errors that could negatively impact the model’s performance."
+ },
+ {
+  "n": 85,
+  "q": "How has the FDA classified the risk of this product?",
+  "options": [
+   "Class IV.",
+   "Class II.",
+   "Class III.",
+   "Class I."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Class III devices are life-supporting or life-sustaining and carry the highest risk, requiring rigorous pre-market approval and clinical validation.",
+  "c": "II.B",
+  "scenario": "An AI-powered device monitors and manages critical patient health conditions in real-time, such as providing automated adjustments to ventilators for patients in intensive care. This device plays a life-sustaining role and requires extensive clinical evidence to ensure its safety and effectiveness."
+ },
+ {
+  "n": 86,
+  "q": "Under which legal basis is the company processing the data?",
+  "options": [
+   "Contract.",
+   "Public interest.",
+   "Consent.",
+   "Legitimate interest."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Legitimate interest allows data processing when it is necessary for the organization’s business objectives, provided it does not override the privacy rights of individuals and includes mechanisms like opt-out options.",
+  "c": "II.A",
+  "scenario": "A German marketing company uses customer purchase history to create targeted advertising campaigns. The company determines that processing this data is necessary to support its business objectives and does not significantly impact the privacy rights of the individuals involved. Customers are provided with an opt-out option for data processing."
+ },
+ {
+  "n": 87,
+  "q": "What term best describes these protective measures?",
+  "options": [
+   "Accountability.",
+   "Transparency.",
+   "Safeguards.",
+   "Data Disposition."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Safeguards refer to administrative, technical, and physical controls put in place to protect data from unauthorized access, breaches, or other security threats.",
+  "c": "II.A",
+  "scenario": "A healthcare organization implements several measures to protect patient data. These include administrative controls such as staff training and access policies, technical controls like encryption and firewalls, and physical controls such as secure server rooms with restricted access. Together, these measures are designed to prevent unauthorized access, data breaches, and loss of sensitive information."
+ },
+ {
+  "n": 88,
+  "q": "What does the system suffer from?",
+  "options": [
+   "Data drift.",
+   "Overfitting.",
+   "Lack of robustness.",
+   "Model decay."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. A lack of robustness occurs when an AI system fails to perform consistently under different or altered conditions, such as variations in image resolution or brightness.",
+  "c": "III.C",
+  "scenario": "A healthcare organization deploys an AI-powered diagnostic system to analyze X-ray images and detect signs of lung disease. During testing, the system performs accurately on high-resolution images from the training dataset. However, when used with lower-resolution images from older machines or images with slight variations in brightness, the system produces inconsistent results, missing critical diagnoses or flagging healthy cases as diseased. This variability in performance creates significant challenges for the organization."
+ },
+ {
+  "n": 89,
+  "q": "Which type of AI model best describes the system used in this scenario?",
+  "options": [
+   "Clustering Model",
+   "Generative Model",
+   "Regression Model",
+   "Discriminative Model"
+  ],
+  "answer": 1,
+  "explanation": "This answer is correct because a generative model learns the underlying patterns and characteristics of input data to create new data points that resemble the training data. In this case, the AI generates new images of human faces based on learned features.",
+  "c": "I.A",
+  "scenario": "An AI system is designed to create new, realistic images of human faces based on patterns it has learned from a large dataset of existing images. The system analyzes the underlying features of the dataset, such as facial structure, texture, and lighting, and uses this information to generate entirely new images that do not correspond to any specific individual in the dataset."
+ },
+ {
+  "n": 90,
+  "q": "What type of assessment is required for this system under the EU AI Act?",
+  "options": [
+   "Data Protection Impact Assessment.",
+   "Third-party audit.",
+   "Conformity assessment.",
+   "Technical benchmarking."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Under the EU AI Act, high-risk systems, such as those used for critical infrastructure, require a conformity assessment to ensure compliance with standards for safety, robustness, and reliability.",
+  "c": "II.C",
+  "scenario": "A European country deploys an AI system to monitor and manage its national electrical grid. The system uses advanced algorithms to predict energy demand, prevent outages, and optimize resource distribution. While it does not collect or process personal data, the system plays a critical role in the country’s infrastructure and its failure could have significant safety and economic consequences."
+ },
+ {
+  "n": 91,
+  "q": "Which risk level does this description refer to?",
+  "options": [
+   "High risk level.",
+   "Limited risk level.",
+   "Minimal risk level.",
+   "Unacceptable risk level."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. The high-risk level applies to AI systems that are permitted under the EU AI Act but require strict compliance to mitigate their potential impacts on safety and fundamental rights.",
+  "c": "II.C",
+  "scenario": "Under the EU AI Act, some AI systems are allowed but are subject to strict regulatory requirements due to their potential to impact safety or fundamental rights. These systems include those used in areas like biometric identification, critical infrastructure, education, and employment. Providers of these systems must meet obligations such as conducting risk assessments, ensuring transparency, and maintaining detailed documentation."
+ },
+ {
+  "n": 92,
+  "q": "This dataset is reserved for measuring the final performance of the trained model on new, unseen data. It ensures the model can generalize well to real-world scenarios. What category does this dataset belong to?",
+  "options": [
+   "Validation Data",
+   "Training Data",
+   "Testing Data",
+   "Evaluation Data"
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because testing data is used after training to assess the model’s ability to generalize to unseen data, ensuring reliability and performance in real-world scenarios.",
+  "c": "III.B"
+ },
+ {
+  "n": 93,
+  "q": "Which agency is described?",
+  "options": [
+   "Consumer Financial Protection Bureau (CFPB).",
+   "Federal Trade Commission (FTC).",
+   "Federal Communications Commission (FCC).",
+   "Securities and Exchange Commission (SEC)."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. The FTC is an independent federal agency responsible for protecting consumers and promoting fair competition through the enforcement of laws against unfair or deceptive practices.",
+  "c": "II.B",
+  "scenario": "An independent federal agency is tasked with protecting the public from deceptive or unfair business practices and from unfair methods of competition. It carries out its mission through law enforcement, advocacy, research, and education. This agency also enforces laws such as the Children’s Online Privacy Protection Act (COPPA) and has authority under Section 5 of its founding act to regulate unfair or deceptive acts or practices (UDAP)."
+ },
+ {
+  "n": 94,
+  "q": "Which deployment environment would be best suited for implementing this federated learning approach?",
+  "options": [
+   "On-premise.",
+   "Cloud.",
+   "Hybrid.",
+   "Edge."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. Edge deployment supports federated learning by enabling training to occur directly at each hospital’s local infrastructure, ensuring that sensitive data never leaves the premises.",
+  "c": "IV.A",
+  "scenario": "MedAI Innovations is deploying a machine learning model to predict patient readmission rates. The model will train on protected health information (PHI) from hospitals throughout the state of Illinois. Due to the sensitive nature of the data and the state’s Biometric Information Privacy Act (BIPA), the company must adhere to the principle of data minimization to avoid unnecessary data transfer or exposure. To address these concerns, the company is exploring an approach that allows training to occur at each hospital, avoiding the centralization of PHI."
+ },
+ {
+  "n": 95,
+  "q": "What is the employer requesting?",
+  "options": [
+   "A consumer report.",
+   "A credit score.",
+   "An employment verification letter.",
+   "A background check."
+  ],
+  "answer": 0,
+  "explanation": "This is the correct answer. A consumer report provides detailed financial and credit history information, which employers may use during the hiring process, subject to compliance with the Fair Credit Reporting Act (FCRA).",
+  "c": "II.B",
+  "scenario": "An employer contacts a credit reporting agency to obtain detailed financial information about a job applicant. The employer intends to review the applicant’s credit history, including records of loans, credit card usage, and payment history, as part of the hiring process."
+ },
+ {
+  "n": 96,
+  "q": "Which scenario is an example of data drift in an AI system?",
+  "options": [
+   "The system’s data pipeline experiences a temporary outage.",
+   "An AI system predicts outputs faster after optimizing its architecture.",
+   "A model trained on historical purchasing patterns performs poorly due to significant changes in customer behavior over time.",
+   "A dataset contains missing values that need to be cleaned before training."
+  ],
+  "answer": 2,
+  "explanation": "This answer is correct because data drift occurs when the underlying data distribution changes over time, causing the model’s training data to no longer reflect real-world conditions and leading to degraded performance.",
+  "c": "IV.C"
+ },
+ {
+  "n": 97,
+  "q": "Which type of institution is not subject to the EU AI Act?",
+  "options": [
+   "Educational institutions using AI for personalized learning.",
+   "Military institutions developing AI systems for defense purposes.",
+   "Private companies deploying high-risk AI systems in recruitment.",
+   "Healthcare institutions using AI for diagnostic purposes."
+  ],
+  "answer": 1,
+  "explanation": "This is the correct answer. The EU AI Act explicitly excludes AI systems developed or used exclusively for military purposes from its scope.",
+  "c": "II.C",
+  "scenario": "The EU AI Act regulates the use and development of artificial intelligence across various sectors to ensure safety, fairness, and accountability. However, certain institutions are excluded from its scope due to their specific roles or functions."
+ },
+ {
+  "n": 98,
+  "q": "What is the company’s role under the EU AI Act?",
+  "options": [
+   "Deployer.",
+   "Provider.",
+   "Distributor.",
+   "Importer."
+  ],
+  "answer": 3,
+  "explanation": "This is the correct answer. An importer is responsible for bringing AI systems from outside the EU into the EU market and ensuring compliance with the EU AI Act, including verifying documentation and CE markings.",
+  "c": "II.C",
+  "scenario": "A company purchases AI systems from a provider based outside the European Union and brings them into the EU for sale. Before making these systems available to distributors and retailers, the company ensures compliance with the EU AI Act by verifying CE markings, technical documentation, and conformity assessments provided by the non-EU provider. The company also takes responsibility for addressing any regulatory requirements that the provider may not have met."
+ },
+ {
+  "n": 99,
+  "q": "What type of data is missing from the test set?",
+  "options": [
+   "Data to benchmark system latency.",
+   "Data to measure scalability under heavy loads.",
+   "Data to evaluate fairness across input categories.",
+   "Data to optimize model hyperparameters."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Data to evaluate fairness helps ensure the model does not produce biased outputs, which is critical for detecting and mitigating potential disparities.",
+  "c": "III.B",
+  "scenario": "A data engineer is preparing a dataset to thoroughly test a newly trained AI model. She has included examples that are rare and unusual to evaluate how the model handles unexpected inputs. She has also prepared a set of previously unused data to measure the model’s generalization capabilities and included inputs designed to challenge the model’s security by simulating adversarial scenarios. In her preparation, however, she has overlooked one crucial type of data."
+ },
+ {
+  "n": 100,
+  "q": "What is this method called?",
+  "options": [
+   "Anonymization.",
+   "Data Pseudonymization.",
+   "Bayesian Improved Surname Geocoding.",
+   "Synthetic Data Generation."
+  ],
+  "answer": 2,
+  "explanation": "This is the correct answer. Bayesian Improved Surname Geocoding uses surnames and geographic data to estimate demographic characteristics, reducing the need for direct collection of sensitive personal information.",
+  "c": "III.B",
+  "scenario": "An AI company is tasked with analyzing demographic trends to improve targeted outreach for a public health campaign. To estimate the racial and ethnic composition of a population without directly collecting sensitive personal data, the company uses a method that combines an individual’s surname with geographic data to infer their likely demographic characteristics."
+ }
+]

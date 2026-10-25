@@ -1,0 +1,749 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>AIGP Hard Exam 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: test-center shell. Fixed header bar, scrolling item pane, fixed navigation bar. */
+:root{
+  --bg:#f3f5f8; --panel:#ffffff; --fg:#17212e; --muted:#5a6676; --line:#d5dbe3;
+  --chrome:#1d3a5c; --chrome-fg:#ffffff; --chrome-2:#284c74;
+  --accent:#1f5f9e; --accent-soft:#e3edf8;
+  --flag:#b9770e; --flag-soft:#fbf0dc;
+  --ok:#1d7a46; --ok-soft:#e1f3e8; --bad:#b3261e; --bad-soft:#fae3e1;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10161e; --panel:#18212c; --fg:#e4e9ef; --muted:#9aa6b5; --line:#2c3846;
+  --chrome:#0b1a2b; --chrome-fg:#e8eef5; --chrome-2:#16304d;
+  --accent:#6aa8e8; --accent-soft:#1a3049;
+  --flag:#e6a640; --flag-soft:#3a2d14;
+  --ok:#5cc58a; --ok-soft:#163323; --bad:#ef7b72; --bad-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10161e; --panel:#18212c; --fg:#e4e9ef; --muted:#9aa6b5; --line:#2c3846;
+  --chrome:#0b1a2b; --chrome-fg:#e8eef5; --chrome-2:#16304d;
+  --accent:#6aa8e8; --accent-soft:#1a3049;
+  --flag:#e6a640; --flag-soft:#3a2d14;
+  --ok:#5cc58a; --ok-soft:#163323; --bad:#ef7b72; --bad-soft:#3d1c1a; color-scheme:dark}
+
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--chrome)}
+*{box-sizing:border-box}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.app{display:flex;flex-direction:column;height:100%}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.bar{background:var(--chrome);color:var(--chrome-fg);flex:none}
+.bar .gut{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px;max-width:1100px;margin:0 auto}
+.brand{font-weight:600;letter-spacing:.01em;margin-right:auto;min-width:0}
+.brand small{display:block;font-weight:400;opacity:.75;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip{font-family:var(--mono);font-variant-numeric:tabular-nums;background:var(--chrome-2);padding:4px 10px;border-radius:4px;font-size:14px;white-space:nowrap}
+.chip.warn{background:var(--bad);color:#fff}
+.linkbtn{background:none;border:1px solid rgba(255,255,255,.35);color:var(--chrome-fg);border-radius:4px;padding:3px 9px;font-size:13px}
+.progress{height:4px;background:var(--chrome-2)}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+
+/* Main pane */
+main{flex:1;overflow-y:auto}
+.wrap{max-width:1100px;margin:0 auto;padding-block:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:24px}
+h1,h2{text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:26px} h2{font-size:19px}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* Start screen */
+.start{display:grid;gap:20px;max-width:760px;margin:0 auto}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0;padding:0}
+.facts div{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--bg)}
+.facts dt{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.facts dd{margin:2px 0 0;font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.mode{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:6px;padding:14px;cursor:pointer;background:var(--panel)}
+.mode:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.mode input{margin-top:4px;accent-color:var(--accent)}
+.mode b{display:block}
+.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.opts label{display:flex;gap:8px;align-items:center}
+ul.rules{margin:0;padding-left:20px;display:grid;gap:4px}
+
+/* Buttons */
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:4px;padding:9px 16px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.flagged{background:var(--flag-soft);border-color:var(--flag);color:var(--flag)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* Question */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.qnum{font-weight:600;color:var(--accent)}
+.lvl{display:inline-block;vertical-align:middle;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-left:6px}
+.lvl-easy{background:var(--ok-soft);color:var(--ok)} .lvl-medium{background:var(--flag-soft);color:var(--flag)} .lvl-hard{background:var(--bad-soft);color:var(--bad)}
+.back{font-size:14px;color:var(--accent)}
+.flagtag{color:var(--flag);font-weight:600;font-size:13px}
+.stem{font-size:18px;line-height:1.55;margin:0 0 20px;max-width:70ch}
+.choices{display:grid;gap:10px;max-width:820px}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--panel)}
+.choice:hover{border-color:var(--accent)}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.letter{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font-weight:600;font-size:13px;color:var(--muted)}
+.choice .txt{min-width:0;padding-top:2px}
+.choice.sel{border-color:var(--accent);background:var(--accent-soft)}
+.choice.sel .letter{background:var(--accent);border-color:var(--accent);color:#fff}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.right .letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice.wrong .letter{background:var(--bad);border-color:var(--bad);color:#fff}
+.choice.locked{cursor:default}
+.feedback{margin-top:18px;padding:14px 16px;border-radius:6px;border:1px solid var(--line);max-width:820px}
+.feedback.ok{background:var(--ok-soft);border-color:var(--ok)}
+.feedback.bad{background:var(--bad-soft);border-color:var(--bad)}
+.feedback b{display:block;margin-bottom:4px}
+.keys{margin-top:22px;font-size:12px;color:var(--muted)}
+kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 4px;background:var(--panel)}
+
+/* Split layout */
+.qbody{display:grid;gap:20px}
+.qbody.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;align-items:start}
+.qbody.split .pane{min-width:0}
+.qbody.split #qLeft{padding-right:24px;border-right:1px solid var(--line);max-height:calc(100vh - 260px);overflow-y:auto}
+.qbody.split #qRight{padding-left:24px}
+.qbody.split .stem{margin-bottom:16px}
+.scen{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-bottom:16px;font-size:15px;line-height:1.6;max-width:70ch}
+.scen p{margin:.4em 0 0}
+.qbody.split .scen{margin-bottom:0;border:0;background:none;padding:0}
+@media (max-width:820px){
+  .qbody.split{grid-template-columns:1fr;gap:16px}
+  .qbody.split #qLeft{padding-right:0;border-right:0;max-height:none;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .qbody.split #qRight{padding-left:0}
+}
+.rscen{font-size:13px;color:var(--muted);margin:6px 0}
+.rscen summary{font-size:13px}
+
+/* Footer nav */
+.foot{flex:none;background:var(--panel);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.foot .gut{max-width:1100px;margin:0 auto;padding-block:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.foot .spacer{flex:1}
+
+/* Review grid */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;border:1px solid var(--line);display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px;margin-top:16px}
+.cell{position:relative;height:42px;border:1px solid var(--line);border-radius:4px;background:var(--panel);font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px;color:var(--fg)}
+.cell.ans{background:var(--accent-soft);border-color:var(--accent)}
+.cell.cur{outline:2px solid var(--fg);outline-offset:1px}
+.cell.flg::after{content:"";position:absolute;top:3px;right:3px;width:0;height:0;border-left:9px solid transparent;border-top:9px solid var(--flag)}
+.cell.r-ok{background:var(--ok-soft);border-color:var(--ok)}
+.cell.r-bad{background:var(--bad-soft);border-color:var(--bad)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:20px;padding:5px 12px;font-size:13px}
+.tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* Results */
+.score{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.ring{width:132px;height:132px}
+.ring text{font-family:var(--mono);fill:var(--fg)}
+.verdict{display:inline-block;font-weight:600;padding:3px 10px;border-radius:4px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.bad{background:var(--bad-soft);color:var(--bad)}
+.stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:10px}
+.stats div b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.stats div span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rlist{display:grid;gap:12px;margin-top:16px}
+.ritem{border:1px solid var(--line);border-left-width:4px;border-radius:6px;padding:16px;background:var(--panel)}
+.ritem.ok{border-left-color:var(--ok)} .ritem.bad{border-left-color:var(--bad)} .ritem.skip{border-left-color:var(--muted)}
+.ritem p{margin:6px 0}
+.ritem .ans{font-size:14px;display:grid;gap:2px;margin:8px 0}
+.ritem .exp{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.tag{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.tag.ok{color:var(--ok)} .tag.bad{color:var(--bad)} .tag.skip{color:var(--muted)}
+
+/* Break */
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.brk{display:grid;gap:12px;max-width:640px;margin:0 auto;text-align:left}
+.brk > div{display:grid;gap:12px}
+.bigclock{font-size:64px;font-weight:600;line-height:1;color:var(--accent);letter-spacing:.02em}
+
+/* Analysis */
+.doms{display:grid;gap:12px}
+.dom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center}
+.dom .nm{font-weight:500;min-width:0}
+.dom .nm small{color:var(--muted);font-weight:400;margin-right:6px;font-family:var(--mono)}
+.dom .val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+.track{grid-column:1/-1;height:10px;border-radius:5px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 auto 0 0;border-radius:5px}
+.track b{position:absolute;top:-2px;bottom:-2px;left:80%;width:2px;background:var(--fg);opacity:.5}
+.st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:3px;margin-left:8px}
+.st.g{background:var(--ok-soft);color:var(--ok)} .st.a{background:var(--flag-soft);color:var(--flag)} .st.r{background:var(--bad-soft);color:var(--bad)}
+.focus{display:grid;gap:12px}
+.fitem{border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;background:var(--panel)}
+.fitem h3{margin:0;font-size:16px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.fitem h3 small{font-family:var(--mono);color:var(--muted);font-weight:500}
+.fitem p{margin:0;font-size:14px}
+.qchips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
+.qchip{border:1px solid var(--bad);color:var(--bad);background:var(--bad-soft);border-radius:3px;padding:1px 7px;font-family:var(--mono);font-size:12px}
+details summary{cursor:pointer;font-weight:500;color:var(--accent)}
+.tblwrap{overflow-x:auto;margin-top:10px}
+.ctbl{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+.ctbl th,.ctbl td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.ctbl th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.ctbl td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctag{font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+/* Confirm overlay */
+.overlay{position:fixed;inset:0;background:rgba(10,18,28,.55);display:grid;place-items:center;z-index:20;padding:16px}
+.dialog{background:var(--panel);border-radius:8px;max-width:440px;width:100%;padding:22px;border:1px solid var(--line);display:grid;gap:14px}
+
+@media (max-width:560px){
+  .stem{font-size:16px} h1{font-size:22px}
+  .score{grid-template-columns:1fr;justify-items:start}
+  .foot .btn{padding:8px 12px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="gut">
+      <div class="brand">AIGP Hard Exam 1<small>Hard &middot; 100 questions</small></div>
+      <span id="qpos" class="chip" hidden></span>
+      <span id="timer" class="chip" hidden aria-live="off"></span>
+      <button id="btnLayout" class="linkbtn" hidden type="button" aria-pressed="false">Layout: stacked</button>
+      <button id="hideTimer" class="linkbtn" hidden type="button">Hide time</button>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+  </header>
+
+  <main id="main">
+    <!-- START -->
+    <section id="sStart" class="wrap gut">
+      <div class="start">
+        <div>
+          <div class="eyebrow">IAPP Artificial Intelligence Governance Professional</div>
+          <h1>Hard Practice Exam 1 <span class="lvl lvl-hard">Hard</span></h1>
+          <p class="muted">Work through 100 multiple-choice questions under conditions close to the real exam.</p><p style="margin:8px 0 0"><a class="back" href="../index.html">&larr; All practice exams</a></p>
+        </div>
+        <dl class="facts">
+          <div><dt>Questions</dt><dd>100</dd></div>
+          <div><dt>Time limit</dt><dd>180 min</dd></div>
+          <div><dt>Optional break</dt><dd>15 min after Q50</dd></div>
+          <div><dt>Readiness target</dt><dd>80%</dd></div>
+        </dl>
+        <div class="card" style="display:grid;gap:16px">
+          <h2>Choose a mode</h2>
+          <div class="modes">
+            <label class="mode"><input type="radio" name="mode" id="modeExam" value="exam" checked><span><b>Exam mode</b><span class="muted">Timed. No feedback until you end the exam. Change answers freely.</span></span></label>
+            <label class="mode"><input type="radio" name="mode" id="modePractice" value="practice"><span><b>Practice mode</b><span class="muted">Untimed, no break. See the answer and explanation right after each question.</span></span></label>
+          </div>
+          <div class="opts">
+            <label><input type="checkbox" id="optShuffle"> Shuffle question order</label>
+            <label><input type="checkbox" id="optInstant"> Show the answer and explanation after each question</label>
+          </div>
+          <ul class="rules muted">
+            <li>After question 50 you can take an optional 15-minute break. The exam clock stops during the break.</li>
+            <li>Flag any question to come back to it from the review screen.</li>
+            <li>Unanswered questions count as wrong, so answer every one.</li>
+            <li>Exam mode gives full feedback on every question in the score report at the end. Tick the option above to also see feedback after each question while the timer runs.</li>
+            <li>Scenario questions show the scenario on the left and the question on the right. Use the Layout button to view every question side by side.</li>
+            <li>In exam mode, the exam ends automatically when time runs out.</li>
+            <li>Your progress is saved in this browser, so you can resume later.</li>
+          </ul>
+          <div class="row">
+            <button id="btnStart" class="btn primary" type="button">Start exam</button>
+            <button id="btnResume" class="btn" type="button" hidden>Resume saved attempt</button>
+          </div>
+        </div>
+        <p class="muted" style="font-size:13px">Independent study aid. Not affiliated with or endorsed by the IAPP. Check the current AIGP Body of Knowledge at iapp.org.</p>
+      </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section id="sQ" class="wrap gut" hidden>
+      <div class="card">
+        <div class="qhead">
+          <span class="qnum" id="qLabel"></span>
+          <span class="flagtag" id="qFlagTag" hidden>&#9873; Flagged for review</span>
+        </div>
+        <div class="qbody" id="qBody">
+          <div class="pane" id="qLeft">
+            <div class="scen" id="qScen" hidden><div class="eyebrow">Scenario</div><div id="qScenTxt"></div></div>
+            <p class="stem" id="qStem"></p>
+          </div>
+          <div class="pane" id="qRight">
+            <div class="choices" id="qChoices" role="radiogroup" aria-labelledby="qStem"></div>
+            <div id="qFeedback" class="feedback" hidden></div>
+          </div>
+        </div>
+        <div class="keys hide-sm">Keys: <kbd>A</kbd>&ndash;<kbd>E</kbd> choose &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review screen</div>
+      </div>
+    </section>
+
+    <!-- BREAK -->
+    <section id="sBreak" class="wrap gut" hidden>
+      <div class="card brk">
+        <div id="brkOffer">
+          <div class="eyebrow">Section 1 complete</div>
+          <h1>You have finished the first 50 questions</h1>
+          <p class="muted">You may take an optional 15-minute break now. The exam clock stops while you are on break. You can only take this break once.</p>
+          <p>Exam time remaining: <b class="mono" id="brkExamLeft"></b></p>
+          <div class="row">
+            <button id="btnTakeBreak" class="btn primary" type="button">Take 15-minute break</button>
+            <button id="btnSkipBreak" class="btn" type="button">Skip break and continue</button>
+          </div>
+        </div>
+        <div id="brkOn" hidden>
+          <div class="eyebrow">On break &middot; exam clock paused</div>
+          <div class="bigclock mono" id="brkClock">15:00</div>
+          <p class="muted">Stand up, drink some water, rest your eyes. The exam continues automatically when the break ends.</p>
+          <p>Exam time remaining when you return: <b class="mono" id="brkExamLeft2"></b></p>
+          <button id="btnEndBreak" class="btn primary" type="button">End break and resume exam</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEW SCREEN -->
+    <section id="sReview" class="wrap gut" hidden>
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>Review your answers</h2>
+          <span class="muted" id="revSummary"></span>
+        </div>
+        <p class="muted">Select a number to go to that question.</p>
+        <div class="row" style="justify-content:space-between">
+          <div class="tabs" id="revTabs">
+            <button class="tab" type="button" data-f="all" aria-pressed="true">All</button>
+            <button class="tab" type="button" data-f="flagged" aria-pressed="false">Flagged</button>
+            <button class="tab" type="button" data-f="unanswered" aria-pressed="false">Unanswered</button>
+          </div>
+          <div class="legend">
+            <span><i class="sw" style="background:var(--accent-soft);border-color:var(--accent)"></i>Answered</span>
+            <span><i class="sw"></i>Unanswered</span>
+            <span><i class="sw" style="background:linear-gradient(225deg,var(--flag) 30%,var(--panel) 30%)"></i>Flagged</span>
+          </div>
+        </div>
+        <div class="grid" id="revGrid"></div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="sResults" class="wrap gut" hidden>
+      <div style="display:grid;gap:16px">
+        <div class="card score">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"></circle>
+            <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="var(--ok)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 400"></circle>
+            <text id="ringTxt" x="60" y="67" text-anchor="middle" font-size="24" font-weight="600">0%</text>
+          </svg>
+          <div style="min-width:0">
+            <div class="eyebrow">Score report</div>
+            <h1 id="resHead">Your result</h1>
+            <p style="margin:6px 0"><span id="resVerdict" class="verdict"></span></p>
+            <div class="stats">
+              <div><b id="stCorrect">0</b><span>Correct</span></div>
+              <div><b id="stWrong">0</b><span>Incorrect</span></div>
+              <div><b id="stSkip">0</b><span>Unanswered</span></div>
+              <div><b id="stTime">0:00</b><span>Time used</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="display:grid;gap:14px">
+          <div>
+            <h2>Performance by domain</h2>
+            <p class="muted" style="margin:4px 0 0" id="anaSummary"></p>
+          </div>
+          <div class="doms" id="anaDomains"></div>
+          <p class="muted" style="font-size:12px;margin:0">Strong: 80% or more &middot; Borderline: 60 to 79% &middot; Needs work: below 60%. Topic tags are mapped to the AIGP Body of Knowledge v2.1.</p>
+        </div>
+        <div class="card" style="display:grid;gap:14px">
+          <h2>Where to focus next</h2>
+          <div class="focus" id="anaFocus"></div>
+          <details>
+            <summary>Score by competency</summary>
+            <div class="tblwrap"><table class="ctbl" id="anaTable"></table></div>
+          </details>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <h2>Answer review</h2>
+            <div class="tabs" id="resTabs">
+              <button class="tab" type="button" data-f="all" aria-pressed="false">All</button>
+              <button class="tab" type="button" data-f="bad" aria-pressed="true">Incorrect</button>
+              <button class="tab" type="button" data-f="flagged" aria-pressed="false">Flagged</button>
+              <button class="tab" type="button" data-f="ok" aria-pressed="false">Correct</button>
+            </div>
+          </div>
+          <div class="grid" id="resGrid" style="grid-template-columns:repeat(auto-fill,minmax(44px,1fr))"></div>
+          <div class="rlist" id="resList"></div>
+        </div>
+        <div class="row">
+          <button id="btnRetakeWrong" class="btn primary" type="button">Retake incorrect questions</button>
+          <button id="btnNew" class="btn" type="button">Start a new attempt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" id="foot" hidden>
+    <div class="gut">
+      <button id="btnPrev" class="btn" type="button">&larr; Previous</button>
+      <button id="btnFlag" class="btn" type="button">&#9873; Flag</button>
+      <span class="spacer"></span>
+      <button id="btnReview" class="btn" type="button">Review</button>
+      <button id="btnEnd" class="btn danger" type="button">End exam</button>
+      <button id="btnNext" class="btn primary" type="button">Next &rarr;</button>
+    </div>
+  </footer>
+</div>
+
+<div id="confirm" class="overlay" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <h2 id="cfTitle">End the exam?</h2>
+    <p id="cfBody" class="muted" style="margin:0"></p>
+    <div class="row" style="justify-content:flex-end">
+      <button id="cfNo" class="btn" type="button">Keep working</button>
+      <button id="cfYes" class="btn primary" type="button">End exam</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [{"n": 1, "q": "What does the term “ground truth” refer to in the context of machine learning?", "options": ["The labeled data or accurate information used as a benchmark to evaluate the model’s predictions.", "The rules and algorithms programmed into the model for decision-making.", "The process of cleaning and normalizing data to improve model accuracy.", "The predictions made by a machine learning model after training is complete."], "answer": 0, "explanation": "This answer is correct because ground truth refers to reliable, labeled data or facts that serve as a standard for assessing the performance of a machine learning model. It provides the basis for measuring how well the model’s predictions align with actual outcomes.", "c": "I.A"}, {"n": 2, "q": "What roles and responsibilities does the company now assume under the EU AI Act?", "options": ["Importer.", "Distributor.", "Provider.", "Deployer."], "answer": 2, "explanation": "This is the correct answer. By integrating the AI system into its own hardware and placing the combined product on the market, the company assumes the role of a provider under the EU AI Act.", "c": "II.C", "scenario": "A company that specializes in manufacturing hardware for medical imaging devices procures an AI-powered diagnostic system from a third-party developer. The company integrates the AI system into its hardware to enhance its imaging capabilities and begins selling the combined product to hospitals and clinics."}, {"n": 3, "q": "Which liability regime is being used in this case?", "options": ["Fault liability.", "Strict liability.", "General Data Protection Regulation (GDPR).", "AI Liability Directive."], "answer": 1, "explanation": "This is the correct answer. Strict liability holds manufacturers accountable for harm caused by defective products, regardless of negligence or intent, as long as the defect and harm are proven.", "c": "II.B", "scenario": "A consumer in the European Union is injured due to a defect in an AI-powered household appliance. The defect existed at the time the product was released, and the consumer seeks compensation. Under this liability regime, the consumer does not need to prove that the manufacturer was negligent, only that the defect caused the harm."}, {"n": 4, "q": "What type of model is being described?", "options": ["Proprietary model.", "Federated model.", "Public model.", "Open-source model."], "answer": 0, "explanation": "This is the correct answer. A proprietary model is developed, owned, and controlled by a specific organization, with its underlying components kept confidential and not publicly accessible.", "c": "IV.A", "scenario": "An AI company has developed a sophisticated recommendation system for e-commerce platforms. The model is exclusively owned and controlled by the company, with its underlying source code, algorithms, and architecture kept confidential. The organization licenses the model to clients but does not provide direct access to the internal workings of the system."}, {"n": 5, "q": "Under which type of intellectual property does this invention fall?", "options": ["Patent.", "Trademark.", "Copyright.", "Trade secret."], "answer": 0, "explanation": "This is the correct answer. A patent protects inventions or processes, granting exclusive rights to the inventor to make, use, or sell the invention for a specified period.", "c": "II.B", "scenario": "A lawyer is reviewing an application submitted by an engineer for exclusive rights to a new type of renewable energy device. The device incorporates an innovative mechanism that significantly increases energy efficiency. The lawyer is ensuring that the application meets the necessary legal standards for protecting the invention and preventing others from manufacturing or selling similar devices without permission."}, {"n": 6, "q": "Which law may the company be violating?", "options": ["Fair Credit Reporting Act (FCRA).", "Americans with Disabilities Act (ADA).", "Title VII of the Civil Rights Act of 1964.", "Age Discrimination in Employment Act (ADEA)."], "answer": 2, "explanation": "This is the correct answer. Title VII prohibits employment discrimination based on race, color, religion, sex, or national origin and applies to practices, such as AI hiring models, that result in adverse impact.", "c": "II.B", "scenario": "An AI company develops a hiring model that screens job applicants for a large corporation. The model disproportionately disqualifies candidates from certain racial and ethnic groups, despite their qualifications. This unintentional bias results in fewer opportunities for these groups, demonstrating adverse impact. Additionally, the company does not notify the affected individuals or provide an avenue for them to understand or contest the decision."}, {"n": 7, "q": "Which of the following statements best describes the data labeling process in the context of supervised learning?", "options": ["Data labeling involves automatically assigning labels to data points based on an AI model’s predictions.", "Data labeling is a process unique to reinforcement learning where rewards and penalties act as implicit labels for the data.", "Data labeling ensures all datasets used in training are free from any errors or inconsistencies.", "Data labeling enriches data by manually or automatically assigning labels that provide context, making it usable for training, validation, and testing."], "answer": 3, "explanation": "This answer is correct because data labeling involves assigning meaningful labels to data points, providing the context necessary for supervised learning. These labels are critical for training AI models to recognize patterns and make accurate predictions.", "c": "III.B"}, {"n": 8, "q": "The term _______ refers to software that is made freely available to the public, allowing anyone to view, modify, and distribute its source code.", "options": ["Proprietary", "Encrypted", "Commercial", "Open Source"], "answer": 3, "explanation": "This answer is correct because open-source software is characterized by its accessibility and transparency, enabling developers to view, modify, and improve its source code. It fosters collaboration and innovation through community contributions.", "c": "IV.A"}, {"n": 9, "q": "Under the EU AI Act, which category does this system fall under?", "options": ["Unacceptable risk level.", "Minimal risk level.", "High risk level.", "Limited risk level."], "answer": 3, "explanation": "This is the correct answer. The system is used for personal device authentication, which does not significantly impact fundamental rights or safety and falls under the limited-risk category.", "c": "II.C", "scenario": "A technology company deploys an AI system that uses facial geometry to authenticate users and unlock mobile devices such as smartphones, tablets, and smartwatches. The system scans the user’s facial features to verify their identity and grant access to the device. It operates locally on the device and does not store or transmit the facial data to external servers."}, {"n": 10, "q": "What stage of the incident response plan is the analyst in with regards to handling this specific incident?", "options": ["Identification.", "Eradication.", "Containment.", "Recovery."], "answer": 2, "explanation": "This is the correct answer. The containment stage involves isolating the issue to prevent further damage, such as disabling access, suspending operations, and mitigating immediate threats, as described in the scenario.", "c": "IV.C", "scenario": "An AI incident response analyst is responding to a security breach involving a customer service chatbot that has been manipulated to provide unauthorized access to sensitive customer data. To minimize the impact, the analyst disables external access to the chatbot, temporarily suspends its operations, and implements firewall rules to block unauthorized connections. Additionally, the analyst ensures that compromised accounts are flagged and access permissions are revoked."}, {"n": 11, "q": "Which of the following scenarios would NOT qualify as a substantial modification under the EU AI Act?", "options": ["Updating the AI system’s algorithm to improve decision-making accuracy in high-risk applications.", "Changing the intended use of the AI system from internal data analysis to public decision-making.", "Adjusting the graphical user interface (GUI) without altering the system’s functionality or decision-making process.", "Replacing the training dataset with one containing different demographic distributions."], "answer": 2, "explanation": "This is the correct answer. Adjusting the GUI is not considered a substantial modification under the EU AI Act, as it does not affect the system’s core functionality, performance, or compliance.", "c": "II.C", "scenario": "Under the EU AI Act, providers and other stakeholders are required to assess whether changes to an AI system qualify as a “substantial modification.”"}, {"n": 12, "q": "Which privacy concept does this approach illustrate?", "options": ["Use Limitation.", "Data Minimization.", "Privacy by Design.", "Privacy by Default."], "answer": 2, "explanation": "This is the correct answer. Privacy by Design focuses on embedding privacy and data protection measures proactively throughout the development and operation of IT systems.", "c": "II.A", "scenario": "A technology company is developing a new mobile app. During the planning phase, the product team ensures that all privacy concerns are addressed by embedding privacy features into the app’s architecture. These features include data encryption, strict access controls, and privacy-preserving default settings. The team emphasizes integrating these measures throughout the app’s development lifecycle to prevent future privacy risks."}, {"n": 13, "q": "What key consideration has the team overlooked?", "options": ["Data.", "Stakeholder alignment.", "Technical infrastructure.", "Regulatory compliance."], "answer": 0, "explanation": "This is the correct answer. Data is a fundamental consideration for AI projects, as it serves as the foundation for training and operating AI systems. Without assessing data availability, quality, and relevance, the project cannot progress effectively.", "c": "III.A", "scenario": "An AI project team is in the early stages of a new initiative. They have identified the business problem, aligned the project with the organization’s mission, assessed gaps in existing capabilities, defined the project’s scope, and started establishing a governance body to oversee the project. However, they have not yet discussed a critical component necessary for successful AI implementation."}, {"n": 14, "q": "An AI model refines its performance using a dataset containing a small number of labeled examples of complaints alongside a larger dataset of unlabeled feedback. Which training methodology does this scenario describe?", "options": ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Semi-supervised Learning"], "answer": 3, "explanation": "This answer is correct because semi-supervised learning combines a small amount of labeled data with a larger set of unlabeled data to improve model performance.", "c": "I.A"}, {"n": 15, "q": "What type of harm does this consequence reflect?", "options": ["Reputational", "Economic", "Legal", "Cultural"], "answer": 2, "explanation": "This answer is correct because the regulatory investigation, fines, and required changes to hiring practices clearly indicate legal harm, as they involve non- compliance with anti-discrimination laws.", "c": "I.A", "scenario": "A large e-commerce company deployed an AI system to screen job applications and rank candidates for interviews. The system had been trained on historical hiring data, which contained biases against certain demographic groups. Despite warnings from some employees about potential fairness issues, the company’s leadership fully trusted the AI system, assuming its algorithmic precision would ensure impartial decisions. Regulators launched an investigation into the company after complaints were filed about discriminatory hiring practices. The investigation found that the AI system violated anti- discrimination laws, resulting in significant fines and mandated changes to the hiring process."}, {"n": 16, "q": "Which critical factor has the professional overlooked?", "options": ["End-user feedback.", "Third-party integration.", "Legal and regulatory requirements.", "Data pipeline dependencies."], "answer": 2, "explanation": "This is the correct answer. Legal and regulatory requirements are essential to ensure compliance with applicable laws and standards, which were not considered in this scenario.", "c": "IV.C", "scenario": "An AI governance professional is preparing for an internal audit of a newly deployed AI system. The professional is reviewing various factors to determine which types of testing are necessary. They analyze the system’s purpose, evaluate associated risks, and consider testing methodologies to validate the algorithm type."}, {"n": 17, "q": "What term best describes the process used to analyze the user’s behavior and infer that they are shopping for “back to school” items?", "options": ["Inference", "Profiling", "Secondary Use", "Data Aggregation"], "answer": 1, "explanation": "This answer is correct because profiling involves analyzing an individual’s behavior, purchases, and patterns to infer characteristics or categorize them into a specific group. In this scenario, the system analyzed the user’s purchases and inferred that they are preparing for “back to school” shopping, which aligns with the concept of profiling.", "c": "II.A", "scenario": "A user begins receiving targeted advertisements for school supplies, backpacks, and children’s clothing shortly after purchasing a set of notebooks, lunchboxes, and sneakers online. The user never explicitly shared that they are shopping for children or preparing for the school year, but the timing and nature of their purchases seem to have been analyzed to identify them as someone preparing for “back to school” season."}, {"n": 18, "q": "Which requirement of the Act should the company be LEAST concerned with?", "options": ["Disclosing the sources of training data.", "Describing the types of data used in training.", "Ensuring the training data complies with intellectual property laws.", "Providing a detailed explanation of the algorithm’s source code."], "answer": 3, "explanation": "This is the correct answer. The Act focuses on transparency of training data rather than requiring disclosure of the algorithm’s source code, making this a less critical concern for the company under this law.", "c": "II.C", "scenario": "Under California’s Generative AI: Training Data Transparency Act (AB 2013), a Silicon Valley- based company developing generative AI tools must comply with multiple requirements. These tools rely on extensive datasets to train their models and are widely used for generating text, images, and videos."}, {"n": 19, "q": "What stage of the incident response plan is the analyst in with regards to handling this specific incident?", "options": ["Eradication.", "Containment.", "Lessons learned.", "Recovery."], "answer": 2, "explanation": "This is the correct answer. The lessons learned stage focuses on reviewing and documenting the incident to improve future incident response practices and prevent recurrence, as described in the scenario.", "c": "IV.C", "scenario": "After fully resolving an incident involving a compromised recommendation system that produced biased product suggestions, an AI incident response analyst gathers the team to review the incident. The team identifies the root causes, such as weak data validation processes and insufficient monitoring. They document these findings and recommend changes to strengthen data validation procedures, enhance logging capabilities, and improve staff training. These recommendations are incorporated into updated incident response plans to prevent similar incidents in the future."}, {"n": 20, "q": "Based on this conversation, which Fair Information Practice (FIP) is being described?", "options": ["Notice/Openness.", "Use Limitation.", "Access/Individual Participation.", "Data Minimization."], "answer": 3, "explanation": "This is the correct answer. Data minimization refers to collecting only the data necessary for a specific purpose and retaining it only for as long as it is required.", "c": "II.A", "scenario": "An AI analyst is collaborating with a data engineer to design a dataset for training a new machine learning model. The analyst emphasizes that only the essential data required for the model’s purpose should be collected and stored, avoiding any unnecessary information. They also suggest that once the data is no longer useful, it should be securely deleted."}, {"n": 21, "q": "Which of the following activities is NOT required under the data governance requirements?", "options": ["Regular monitoring of system performance for safety risks.", "Establishing procedures for the collection and labeling of datasets.", "Ensuring datasets are free of errors and relevant to the intended purpose.", "Implementing safeguards to prevent bias in training data."], "answer": 0, "explanation": "This is the correct answer. Monitoring system performance for safety risks is part of risk management, not data governance, which focuses specifically on the management and quality of datasets.", "c": "II.C", "scenario": "Under the EU AI Act, data governance requirements for high-risk AI systems include ensuring the quality, accuracy, and relevance of datasets used for training, validation, and testing."}, {"n": 22, "q": "What is the legal term that justifies this use of the copyrighted material?", "options": ["Derivative Work.", "Public Domain.", "Copyright Infringement.", "Fair Use."], "answer": 3, "explanation": "This is the correct answer. Fair Use permits the use of copyrighted material without permission for purposes such as criticism, commentary, teaching, or research, as long as it meets specific legal criteria.", "c": "II.B", "scenario": "A journalist includes short excerpts from a copyrighted book in an article critiquing the author’s arguments. The excerpts are properly attributed, and their inclusion is essential to support the journalist’s analysis. The journalist does not seek permission from the author or publisher to use these excerpts."}, {"n": 23, "q": "What rights does the court have to adjudicate the victim’s claim under the AI Liability Directive?", "options": ["The court can dismiss claims if the product is not deemed a physical good.", "The court can only adjudicate claims involving strict liability.", "The court can presume fault only when intentional harm is proven.", "The court can grant victims access to relevant evidence from the manufacturer to support their claim."], "answer": 3, "explanation": "This is the correct answer. Under the AI Liability Directive, courts are empowered to require companies to provide evidence about their AI systems when such information is necessary to adjudicate claims.", "c": "II.B", "scenario": "A consumer uses an AI-powered navigation system while driving. Due to a programming error, the system directs the user to drive onto an unsafe, unmarked private road, resulting in a severe accident. The consumer files a claim against the manufacturer, alleging that the company failed to comply with safety standards and neglected to provide sufficient warnings about potential inaccuracies in the AI system."}, {"n": 24, "q": "What is the term for the approach the algorithm is using?", "options": ["Gradient descent.", "Heuristic search.", "Dynamic programming.", "Greedy algorithm."], "answer": 3, "explanation": "This is the correct answer. A greedy algorithm makes the locally optimal choice (e.g., the earliest available operating room) at each step, which can result in suboptimal overall outcomes.", "c": "I.A", "scenario": "A machine learning engineer is designing a scheduling algorithm for a hospital to assign operating rooms to surgeons. The algorithm selects the earliest available operating room for each surgery without evaluating whether this choice leads to the most efficient overall schedule for the day. As a result, the schedule often works but can sometimes leave longer gaps between surgeries than necessary."}, {"n": 25, "q": "What is the professional trying to determine?", "options": ["The technical feasibility of deploying the AI system.", "The compliance requirements for deploying the AI system.", "The business problem the AI system is intended to address.", "The risk factors associated with deploying the AI system."], "answer": 2, "explanation": "This is the correct answer. The professional’s questions aim to uncover the underlying challenges, inefficiencies, and desired outcomes, which are key to identifying the business problem.", "c": "III.A", "scenario": "An AI governance professional is meeting with a team to discuss the implementation of a new AI initiative. During the meeting, the professional asks, “What challenges are we trying to solve with this AI system?” They also inquire, “What inefficiencies or gaps in our current processes are impacting our performance?” Additionally, the professional asks, “What specific outcomes would indicate that this initiative is successful?”"}, {"n": 26, "q": "Which of the following best describes the term “data transformation” in the context of AI?", "options": ["The conversion of data from its raw format into a format suitable for analysis or modeling.", "The real-time monitoring of data pipelines to detect anomalies.", "The process of securing data to prevent unauthorized access.", "The labeling of data for use in supervised learning tasks."], "answer": 0, "explanation": "This answer is correct because data transformation involves converting raw data into a usable format for analysis, such as scaling, normalization, or feature extraction, ensuring that the data is compatible with AI models.", "c": "III.B"}, {"n": 27, "q": "Which legal theory is being described?", "options": ["Strict liability.", "Breach of warranty.", "Negligence.", "Intentional tort."], "answer": 0, "explanation": "This is the correct answer. Strict liability holds manufacturers and sellers accountable for defective products that cause harm, regardless of their level of care or intent.", "c": "II.B", "scenario": "A legal theory in the United States holds manufacturers and sellers accountable for injuries caused by defective products, regardless of whether they exercised reasonable care in designing, manufacturing, or distributing the product. Under this theory, liability is based solely on the existence of a defect and the harm it causes, rather than on negligence or intent."}, {"n": 28, "q": "What privacy-enhancing technique is the engineer implementing?", "options": ["Differential privacy.", "Secure multi-party computation.", "Federated learning.", "Homomorphic encryption."], "answer": 3, "explanation": "This is the correct answer. Homomorphic encryption enables computations to be performed directly on encrypted data, protecting sensitive information throughout the process.", "c": "III.B", "scenario": "A privacy engineer is working on a sensitive healthcare dataset to enable a third-party AI model developer to perform computations without exposing the underlying patient information. To achieve this, the engineer applies cryptographic techniques that allow the data to remain encrypted while computations are performed directly on the encrypted values. Once the computations are complete, the encrypted results can be decrypted only by authorized parties, ensuring that the raw patient data is never exposed during the process."}, {"n": 29, "q": "Which type of model is being described in this scenario?", "options": ["Generative Model", "Regression Model", "Clustering Model", "Decision Tree"], "answer": 3, "explanation": "This answer is correct because a decision tree uses a branching structure where each node represents a question or condition, and each branch leads to further questions or a final decision. In this case, the model evaluates patient data to decide whether to admit or discharge a patient.", "c": "I.A", "scenario": "A healthcare provider uses an AI model to determine whether a patient should be admitted to the hospital based on their symptoms, medical history, and test results. The model works by asking a series of yes/no questions, such as “Is the blood pressure above 140?” or “Does the patient have a history of heart disease?” The path through the questions leads to a decision, such as “admit” or “discharge.”"}, {"n": 30, "q": "What process is the team performing?", "options": ["Transparency Audit.", "Privacy by Design.", "Data Protection Impact Assessment (DPIA).", "Data Minimization Review."], "answer": 2, "explanation": "This is the correct answer. A DPIA is a tool and process used to identify, assess, and mitigate privacy risks in systems, projects, or initiatives, particularly when they involve the processing of personal data.", "c": "II.A", "scenario": "A company is designing a new AI-powered recommendation system and is concerned about privacy risks. To address these concerns, the project team conducts an evaluation to identify potential risks to personal data during the system’s design phase. They assess how data will be collected, processed, and stored, and propose measures to mitigate identified risks. The team also documents the entire process to ensure compliance with applicable privacy regulations."}, {"n": 31, "q": "Which type of data is being described in this scenario?", "options": ["Unstructured Data", "Semi-structured Data", "Structured Data", "Raw Data"], "answer": 2, "explanation": "This answer is correct because structured data is highly organized and stored in a predefined format, such as rows and columns in a relational database. It is easily searchable and frequently used in applications like customer databases and financial records.", "c": "III.B", "scenario": "A retail company maintains a database of customer information, including customer IDs, names, email addresses, purchase histories, and loyalty points. Each piece of information is organized into rows and columns within a relational database, allowing for easy querying and analysis."}, {"n": 32, "q": "Which law is being described?", "options": ["New York City Local Law 144.", "Colorado AI Act.", "California Consumer Privacy Act (CCPA).", "California AI Transparency Act (SB 942)."], "answer": 1, "explanation": "This is the correct answer. The Colorado AI Act focuses on the responsible deployment of high-risk AI systems, requiring impact assessments and safeguards to prevent bias and discrimination.", "c": "II.C", "scenario": "A U.S. state law requires businesses deploying high-risk AI systems to conduct impact assessments and implement safeguards to mitigate bias and discriminatory outcomes. The law emphasizes transparency, accountability, and the responsible use of AI in applications such as hiring, lending, and public services. It also mandates that businesses provide clear documentation of their AI systems’ purposes and limitations."}, {"n": 33, "q": "What type of model has been described?", "options": ["Large language model.", "Open-source AI model.", "Reinforcement learning model.", "Generative AI model."], "answer": 0, "explanation": "This is the correct answer. A large language model (LLM) processes and generates human-like language by leveraging deep learning techniques and extensive training datasets, which matches the system described.", "c": "IV.A", "scenario": "A customer support company implements an AI system capable of generating responses to customer queries in real-time. The system uses deep learning techniques and has been trained on billions of conversational examples, enabling it to handle complex queries and provide context-aware responses. The system’s primary function is to process and generate human language effectively across a wide range of contexts."}, {"n": 34, "q": "Under which legal theory could the company be held liable for the harm caused?", "options": ["Breach of warranty.", "Strict liability.", "Negligence.", "Intentional tort."], "answer": 1, "explanation": "This is the correct answer. Strict liability applies when a defect in a product causes harm, regardless of whether the manufacturer exercised reasonable care during production.", "c": "II.B", "scenario": "A company develops an autonomous delivery robot equipped with AI for navigation. While in operation, a defect in the AI system causes the robot to misinterpret traffic signals, resulting in a collision with a pedestrian and causing serious injuries. Investigators determine that the defect was present during manufacturing and not due to any misuse or negligence by the company."}, {"n": 35, "q": "What tool is being described?", "options": ["OECD Model Card Regulatory Check.", "AI Verify.", "ISO/IEC 42001 Compliance Toolkit.", "NIST AI Risk Management Framework."], "answer": 0, "explanation": "This is the correct answer. The OECD Model Card Regulatory Check is a tool designed to evaluate AI systems against the OECD’s principles for ethical and trustworthy AI.", "c": "II.D", "scenario": "A tool designed to evaluate AI systems against international guidelines for ethical and trustworthy AI is widely used to ensure compliance with key principles like transparency, fairness, and accountability. This tool helps organizations generate standardized documentation to communicate the characteristics, risks, and limitations of their AI systems. Developed to align with recommendations from a leading global organization, it is particularly useful for regulatory and governance purposes."}, {"n": 36, "q": "What is the software company doing under this arrangement?", "options": ["Registering the AI model for intellectual property protection.", "Acquiring a license for the AI model.", "Purchasing the AI model outright.", "Engaging in open-source collaboration."], "answer": 1, "explanation": "This is the correct answer. By entering into this agreement, the company is acquiring a license that grants permissions and sets limitations on the use of the AI model.", "c": "IV.B", "scenario": "A software development company enters into an agreement with a third-party provider to gain access to an AI model for integration into its product. The agreement specifies how the company can use the model, prohibits modifications without approval, and includes provisions to address liability and confidentiality. The company is allowed to use the model only for purposes explicitly outlined in the agreement."}, {"n": 37, "q": "What type of harm is the user experiencing in this scenario?", "options": ["Economic Harm", "Subjective Harm", "Objective Harm", "Legal Harm"], "answer": 2, "explanation": "This answer is correct because objective harm refers to tangible, measurable impacts caused by an event, such as financial losses, fraud, or damage to a person’s credit. In this scenario, the unauthorized credit cards and loans, along with the financial losses, are clear examples of objective harm.", "c": "I.A", "scenario": "A user is notified that their Social Security number and credit card information were stolen in a data breach at a major retailer. Shortly after, the user discovers that multiple unauthorized credit cards and loans have been opened in their name. The identity theft has caused significant financial loss and damage to their credit score, requiring extensive effort to resolve."}, {"n": 38, "q": "Which ethical AI principle listed below best describes this scenario?", "options": ["Accountability", "Fairness", "Transparency", "Contestability"], "answer": 1, "explanation": "This answer is correct because fairness ensures that AI systems treat all individuals equitably and do not produce biased or discriminatory outcomes. In this scenario, the organization demonstrates fairness by testing for bias, removing demographic factors, and auditing the system to ensure equitable treatment for all patients.", "c": "I.A", "scenario": "A healthcare organization develops an AI system to prioritize patients for organ transplants. To ensure the system operates without bias, the organization conducts extensive testing to identify and eliminate patterns that could disproportionately favor certain groups over others. The AI model is designed to prioritize patients based solely on medical need and urgency, rather than demographic factors such as age, gender, or socioeconomic status. Additionally, the organization regularly audits the system to ensure equitable outcomes for all patients."}, {"n": 39, "q": "Which type of organizational model does this scenario best describe?", "options": ["Hybrid", "Centralized", "Decentralized", "Distributed"], "answer": 1, "explanation": "This answer is correct because a centralized organizational model concentrates decision-making and authority within a single governing body. In this scenario, the dedicated AI governance team has sole responsibility and authority over AI policies and decisions across the corporation, which aligns with the centralized model.", "c": "I.B", "scenario": "A multinational corporation establishes a dedicated AI governance team headquartered at its main office. This team is responsible for creating and enforcing AI policies, monitoring compliance, and overseeing AI initiatives across all divisions and regions. The team has full authority to approve or reject AI projects and requires all departments to align with the standards and guidelines it sets. Decisions regarding AI development and deployment are made exclusively by this centralized team, ensuring consistency across the organization."}, {"n": 40, "q": "Which of the following scenarios best illustrates the concept of transfer learning in artificial intelligence?", "options": ["Training a new AI model from scratch using a large dataset specific to the target task.", "Using an AI model to group unlabeled data points into clusters based on their similarities.", "Training an AI model to maximize rewards by interacting with its environment through trial and error.", "Applying the knowledge gained from training an AI model on a large general dataset to a related but specific task, such as fine-tuning a model trained on images of animals to recognize breeds of dogs."], "answer": 3, "explanation": "This answer is correct because transfer learning involves leveraging knowledge from one task (e.g., training on a general dataset) to improve performance on a related task (e.g., recognizing specific dog breeds). It allows for efficient use of pre-trained models, saving time and resources.", "c": "I.A"}, {"n": 41, "q": "What is the analyst reading about?", "options": ["Data residency", "Know Your Customer (KYC) requirements.", "Data governance.", "Privacy by design."], "answer": 1, "explanation": "This is the correct answer. Know Your Customer (KYC) requirements involve verifying customer identities to prevent fraud, money laundering, and other illegal activities in compliance with financial regulations.", "c": "II.B", "scenario": "An AI governance professional is reviewing compliance requirements for a new financial services AI tool. The regulations mandate that the company must verify the identity of its customers by collecting and validating personal information, such as government-issued IDs, proof of address, and financial records. The professional notes that these measures are crucial for preventing fraud, money laundering, and other illicit activities."}, {"n": 42, "q": "What type of system has been described?", "options": ["Classic AI system.", "Open-source AI system.", "Reinforcement learning system.", "Generative AI system."], "answer": 0, "explanation": "This is the correct answer. A classic AI system relies on pre-defined rules and structured algorithms to perform specific tasks without dynamically adapting or generating new outputs.", "c": "I.A", "scenario": "A team of engineers develops a system to optimize traffic signals in a city. The system uses pre-defined algorithms and rule-based logic, such as if-then statements and linear programming, to determine the timing of traffic lights based on historical traffic patterns. It does not adapt dynamically or generate new solutions beyond its programmed parameters."}, {"n": 43, "q": "What term best describes this process?", "options": ["Oversight.", "Assurance.", "Audit.", "Risk assessment."], "answer": 2, "explanation": "This is the correct answer. An audit is a formal and periodic assessment to ensure that an AI system complies with regulations, policies, and ethical standards.", "c": "IV.C", "scenario": "An organization has deployed a new AI system and is conducting a formal assessment to evaluate its compliance with regulatory requirements, internal policies, and ethical standards. This assessment is performed periodically and involves reviewing system documentation, performance metrics, and risk management strategies."}, {"n": 44, "q": "What technology is being described?", "options": ["Generative adversarial networks (GANs).", "Narrow AI.", "General-purpose AI (GPAI).", "Expert systems."], "answer": 2, "explanation": "This is the correct answer. General-purpose AI models are designed to perform a broad range of tasks across multiple domains, exhibiting versatility and adaptability without task-specific training.", "c": "I.A", "scenario": "A cutting-edge AI model is designed to perform a wide range of tasks across multiple domains without requiring task-specific training. This model can generate text, analyze data, translate languages, and even assist in creative processes like writing and coding, all while adapting to user inputs and contexts seamlessly. Its versatility and ability to generalize across diverse applications make it a breakthrough in artificial intelligence."}, {"n": 45, "q": "What requirement under the EU AI Act has the provider failed to comply with?", "options": ["Data governance obligations.", "Post-market monitoring and corrective actions.", "Transparency and information provision.", "Technical documentation."], "answer": 1, "explanation": "This is the correct answer. Under the EU AI Act, providers are required to implement a post-market monitoring plan and take corrective actions to address malfunctions or risks associated with their high-risk AI systems.", "c": "II.C", "scenario": "A healthcare technology company deploys a high-risk AI system used to assist in diagnosing medical conditions. After the system is launched, reports from hospitals indicate that it frequently misclassifies certain conditions, leading to incorrect diagnostic suggestions. Despite these reports, the company does not investigate the root cause of the problem or address the malfunction."}, {"n": 46, "q": "Which line of defense is being described?", "options": ["First line of defense.", "Third line of defense.", "Fourth line of defense.", "Second line of defense."], "answer": 3, "explanation": "This is the correct answer. The second line of defense involves risk management and compliance functions that provide oversight and guidance but do not directly own or manage risks.", "c": "I.B", "scenario": "A company implementing a new AI system assigns a team to oversee the risk management process. This team ensures that the policies and procedures established by the operational teams are effective and comply with regulatory requirements. They provide guidance, monitor risk controls, and offer support to the teams directly managing the system, but they do not own the risks themselves."}, {"n": 47, "q": "What phase of the AI development life cycle does this describe?", "options": ["Development.", "Planning.", "Design", "Deployment."], "answer": 3, "explanation": "This is the correct answer. Deployment refers to the phase in the AI development life cycle where the system is integrated into a production environment, made operational, and monitored for ongoing performance and compliance.", "c": "III.C", "scenario": "An AI system has completed development and testing and is now being integrated into a production environment. During this phase, the organization configures the system for real- world use, monitors its performance in operational settings, and establishes mechanisms for continuous monitoring to ensure ongoing compliance, safety, and reliability."}, {"n": 48, "q": "What type of disclosure is the writer drafting?", "options": ["Jurisdiction-specific disclosure.", "Sector-specific disclosure.", "End user disclosure.", "System-specific disclosure."], "answer": 0, "explanation": "This is the correct answer. Jurisdiction-specific disclosures are tailored to meet the legal and regulatory requirements of specific regions, such as the EU AI Act, and include rights applicable under those laws.", "c": "III.C", "scenario": "A technical writer at a multinational corporation is drafting a document to comply with the EU AI Act for its AI-powered recruitment system deployed across Europe. The system analyzes resumes and interview recordings to recommend candidates for job openings. The document provides information on the system’s functionality and outlines subject rights, including the right to receive an explanation of decisions made by the system, the right to contest decisions, and the right to access and correct personal data. It is designed to meet transparency requirements specific to the European Union."}, {"n": 49, "q": "In which of the following cases is algorithmic disgorgement most likely to be applied?", "options": ["A company collects minimal user data to train an AI model but retains the data longer than necessary.", "An e-commerce company transfers user purchase history to a third party without providing users an option to opt out.", "A financial institution anonymizes its customer data to train an AI fraud detection model.", "A social media company collects children’s data without obtaining parental consent and uses it to train child-specific recommendation algorithms."], "answer": 3, "explanation": "This is the correct answer. Algorithmic disgorgement is likely to be applied here because the data was collected in violation of privacy laws, and regulatory authorities may require the deletion of both the data and the AI models trained on it.", "c": "II.B"}, {"n": 50, "q": "What type of data is being discussed?", "options": ["Semi-structured data.", "Structured data.", "Unstructured data.", "Real-time data."], "answer": 1, "explanation": "This is the correct answer. Structured data is highly organized, often stored in tabular formats with clearly defined fields, as described in the scenario.", "c": "III.B", "scenario": "An AI development team is reviewing the data recently ingested for their project. One team member says, “The dataset includes clear categories, such as names, dates, and numerical values, all organized into rows and columns within a database.” Another adds, “Since the information is so well-organized, it’s easy to query and use for analysis without much preprocessing.”"}, {"n": 51, "q": "Which type of AI model is best suited for the business owner’s requirements?", "options": ["Large Language Model (LLM)", "Small Language Model (SLM)", "Generative Pre-trained Transformer (GPT)", "Clustering Model"], "answer": 1, "explanation": "This answer is correct because a Small Language Model (SLM) is lightweight, cost- effective, and designed for efficient natural language processing tasks. It aligns well with the business’s budget constraints, infrastructure, and privacy requirements.", "c": "IV.A", "scenario": "A small business owner wants to deploy an AI system to help manage customer inquiries via email. Due to budget constraints, they select an AI model that is lightweight, requires less computational power, and can be deployed on their local servers to ensure data privacy. This AI model has fewer parameters compared to large-scale models and is specifically designed for efficient natural language processing tasks like responding to emails and summarizing text."}, {"n": 52, "q": "What activity is taking place?", "options": ["Feature engineering.", "Data collection.", "Data labeling.", "Hyperparameter tuning."], "answer": 0, "explanation": "This is the correct answer. Feature engineering is the process of transforming raw data into meaningful inputs, or features, that improve the model’s predictive performance.", "c": "III.B", "scenario": "A data scientist is preparing a dataset for training an AI model. They begin by selecting key variables from the raw data, such as timestamps and purchase amounts, and transforming them into meaningful inputs, such as daily averages and total spend per customer. The scientist removes irrelevant variables, creates new ones that might improve the model’s performance, and ensures all inputs are formatted for compatibility with the machine learning algorithm."}, {"n": 53, "q": "What weakness does the system suffer from?", "options": ["Brittleness.", "Bias.", "Overfitting.", "Latency."], "answer": 0, "explanation": "This is the correct answer. Brittleness refers to a system’s inability to handle variations or unexpected inputs, leading to failures in scenarios outside its training data or standard conditions.", "c": "III.C", "scenario": "An analyst is evaluating an AI system designed to classify customer sentiment based on product reviews. During testing, the analyst observes that the system performs well with typical inputs, such as reviews written in standard, grammatically correct sentences. However, when presented with slightly unusual inputs, such as reviews written in slang, mixed languages, or with intentional misspellings, the system fails to classify the sentiment accurately. This inability to handle diverse or unexpected inputs raises concerns about the system’s reliability."}, {"n": 54, "q": "Which privacy- enhancing technology can best solve the organization’s problem?", "options": ["Differential privacy.", "Federated learning.", "Secure multi-party computation.", "Homomorphic encryption."], "answer": 2, "explanation": "This is the correct answer. Secure multi-party computation enables multiple parties to collaboratively perform computations on their private data without revealing the raw data to each other, making it ideal for this scenario.", "c": "III.B", "scenario": "A consortium of financial institutions is collaborating to develop a machine learning model to detect fraudulent transactions. Each institution holds a proprietary dataset containing sensitive customer information, which they cannot share due to strict privacy regulations and competitive concerns. They need to build the model using the combined data from all institutions while ensuring that no raw data is disclosed to any party."}, {"n": 55, "q": "Under the strict liability regime in the European Union, a consumer is injured by a defective AI-powered device. To seek compensation, what must the victim prove?", "options": ["That the manufacturer was negligent in producing the product.", "That the product violated the General Data Protection Regulation (GDPR).", "That the product was defective and caused the harm.", "That the harm was caused intentionally by the manufacturer."], "answer": 2, "explanation": "This is the correct answer. Under strict liability, victims only need to prove that the product was defective and that the defect caused their harm, regardless of negligence or intent.", "c": "II.B"}, {"n": 56, "q": "What type of output is the analyst observing in this scenario?", "options": ["Probabilistic Output", "Deterministic Output", "Binary Output", "Categorical Output"], "answer": 1, "explanation": "This answer is correct because deterministic outputs provide fixed, definitive results without any expression of uncertainty or confidence levels. In this scenario, the LLM produces a single clear response to the query, exemplifying deterministic output.", "c": "I.A", "scenario": "An analyst is reviewing the outputs of a large language model (LLM) designed to answer customer support questions. When asked, “What is the return policy for electronics?” the model provides a single, definitive response: “The return policy for electronics allows returns within 30 days of purchase, provided the item is in its original packaging.” The analyst observes that the model generates one clear and fixed answer without expressing uncertainty or providing alternative responses."}, {"n": 57, "q": "What best describes the concept of a “socio-technical system” in the context of Artificial Intelligence (AI)?", "options": ["A system that relies solely on technical components like algorithms and data for decision-making, excluding human roles.", "A system in which human and societal factors interact with AI technology, shaping and being shaped by its design, development, and implementation.", "A purely technical framework where AI systems function without any human influence or intervention.", "A theoretical concept that suggests AI systems operate independently of societal and ethical considerations."], "answer": 1, "explanation": "This answer is correct because the concept of a “socio-technical system” emphasizes the interaction between humans and AI, where humans influence AI through design and implementation, and AI impacts human behavior and societal norms.", "c": "I.A"}, {"n": 58, "q": "How is the professional trying to determine the project’s scope?", "options": ["By analyzing the project’s effort.", "By assessing the project’s fit.", "By identifying technical requirements.", "By evaluating the project’s impact."], "answer": 3, "explanation": "This is the correct answer. The professional’s focus on benefits, measurable outcomes, and value aligns with evaluating the project’s impact as part of determining its scope.", "c": "III.A", "scenario": "An AI governance professional is meeting with stakeholders to evaluate a proposed AI project. During the meeting, the professional asks, “What benefits will this system bring to the organization, and how will it improve our overall operations?” They also inquire, “What measurable outcomes can we expect, and who will be the primary beneficiaries of this initiative?” The professional emphasizes understanding how the project aligns with organizational priorities and delivers value."}, {"n": 59, "q": "Which of the following does NOT determine whether a GPAI model has high-impact capabilities?", "options": ["The computational power required for training the model.", "The number of parameters in the model.", "The specific downstream applications the model is integrated into.", "The size and quality of the dataset used for training the model."], "answer": 2, "explanation": "This is the correct answer. Unlike AI systems, the EU AI Act determines a GPAI model’s high-impact capabilities based on its technical architecture and training parameters, not the specific downstream applications it may be used for.", "c": "II.C", "scenario": "The determination of whether a General-Purpose AI (GPAI) model possesses high-impact capabilities under the EU AI Act involves multiple factors. These include technical attributes, benchmarks, and system-level metrics."}, {"n": 60, "q": "What is the auditor observing?", "options": ["False negatives.", "False positives.", "True negatives.", "True positives."], "answer": 0, "explanation": "This is the correct answer. False negatives occur when a system fails to identify fraudulent instances, as described in the scenario.", "c": "III.B", "scenario": "An AI auditor is reviewing the logs of a classification system used to detect fraudulent transactions. In the logs, they notice that the system is failing to flag numerous fraudulent transactions, allowing them to go unnoticed and unaddressed. The auditor is concerned that this pattern could result in significant financial losses and harm to the organization’s reputation."}, {"n": 61, "q": "Which of the following best describes the typical calculation method used in risk scoring?", "options": ["Probability ÷ Severity.", "(Likelihood × Severity) ÷ Mitigation effort.", "Severity + Likelihood.", "Severity × Likelihood."], "answer": 3, "explanation": "This is the correct answer. The typical method for risk scoring involves multiplying the severity of the harm by the likelihood of its occurrence to produce a risk score.", "c": "III.A"}, {"n": 62, "q": "Which traditional exception to software licensing best describes the action taken by the company?", "options": ["Modifications.", "Unauthorized combination with other software.", "Failure to meet performance requirements.", "Use beyond the authorized scope."], "answer": 0, "explanation": "This is the correct answer. Modifications refer to changes or alterations made to the licensed software or model, which can breach the licensing agreement if performed without authorization.", "c": "IV.B", "scenario": "A company licenses a pre-trained AI model from a third-party provider to use in its customer support system. After procuring the model, the company refines the model by re-training it with proprietary customer interaction data to improve its performance for specific use cases. This change significantly alters the model’s behavior and functionality."}, {"n": 63, "q": "The team is evaluating each group’s level of influence, interest, and responsibility in the project to ensure effective engagement throughout the system’s development and deployment. What is the team doing?", "options": ["Stakeholder mapping.", "Governance framework design.", "Risk assessment.", "Data governance planning."], "answer": 0, "explanation": "This is the correct answer. Stakeholder mapping involves identifying and analyzing the individuals or groups impacted by a project to understand their roles, influence, and engagement needs.", "c": "III.A", "scenario": "An AI governance team is working on a new project and is identifying the groups and individuals who will be impacted by the AI system. They list internal teams such as operations, marketing, and IT, as well as external entities like customers, regulatory bodies, and vendors."}, {"n": 64, "q": "Why should unnecessary features not be developed?", "options": ["They simplify the model’s architecture.", "They increase resource usage, add complexity, and may cause overfitting.", "They decrease the training time required for the model.", "They reduce the model’s ability to generalize to new data."], "answer": 1, "explanation": "This is the correct answer. Unnecessary features can waste computational resources, make the model more complex to manage, and increase the risk of overfitting by introducing noise into the data.", "c": "III.B", "scenario": "An AI project team is discussing their feature engineering process and debating whether to include additional features that may not directly improve the model’s performance."}, {"n": 65, "q": "What type of system has been described?", "options": ["Proprietary system.", "Generative AI system.", "Open-source system.", "Classic AI system."], "answer": 0, "explanation": "This is the correct answer. A proprietary system restricts access to its internal workings, including algorithms and data, and is fully controlled by the vendor, as described in the scenario.", "c": "IV.A", "scenario": "A technology vendor offers an AI solution to banks for fraud detection. The banks receive predictions and alerts generated by the system but have no visibility into the underlying algorithms, data sources, or decision-making processes. The vendor retains full control over the system’s design and operation, preventing the banks from modifying or auditing it."}, {"n": 66, "q": "Which neural network is being described?", "options": ["Graph neural network.", "Convolutional neural network.", "Feedforward neural network.", "Recurrent neural network."], "answer": 1, "explanation": "This is the correct answer. A convolutional neural network (CNN) is designed to process spatial data using convolutional layers to detect patterns and features in images.", "c": "I.A", "scenario": "This type of neural network is specifically designed to process spatial data, such as images. It uses specialized layers that apply filters to small regions of the input data, detecting patterns like edges, shapes, and textures. These patterns are then combined in deeper layers to recognize more complex features. This architecture is widely used for image recognition, object detection, and other visual data tasks."}, {"n": 67, "q": "What is the most likely explanation for the video the user has encountered?", "options": ["An official statement intentionally leaked early", "A video altered by poor-quality compression", "A deepfake created to manipulate public opinion", "A legitimate video edited for clarity"], "answer": 2, "explanation": "This answer is correct because a deepfake is a manipulated video or audio clip created using advanced AI techniques to make it appear as though someone said or did something they did not. The unusual visual and audio inconsistencies, combined with the lack of verification from reputable sources, strongly suggest that this video is a deepfake intended to mislead viewers.", "c": "I.A", "scenario": "A user watches a viral video on social media showing a well-known political leader making controversial statements that conflict with their usual stance on key issues. The video looks realistic, but the user notices slight inconsistencies, such as unusual facial expressions, awkward lip-syncing, and a voice tone that occasionally seems robotic. After searching online, the user cannot find any reputable news sources verifying the video or reporting the leader making these statements."}, {"n": 68, "q": "Which law is the AI product most likely violating?", "options": ["Title VII of the Civil Rights Act of 1964.", "Fair Credit Reporting Act (FCRA).", "Americans with Disabilities Act (ADA).", "Equal Credit Opportunity Act (ECOA)."], "answer": 3, "explanation": "This is the correct answer. The ECOA prohibits discrimination in lending decisions based on protected characteristics such as race, color, religion, national origin, sex, marital status, or age.", "c": "II.B", "scenario": "A financial technology company deploys an AI-based lending platform to evaluate loan applications. The platform’s algorithm unintentionally assigns lower creditworthiness scores to applicants from certain racial and ethnic groups, despite equivalent financial qualifications compared to other applicants. This results in a disproportionate number of loan denials for individuals in these groups."}, {"n": 69, "q": "Which document is being described?", "options": ["Federal Trade Commission Act (Section 5).", "Dodd-Frank Act.", "Basel III Framework.", "SR 11-7: Guidance on Model Risk Management."], "answer": 3, "explanation": "This is the correct answer. SR 11-7 provides comprehensive guidance on managing model risk, including validation and governance practices for banking organizations supervised by the Federal Reserve.", "c": "II.B", "scenario": "A regulatory guidance document issued by the Federal Reserve in 2011 provides standards for managing risks associated with advanced statistical models. It outlines principles for model development, implementation, validation, and governance, emphasizing the need for “effective challenge” by objective and informed parties. This document applies to all banking organizations supervised by the Federal Reserve."}, {"n": 70, "q": "Which system architecture is being described?", "options": ["Convolutional neural network.", "Graph neural network.", "Recurrent neural network.", "Transformer."], "answer": 3, "explanation": "This is the correct answer. A transformer neural network uses self-attention to efficiently process sequential data, making it ideal for tasks in natural language processing and beyond.", "c": "I.A", "scenario": "This type of neural network is designed to handle sequential data but does so without relying on recurrent connections. Instead, it uses a mechanism called self-attention to focus on relevant parts of the input sequence, enabling efficient parallel processing. This architecture is highly effective for natural language processing tasks, such as machine translation, text summarization, and question answering, as well as image processing."}, {"n": 71, "q": "Which type of AI is being described in this scenario?", "options": ["Artificial General Intelligence", "Artificial Narrow Intelligence", "Artificial Super Intelligence", "Semi-supervised Learning"], "answer": 2, "explanation": "This answer is correct because Artificial Super Intelligence (ASI) refers to an AI system that surpasses human intelligence in all domains, including creativity, problem-solving, and decision-making. The AI in this scenario demonstrates these superhuman capabilities.", "c": "I.A", "scenario": "An AI system is developed that can outperform humans in every conceivable domain, from science and art to decision-making and strategic thinking. It can create groundbreaking technologies, solve previously unsolvable problems, and improve itself without human intervention, making it far superior to human intelligence in every respect."}, {"n": 72, "q": "Which country has proposed this legislation?", "options": ["Japan.", "India.", "Singapore.", "Canada."], "answer": 3, "explanation": "This is the correct answer. Canada’s Bill C-27 includes the CPPA, PIDPTA, and AIDA to modernize privacy laws and regulate AI systems.", "c": "II.C", "scenario": "This proposed legislation consists of three key components: the Consumer Privacy Protection Act (CPPA), which updates privacy protections for individuals; the Personal Information and Data Protection Tribunal Act (PIDPTA), which establishes a tribunal to enforce privacy-related decisions; and the Artificial Intelligence and Data Act (AIDA), which regulates the design, development, and deployment of AI systems to ensure they are safe and accountable."}, {"n": 73, "q": "Which two EU laws specifically address transparency requirements for online platforms?", "options": ["Digital Services Act (DSA) and Digital Markets Act (DMA).", "Digital Markets Act (DMA) and AI Liability Directive.", "Digital Services Act (DSA) and General Data Protection Regulation (GDPR).", "General Data Protection Regulation (GDPR) and AI Liability Directive."], "answer": 2, "explanation": "This is the correct answer. Both the DSA and GDPR include provisions to increase transparency for online platforms, with the DSA focusing on platform operations and the GDPR addressing data privacy and user profiling.", "c": "II.B", "scenario": "Several European Union laws aim to increase transparency in how online platforms operate, including providing users with more information about how their data influences recommender systems and online advertising."}, {"n": 74, "q": "What is the consultancy team evaluating?", "options": ["Product category.", "Technical specifications.", "Data.", "Security and safety."], "answer": 1, "explanation": "This is the correct answer. Evaluating technical specifications involves analyzing the system’s architecture, algorithms, compatibility, scalability, and computational efficiency.", "c": "IV.B", "scenario": "A third-party consultancy is assisting a large healthcare organization in evaluating an agreement with a vendor for a new AI-driven diagnostic tool. As part of the review, the team investigates the system’s design and infrastructure, including the algorithms it employs, its computational requirements, and the compatibility of the system with the organization’s existing hardware and software. They also assess how efficiently the tool can process large volumes of medical records and its overall scalability."}, {"n": 75, "q": "Which country’s AI governance framework is being described?", "options": ["Brazil.", "Singapore.", "India.", "Japan."], "answer": 1, "explanation": "This is the correct answer. Singapore’s Model AI Governance Framework focuses on ethical AI development and governance, supported by practical tools like AI Verify and the generative AI sandbox.", "c": "II.D", "scenario": "This framework, introduced in 2019 and regularly updated, provides implementable guidance on key ethical and governance issues for AI systems. It emphasizes principles such as transparency, fairness, accountability, and data governance. The framework is supported by tools like a self-assessment guide, a compendium of use cases, and AI Verify, a testing toolkit for compliance and performance evaluation. It also includes a generative AI sandbox to address emerging AI concerns while encouraging innovation."}, {"n": 76, "q": "What type of attack is the malicious actor conducting in this scenario?", "options": ["Malware Injection", "Adversarial Attack", "Phishing", "Data Breach"], "answer": 1, "explanation": "This answer is correct because an adversarial attack involves manipulating inputs to exploit an AI system and extract sensitive information, such as details embedded in its training data. The attacker deliberately crafts their queries to deceive the system into revealing confidential information.", "c": "III.C", "scenario": "A malicious actor interacts with an AI model deployed as a chatbot for a customer service application. By carefully crafting a series of questions and inputs, the attacker exploits the system’s responses to infer sensitive details about the training data, such as customers’ names, account details, and transaction histories. The company becomes aware of the issue after noticing suspiciously specific queries directed at the chatbot."}, {"n": 77, "q": "Which type of AI use case is being described in this scenario?", "options": ["Goal-driven", "Optimization", "Detection", "Forecasting", "Recommendation"], "answer": 2, "explanation": "This answer is correct because detection involves identifying anomalies, patterns, or specific events in data. In this case, the AI system detects potentially fraudulent transactions by analyzing patterns that deviate from a user’s typical spending habits.", "c": "IV.A", "scenario": "A credit card company employs an AI system to analyze transaction data and identify fraudulent activities. The system flags transactions with unusual spending patterns or locations that deviate significantly from the cardholder’s typical behavior."}, {"n": 78, "q": "Which statute has most likely been violated?", "options": ["Health Insurance Portability and Accountability Act (HIPAA).", "21st Century Cures Act.", "Affordable Care Act (ACA).", "Civil Rights Act of 1964."], "answer": 1, "explanation": "This is the correct answer. The 21st Century Cures Act mandates accessibility and transparency of health data, ensuring patients have the right to access their own health information without unreasonable barriers.", "c": "II.B", "scenario": "A hospital adopts an AI-powered patient portal that uses predictive analytics to provide health insights. However, the system restricts patients’ access to their own health data by requiring a subscription fee, making it difficult for patients to obtain the information necessary to manage their care. This practice limits accessibility and transparency of health data for patients."}, {"n": 79, "q": "In AI systems, the term _______ refers to a situation where the system’s goals, behaviors, or outputs deviate from human values, ethical principles, or the objectives of the organization deploying it.", "options": ["Adaptation", "Optimization", "Misalignment", "Error"], "answer": 2, "explanation": "This answer is correct because misalignment occurs when an AI system’s actions or outputs fail to align with the intended values or goals, potentially leading to harmful or unintended consequences.", "c": "I.A"}, {"n": 80, "q": "In the context of neural networks, _______ are values that determine the strength of the connection between nodes and are adjusted during training to optimize the model’s predictions.", "options": ["Weights", "Features", "Labels", "Hyperparameters"], "answer": 0, "explanation": "This answer is correct because weights are key parameters in neural networks that define the strength of connections between nodes. They are adjusted during training to minimize errors and improve model predictions.", "c": "I.A"}, {"n": 81, "q": "Based on this transformation, which data protection controls under the GDPR must be implemented?", "options": ["None of these.", "Ensure data subject consent is obtained.", "Conduct a Data Protection Impact Assessment (DPIA).", "Implement safeguards for pseudonymized data."], "answer": 0, "explanation": "This is the correct answer. The GDPR does not apply to data that has been sufficiently transformed to ensure it cannot be linked back to any individual, as described in this scenario.", "c": "II.A", "scenario": "An AI company collects data from a variety of sources to train a machine learning model. Before using the data, the company applies advanced techniques to ensure that the data cannot be linked back to any individual, even indirectly. The company also confirms that the transformed data cannot be used to re-identify any person, no matter what external datasets or tools are applied."}, {"n": 82, "q": "Which data controller obligation under the GDPR has the company failed to fulfill?", "options": ["Breach notification.", "Conducting a Data Protection Impact Assessment (DPIA).", "Providing data subjects with access to their data.", "Ensuring appropriate safeguards."], "answer": 0, "explanation": "This is the correct answer. Under the GDPR, data controllers are required to notify regulatory authorities within 72 hours of discovering a data breach and inform affected individuals without undue delay.", "c": "II.A", "scenario": "A health-tech company collects and processes patient data to develop a predictive health analytics platform. As part of its operations, the company experiences a data breach in which unauthorized actors access sensitive patient information. Upon investigation, it is revealed that the company failed to notify affected individuals and regulatory authorities within the required timeframe after discovering the breach."}, {"n": 83, "q": "Under the EU AI Act, what risk level would this system fall under?", "options": ["High risk level.", "Minimal risk level.", "Limited risk level.", "Unacceptable risk level."], "answer": 3, "explanation": "This is the correct answer. AI systems that exploit the vulnerabilities of specific groups, such as minors, using emotion recognition technology are classified as posing an unacceptable risk under the EU AI Act and are prohibited due to their potential to violate fundamental rights.", "c": "II.C", "scenario": "An AI governance professional at an education technology company is reviewing a proposal for a new AI system. The system would use machine learning technology to monitor high school students during class by analyzing their facial expressions, vocal tones, and body language. The collected data would be used to assess students’ levels of engagement, emotional states, and attentiveness, with results reported to teachers and school administrators."}, {"n": 84, "q": "What term best describes this characteristic of data?", "options": ["Data volume.", "Data velocity.", "Data veracity.", "Data validity."], "answer": 2, "explanation": "This is the correct answer. Data veracity refers to the accuracy, reliability, and trustworthiness of a dataset, ensuring it is suitable for analysis and modeling.", "c": "III.B", "scenario": "An AI development team is evaluating the reliability of their dataset. They assess whether the data is accurate, trustworthy, and free from inconsistencies or errors that could negatively impact the model’s performance."}, {"n": 85, "q": "How has the FDA classified the risk of this product?", "options": ["Class IV.", "Class II.", "Class III.", "Class I."], "answer": 2, "explanation": "This is the correct answer. Class III devices are life-supporting or life-sustaining and carry the highest risk, requiring rigorous pre-market approval and clinical validation.", "c": "II.B", "scenario": "An AI-powered device monitors and manages critical patient health conditions in real-time, such as providing automated adjustments to ventilators for patients in intensive care. This device plays a life-sustaining role and requires extensive clinical evidence to ensure its safety and effectiveness."}, {"n": 86, "q": "Under which legal basis is the company processing the data?", "options": ["Contract.", "Public interest.", "Consent.", "Legitimate interest."], "answer": 3, "explanation": "This is the correct answer. Legitimate interest allows data processing when it is necessary for the organization’s business objectives, provided it does not override the privacy rights of individuals and includes mechanisms like opt-out options.", "c": "II.A", "scenario": "A German marketing company uses customer purchase history to create targeted advertising campaigns. The company determines that processing this data is necessary to support its business objectives and does not significantly impact the privacy rights of the individuals involved. Customers are provided with an opt-out option for data processing."}, {"n": 87, "q": "What term best describes these protective measures?", "options": ["Accountability.", "Transparency.", "Safeguards.", "Data Disposition."], "answer": 2, "explanation": "This is the correct answer. Safeguards refer to administrative, technical, and physical controls put in place to protect data from unauthorized access, breaches, or other security threats.", "c": "II.A", "scenario": "A healthcare organization implements several measures to protect patient data. These include administrative controls such as staff training and access policies, technical controls like encryption and firewalls, and physical controls such as secure server rooms with restricted access. Together, these measures are designed to prevent unauthorized access, data breaches, and loss of sensitive information."}, {"n": 88, "q": "What does the system suffer from?", "options": ["Data drift.", "Overfitting.", "Lack of robustness.", "Model decay."], "answer": 2, "explanation": "This is the correct answer. A lack of robustness occurs when an AI system fails to perform consistently under different or altered conditions, such as variations in image resolution or brightness.", "c": "III.C", "scenario": "A healthcare organization deploys an AI-powered diagnostic system to analyze X-ray images and detect signs of lung disease. During testing, the system performs accurately on high-resolution images from the training dataset. However, when used with lower-resolution images from older machines or images with slight variations in brightness, the system produces inconsistent results, missing critical diagnoses or flagging healthy cases as diseased. This variability in performance creates significant challenges for the organization."}, {"n": 89, "q": "Which type of AI model best describes the system used in this scenario?", "options": ["Clustering Model", "Generative Model", "Regression Model", "Discriminative Model"], "answer": 1, "explanation": "This answer is correct because a generative model learns the underlying patterns and characteristics of input data to create new data points that resemble the training data. In this case, the AI generates new images of human faces based on learned features.", "c": "I.A", "scenario": "An AI system is designed to create new, realistic images of human faces based on patterns it has learned from a large dataset of existing images. The system analyzes the underlying features of the dataset, such as facial structure, texture, and lighting, and uses this information to generate entirely new images that do not correspond to any specific individual in the dataset."}, {"n": 90, "q": "What type of assessment is required for this system under the EU AI Act?", "options": ["Data Protection Impact Assessment.", "Third-party audit.", "Conformity assessment.", "Technical benchmarking."], "answer": 2, "explanation": "This is the correct answer. Under the EU AI Act, high-risk systems, such as those used for critical infrastructure, require a conformity assessment to ensure compliance with standards for safety, robustness, and reliability.", "c": "II.C", "scenario": "A European country deploys an AI system to monitor and manage its national electrical grid. The system uses advanced algorithms to predict energy demand, prevent outages, and optimize resource distribution. While it does not collect or process personal data, the system plays a critical role in the country’s infrastructure and its failure could have significant safety and economic consequences."}, {"n": 91, "q": "Which risk level does this description refer to?", "options": ["High risk level.", "Limited risk level.", "Minimal risk level.", "Unacceptable risk level."], "answer": 0, "explanation": "This is the correct answer. The high-risk level applies to AI systems that are permitted under the EU AI Act but require strict compliance to mitigate their potential impacts on safety and fundamental rights.", "c": "II.C", "scenario": "Under the EU AI Act, some AI systems are allowed but are subject to strict regulatory requirements due to their potential to impact safety or fundamental rights. These systems include those used in areas like biometric identification, critical infrastructure, education, and employment. Providers of these systems must meet obligations such as conducting risk assessments, ensuring transparency, and maintaining detailed documentation."}, {"n": 92, "q": "This dataset is reserved for measuring the final performance of the trained model on new, unseen data. It ensures the model can generalize well to real-world scenarios. What category does this dataset belong to?", "options": ["Validation Data", "Training Data", "Testing Data", "Evaluation Data"], "answer": 2, "explanation": "This answer is correct because testing data is used after training to assess the model’s ability to generalize to unseen data, ensuring reliability and performance in real-world scenarios.", "c": "III.B"}, {"n": 93, "q": "Which agency is described?", "options": ["Consumer Financial Protection Bureau (CFPB).", "Federal Trade Commission (FTC).", "Federal Communications Commission (FCC).", "Securities and Exchange Commission (SEC)."], "answer": 1, "explanation": "This is the correct answer. The FTC is an independent federal agency responsible for protecting consumers and promoting fair competition through the enforcement of laws against unfair or deceptive practices.", "c": "II.B", "scenario": "An independent federal agency is tasked with protecting the public from deceptive or unfair business practices and from unfair methods of competition. It carries out its mission through law enforcement, advocacy, research, and education. This agency also enforces laws such as the Children’s Online Privacy Protection Act (COPPA) and has authority under Section 5 of its founding act to regulate unfair or deceptive acts or practices (UDAP)."}, {"n": 94, "q": "Which deployment environment would be best suited for implementing this federated learning approach?", "options": ["On-premise.", "Cloud.", "Hybrid.", "Edge."], "answer": 3, "explanation": "This is the correct answer. Edge deployment supports federated learning by enabling training to occur directly at each hospital’s local infrastructure, ensuring that sensitive data never leaves the premises.", "c": "IV.A", "scenario": "MedAI Innovations is deploying a machine learning model to predict patient readmission rates. The model will train on protected health information (PHI) from hospitals throughout the state of Illinois. Due to the sensitive nature of the data and the state’s Biometric Information Privacy Act (BIPA), the company must adhere to the principle of data minimization to avoid unnecessary data transfer or exposure. To address these concerns, the company is exploring an approach that allows training to occur at each hospital, avoiding the centralization of PHI."}, {"n": 95, "q": "What is the employer requesting?", "options": ["A consumer report.", "A credit score.", "An employment verification letter.", "A background check."], "answer": 0, "explanation": "This is the correct answer. A consumer report provides detailed financial and credit history information, which employers may use during the hiring process, subject to compliance with the Fair Credit Reporting Act (FCRA).", "c": "II.B", "scenario": "An employer contacts a credit reporting agency to obtain detailed financial information about a job applicant. The employer intends to review the applicant’s credit history, including records of loans, credit card usage, and payment history, as part of the hiring process."}, {"n": 96, "q": "Which scenario is an example of data drift in an AI system?", "options": ["The system’s data pipeline experiences a temporary outage.", "An AI system predicts outputs faster after optimizing its architecture.", "A model trained on historical purchasing patterns performs poorly due to significant changes in customer behavior over time.", "A dataset contains missing values that need to be cleaned before training."], "answer": 2, "explanation": "This answer is correct because data drift occurs when the underlying data distribution changes over time, causing the model’s training data to no longer reflect real-world conditions and leading to degraded performance.", "c": "IV.C"}, {"n": 97, "q": "Which type of institution is not subject to the EU AI Act?", "options": ["Educational institutions using AI for personalized learning.", "Military institutions developing AI systems for defense purposes.", "Private companies deploying high-risk AI systems in recruitment.", "Healthcare institutions using AI for diagnostic purposes."], "answer": 1, "explanation": "This is the correct answer. The EU AI Act explicitly excludes AI systems developed or used exclusively for military purposes from its scope.", "c": "II.C", "scenario": "The EU AI Act regulates the use and development of artificial intelligence across various sectors to ensure safety, fairness, and accountability. However, certain institutions are excluded from its scope due to their specific roles or functions."}, {"n": 98, "q": "What is the company’s role under the EU AI Act?", "options": ["Deployer.", "Provider.", "Distributor.", "Importer."], "answer": 3, "explanation": "This is the correct answer. An importer is responsible for bringing AI systems from outside the EU into the EU market and ensuring compliance with the EU AI Act, including verifying documentation and CE markings.", "c": "II.C", "scenario": "A company purchases AI systems from a provider based outside the European Union and brings them into the EU for sale. Before making these systems available to distributors and retailers, the company ensures compliance with the EU AI Act by verifying CE markings, technical documentation, and conformity assessments provided by the non-EU provider. The company also takes responsibility for addressing any regulatory requirements that the provider may not have met."}, {"n": 99, "q": "What type of data is missing from the test set?", "options": ["Data to benchmark system latency.", "Data to measure scalability under heavy loads.", "Data to evaluate fairness across input categories.", "Data to optimize model hyperparameters."], "answer": 2, "explanation": "This is the correct answer. Data to evaluate fairness helps ensure the model does not produce biased outputs, which is critical for detecting and mitigating potential disparities.", "c": "III.B", "scenario": "A data engineer is preparing a dataset to thoroughly test a newly trained AI model. She has included examples that are rare and unusual to evaluate how the model handles unexpected inputs. She has also prepared a set of previously unused data to measure the model’s generalization capabilities and included inputs designed to challenge the model’s security by simulating adversarial scenarios. In her preparation, however, she has overlooked one crucial type of data."}, {"n": 100, "q": "What is this method called?", "options": ["Anonymization.", "Data Pseudonymization.", "Bayesian Improved Surname Geocoding.", "Synthetic Data Generation."], "answer": 2, "explanation": "This is the correct answer. Bayesian Improved Surname Geocoding uses surnames and geographic data to estimate demographic characteristics, reducing the need for direct collection of sensitive personal information.", "c": "III.B", "scenario": "An AI company is tasked with analyzing demographic trends to improve targeted outreach for a public health campaign. To estimate the racial and ethnic composition of a population without directly collecting sensitive personal data, the company uses a method that combines an individual’s surname with geographic data to infer their likely demographic characteristics."}];
+const LIMIT = 180 * 60;           // exam time, seconds
+const BREAK = 15 * 60;            // optional break, seconds
+const TARGET = 80;                // readiness target, percent
+const KEY = "aigp-hard-1-v2";
+const DOMAINS = {I:"Foundations of AI governance", II:"Laws, standards and frameworks", III:"Governing AI development", IV:"Governing AI deployment and use"};
+const COMP = {
+ "I.A":["What AI is and why it needs governance","Review AI definitions and types, the harms AI can cause, what makes AI different (opacity, autonomy, scale, probabilistic outputs) and the core responsible AI principles."],
+ "I.B":["Roles, teams and expectations","Learn who does what in an AI governance program: roles and accountability, cross-functional teams, training and awareness, and how duties differ for developers, deployers and users."],
+ "I.C":["Policies across the AI life cycle","Study life cycle policies (use case review, risk, data, testing, deployment, incidents), how to update privacy, security and IP policies for AI, and third-party risk controls."],
+ "II.A":["Privacy laws applied to AI","Revise lawful basis, transparency, purpose limitation, minimization, privacy by design, controller and processor duties, cross-border transfers, DPIAs, automated decisions and special category data."],
+ "II.B":["Other laws applied to AI","Review how intellectual property, non-discrimination (hiring, credit, housing, insurance), consumer protection and product liability laws apply to AI systems and training data."],
+ "II.C":["AI-specific laws","Focus on the EU AI Act: risk tiers with examples, high-risk requirements, GPAI duties, provider, deployer and distributor roles, enforcement and penalties. Skim the US and South Korea AI laws too."],
+ "II.D":["Standards and frameworks","Learn the NIST AI RMF functions (Govern, Map, Measure, Manage) and what sits in each, the OECD AI Principles, and the purpose of ISO/IEC 22989, 42001 and 42005."],
+ "III.A":["Designing and building AI","Practice use case definition, impact assessments, design choices with human oversight and metrics, risk tools such as harms matrices and mitigation hierarchies, and documenting design decisions."],
+ "III.B":["Data, training and testing","Revise data governance (lawful rights, quality, fit for purpose), lineage and provenance, the kinds of testing (validation, bias, security, adversarial) and documenting test results."],
+ "III.C":["Release, monitoring and maintenance","Study release readiness (model cards, conformity), monitoring and retraining, audits, red teaming and threat modeling, incident causes such as drift, and public disclosures."],
+ "IV.A":["Deciding to deploy","Compare model types (classic vs generative, open source vs proprietary, small vs large) and deployment options (cloud, on-premise, edge, fine-tuning, RAG, agents) against business and risk needs."],
+ "IV.B":["Assessing the AI system","Review impact assessments for a chosen system, key vendor and licensing terms, and the extra duties and liability of deploying your own proprietary model."],
+ "IV.C":["Governing deployment and use","Focus on post-deployment governance: monitoring for drift and new risks, incident handling, secondary uses and downstream harm, external communication and deactivation controls."]
+};
+const L = ["A","B","C","D","E"];
+const $ = id => document.getElementById(id);
+
+let S = null;                     // attempt state
+let tick = null;
+let revFilter = "all", resFilter = "bad";
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
+function clearSave(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function fmt(sec){ sec=Math.max(0,Math.round(sec)); const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60;
+  return (h? h+":"+String(m).padStart(2,"0") : m) + ":" + String(s).padStart(2,"0"); }
+
+function show(screen){
+  ["sStart","sQ","sBreak","sReview","sResults"].forEach(id => $(id).hidden = id !== screen);
+  const inExam = screen==="sQ" || screen==="sReview";
+  $("foot").hidden = !inExam;
+  $("qpos").hidden = screen!=="sQ";
+  $("timer").hidden = !(inExam || screen==="sBreak") || (S && S.timerHidden && screen!=="sBreak");
+  $("hideTimer").hidden = !inExam;
+  $("btnLayout").hidden = screen!=="sQ";
+  $("main").scrollTop = 0;
+}
+
+/* ---------- Start ---------- */
+function startAttempt(ids, mode, shuffled){
+  S = { mode, order: shuffled ? shuffle(ids) : ids, answers:{}, flags:{}, cur:0,
+        elapsed:0, ended:false, timerHidden:false, brk:"none", breakLeft:BREAK, pendingGo:null,
+        instant: mode==="practice" || $("optInstant").checked, split:false };
+  save(); begin();
+}
+function begin(){
+  clearInterval(tick);
+  if(S.instant===undefined) S.instant = S.mode==="practice";
+  tick = setInterval(()=>{ if(!S || S.ended) return;
+    if(S.brk==="on"){ S.breakLeft--; paintBreak(); if(S.breakLeft<=0) endBreak(); if(S.breakLeft%10===0) save(); return; }
+    S.elapsed++; paintTimer();
+    if(S.mode==="exam" && S.elapsed>=limit()) finish(true);
+    if(S.elapsed%10===0) save(); },1000);
+  $("hideTimer").textContent = S.timerHidden ? "Show time" : "Hide time";
+  if(S.brk==="offered" || S.brk==="on") openBreak();
+  else { renderQ(); show("sQ"); }
+  paintTimer();
+}
+function limit(){ return Math.round(LIMIT * S.order.length / QUESTIONS.length); }
+function mid(){ return (S.mode==="exam" && S.order.length>=40) ? Math.floor(S.order.length/2) : null; }
+function paintTimer(){
+  const t=$("timer");
+  if(S.brk==="on"){ t.textContent="Break "+fmt(S.breakLeft); t.classList.remove("warn"); return; }
+  if(S.mode==="exam"){ const left=limit()-S.elapsed; t.textContent="Time left "+fmt(left); t.classList.toggle("warn", left<=600); }
+  else { t.textContent="Elapsed "+fmt(S.elapsed); t.classList.remove("warn"); }
+}
+
+/* ---------- Break ---------- */
+function openBreak(){
+  const on = S.brk==="on";
+  $("brkOffer").hidden = on; $("brkOn").hidden = !on;
+  $("brkExamLeft").textContent = fmt(limit()-S.elapsed);
+  paintBreak(); show("sBreak");
+  (on ? $("btnEndBreak") : $("btnTakeBreak")).focus();
+}
+function paintBreak(){
+  $("brkClock").textContent = fmt(S.breakLeft);
+  $("brkExamLeft2").textContent = fmt(limit()-S.elapsed);
+  if(S.brk==="on") paintTimer();
+}
+function endBreak(){
+  S.brk="done"; const n=S.pendingGo ?? mid(); S.pendingGo=null; save(); paintTimer();
+  S.cur=n; renderQ(); show("sQ");
+}
+
+/* ---------- Question ---------- */
+function renderQ(){
+  const qi=S.order[S.cur], q=QUESTIONS[qi], picked=S.answers[qi];
+  const locked = S.instant && picked!==undefined;
+  // Layout: scenario questions always split (scenario left, question right); others follow the Layout toggle
+  const hasScen = !!q.scenario, split = hasScen || S.split;
+  $("qBody").classList.toggle("split", split);
+  $("qScen").hidden = !hasScen;
+  if(hasScen){ const st=$("qScenTxt"); st.innerHTML=""; q.scenario.split(/\n\s*\n/).forEach(par=>{ const p=document.createElement("p"); p.textContent=par.trim(); st.appendChild(p); }); }
+  const stem=$("qStem");
+  if(hasScen) $("qRight").insertBefore(stem, $("qChoices")); else $("qLeft").appendChild(stem);
+  $("qLeft").scrollTop=0;
+  $("btnLayout").textContent = hasScen ? "Layout: scenario split" : (S.split ? "Layout: side by side" : "Layout: stacked");
+  $("btnLayout").setAttribute("aria-pressed", String(!!S.split));
+  $("qLabel").textContent = "Question "+(S.cur+1)+" of "+S.order.length;
+  $("qpos").textContent = (S.cur+1)+" / "+S.order.length;
+  $("qStem").textContent = q.q;
+  $("qFlagTag").hidden = !S.flags[qi];
+  const box=$("qChoices"); box.innerHTML="";
+  q.options.forEach((txt,i)=>{
+    const lab=document.createElement("label");
+    lab.className="choice";
+    if(locked){ lab.classList.add("locked"); if(i===q.answer) lab.classList.add("right"); else if(i===picked) lab.classList.add("wrong"); }
+    else if(picked===i) lab.classList.add("sel");
+    lab.innerHTML='<input type="radio" name="opt" id="opt'+i+'" value="'+i+'"'+(picked===i?" checked":"")+(locked?" disabled":"")+'><span class="letter">'+L[i]+'</span><span class="txt"></span>';
+    lab.querySelector(".txt").textContent=txt;
+    lab.querySelector("input").addEventListener("change",()=>choose(i));
+    box.appendChild(lab);
+  });
+  const fb=$("qFeedback");
+  if(locked){ const ok=picked===q.answer; fb.hidden=false; fb.className="feedback "+(ok?"ok":"bad");
+    fb.innerHTML="<b></b><span></span>"; fb.querySelector("b").textContent= ok?"Correct":"Incorrect. The answer is "+L[q.answer]+".";
+    fb.querySelector("span").textContent=q.explanation; }
+  else fb.hidden=true;
+  $("btnPrev").disabled = S.cur===0;
+  $("btnNext").innerHTML = S.cur===S.order.length-1 ? "Review &rarr;" : "Next &rarr;";
+  const f=!!S.flags[qi]; $("btnFlag").classList.toggle("flagged",f); $("btnFlag").innerHTML = f? "&#9873; Unflag" : "&#9873; Flag";
+  $("btnEnd").textContent = S.mode==="practice" ? "Finish" : "End exam";
+  $("prog").style.width = (Object.keys(S.answers).length/S.order.length*100)+"%";
+}
+function choose(i){
+  const qi=S.order[S.cur];
+  if(S.instant && S.answers[qi]!==undefined) return;
+  S.answers[qi]=i; save(); renderQ();
+}
+function go(n){
+  if(n<0||n>=S.order.length) return;
+  const m=mid();
+  if(m!==null && S.brk==="none" && S.cur<m && n>=m){ S.brk="offered"; S.pendingGo=n; save(); openBreak(); return; }
+  S.cur=n; save(); renderQ(); show("sQ");
+}
+
+/* ---------- Review screen ---------- */
+function renderReview(){
+  const ans=S.order.filter(q=>S.answers[q]!==undefined).length, fl=S.order.filter(q=>S.flags[q]).length;
+  $("revSummary").textContent = ans+" answered · "+(S.order.length-ans)+" unanswered · "+fl+" flagged";
+  const g=$("revGrid"); g.innerHTML="";
+  S.order.forEach((qi,pos)=>{
+    const a=S.answers[qi]!==undefined, f=!!S.flags[qi];
+    if(revFilter==="flagged"&&!f) return; if(revFilter==="unanswered"&&a) return;
+    const b=document.createElement("button"); b.type="button"; b.className="cell"+(a?" ans":"")+(f?" flg":"")+(pos===S.cur?" cur":"");
+    b.textContent=pos+1; b.setAttribute("aria-label","Question "+(pos+1)+(a?", answered":", unanswered")+(f?", flagged":""));
+    b.onclick=()=>go(pos); g.appendChild(b);
+  });
+  if(!g.children.length) g.innerHTML='<p class="muted">No questions match this filter.</p>';
+}
+function openReview(){ renderReview(); show("sReview"); }
+
+/* ---------- Finish ---------- */
+function askEnd(){
+  const un=S.order.filter(q=>S.answers[q]===undefined).length, fl=S.order.filter(q=>S.flags[q]).length;
+  let msg = un ? un+" question"+(un>1?"s are":" is")+" unanswered and will count as wrong. " : "All questions are answered. ";
+  if(fl) msg += fl+" question"+(fl>1?"s are":" is")+" still flagged. ";
+  msg += "You cannot change answers after ending.";
+  $("cfTitle").textContent = S.mode==="practice" ? "Finish this session?" : "End the exam?";
+  $("cfYes").textContent = S.mode==="practice" ? "Finish" : "End exam";
+  $("cfBody").textContent=msg; $("confirm").hidden=false; $("cfNo").focus();
+}
+function finish(auto){
+  $("confirm").hidden=true; clearInterval(tick); S.ended=true; S.auto=!!auto; save(); renderResults(); show("sResults");
+  if(S.order.length===QUESTIONS.length){
+    const ok=S.order.filter(q=>resultOf(q)==="ok").length;
+    try{ localStorage.setItem(KEY+"-last", JSON.stringify({pct:Math.round(ok/S.order.length*100), at:new Date().toISOString().slice(0,10), mode:S.mode})); }catch(e){}
+  }
+}
+function resultOf(qi){ const a=S.answers[qi]; return a===undefined ? "skip" : a===QUESTIONS[qi].answer ? "ok" : "bad"; }
+function renderResults(){
+  const n=S.order.length; let ok=0,bad=0,skip=0;
+  S.order.forEach(qi=>{ const r=resultOf(qi); r==="ok"?ok++:r==="bad"?bad++:skip++; });
+  const pct=Math.round(ok/n*100), pass=pct>=TARGET;
+  $("ringTxt").textContent=pct+"%";
+  const C=2*Math.PI*52; $("ringArc").setAttribute("stroke-dasharray",(C*pct/100)+" "+C);
+  $("ringArc").setAttribute("stroke", pass?"var(--ok)":"var(--bad)");
+  $("resHead").textContent = ok+" of "+n+" correct";
+  const v=$("resVerdict"); v.className="verdict "+(pass?"ok":"bad");
+  v.textContent = (pass? "At or above the "+TARGET+"% target" : "Below the "+TARGET+"% target") + (S.auto?" · time ran out":"");
+  $("stCorrect").textContent=ok; $("stWrong").textContent=bad; $("stSkip").textContent=skip; $("stTime").textContent=fmt(S.elapsed);
+  $("btnRetakeWrong").hidden = (bad+skip)===0;
+  $("prog").style.width="100%";
+  renderAnalysis();
+  renderResList();
+}
+function band(p){ return p>=TARGET ? ["g","Strong","var(--ok)"] : p>=60 ? ["a","Borderline","var(--flag)"] : ["r","Needs work","var(--bad)"]; }
+function renderAnalysis(){
+  const dom={}, comp={};
+  S.order.forEach((qi,pos)=>{
+    const c=QUESTIONS[qi].c, d=c.split(".")[0], ok=resultOf(qi)==="ok";
+    (dom[d] ||= {t:0,k:0}); dom[d].t++; if(ok) dom[d].k++;
+    (comp[c] ||= {t:0,k:0,miss:[]}); comp[c].t++; if(ok) comp[c].k++; else comp[c].miss.push(pos);
+  });
+  // Domains
+  const box=$("anaDomains"); box.innerHTML="";
+  const dkeys=["I","II","III","IV"].filter(d=>dom[d]);
+  dkeys.forEach(d=>{
+    const x=dom[d], p=Math.round(x.k/x.t*100), [cls,lab,col]=band(p);
+    const el=document.createElement("div"); el.className="dom";
+    el.innerHTML='<div class="nm"><small>Domain '+d+'</small><span></span><span class="st '+cls+'">'+lab+'</span></div><div class="val">'+x.k+'/'+x.t+' &middot; '+p+'%</div><div class="track" role="img" aria-label="'+p+' percent"><i style="width:'+p+'%;background:'+col+'"></i><b title="80% target"></b></div>';
+    el.querySelector(".nm span").textContent=DOMAINS[d];
+    box.appendChild(el);
+  });
+  // Summary sentence
+  const ranked=dkeys.map(d=>({d,p:dom[d].k/dom[d].t})).sort((a,b)=>a.p-b.p);
+  const weakC=Object.entries(comp).filter(([c,x])=>x.miss.length).map(([c,x])=>({c,...x,p:x.k/x.t})).sort((a,b)=>a.p-b.p || b.miss.length-a.miss.length);
+  const sum=$("anaSummary");
+  if(!weakC.length) sum.textContent="No missed questions. Every domain is at 100%.";
+  else if(ranked[0].p>=TARGET/100) sum.textContent="Every domain is at or above the 80% target. Tidy up the few topics below to build a safety margin.";
+  else sum.textContent="Your weakest domain is Domain "+ranked[0].d+" ("+DOMAINS[ranked[0].d]+") at "+Math.round(ranked[0].p*100)+"%. Start with the topics below, in this order.";
+  // Focus list: competencies under 75%, else the ones with any misses
+  let focus=weakC.filter(x=>x.p<TARGET/100); if(!focus.length) focus=weakC;
+  focus=focus.slice(0,5);
+  const fb=$("anaFocus"); fb.innerHTML="";
+  if(!focus.length) fb.innerHTML='<p class="muted" style="margin:0">Nothing to fix in this attempt. Try another practice set to confirm.</p>';
+  focus.forEach((x,i)=>{
+    const p=Math.round(x.p*100), [cls,lab]=band(p);
+    const el=document.createElement("div"); el.className="fitem";
+    el.innerHTML='<h3><small>'+(i+1)+'. '+x.c+'</small><span class="nm"></span><span class="st '+cls+'">'+x.k+'/'+x.t+' &middot; '+p+'%</span></h3><p></p><div class="qchips">Missed:</div>';
+    el.querySelector(".nm").textContent=COMP[x.c][0];
+    el.querySelector("p").textContent=COMP[x.c][1];
+    const chips=el.querySelector(".qchips");
+    x.miss.forEach(pos=>{ const b=document.createElement("button"); b.type="button"; b.className="qchip"; b.textContent="Q"+(pos+1);
+      b.onclick=()=>jumpTo(pos); chips.appendChild(b); });
+    fb.appendChild(el);
+  });
+  // Full competency table
+  const rows=Object.keys(COMP).filter(c=>comp[c]).map(c=>{ const x=comp[c], p=Math.round(x.k/x.t*100), [cls,lab]=band(p);
+    return '<tr><td class="n">'+c+'</td><td>'+COMP[c][0]+'</td><td class="n">'+x.k+'/'+x.t+'</td><td class="n">'+p+'%</td><td><span class="st '+cls+'" style="margin:0">'+lab+'</span></td></tr>'; });
+  $("anaTable").innerHTML='<thead><tr><th>Code</th><th>Competency</th><th>Score</th><th>%</th><th>Status</th></tr></thead><tbody>'+rows.join("")+'</tbody>';
+}
+function jumpTo(pos){ resFilter="all"; setTabs("resTabs","all"); renderResList(); const el=$("ri"+pos); if(el) el.scrollIntoView({block:"start"}); }
+function renderResList(){
+  const g=$("resGrid"), list=$("resList"); g.innerHTML=""; list.innerHTML="";
+  S.order.forEach((qi,pos)=>{
+    const r=resultOf(qi);
+    const c=document.createElement("button"); c.type="button"; c.className="cell "+(r==="ok"?"r-ok":r==="bad"?"r-bad":"")+(S.flags[qi]?" flg":"");
+    c.textContent=pos+1; c.setAttribute("aria-label","Question "+(pos+1)+": "+(r==="ok"?"correct":r==="bad"?"incorrect":"unanswered"));
+    c.onclick=()=>jumpTo(pos);
+    g.appendChild(c);
+    const show = resFilter==="all" || (resFilter==="bad" && r!=="ok") || (resFilter==="ok" && r==="ok") || (resFilter==="flagged" && S.flags[qi]);
+    if(!show) return;
+    const q=QUESTIONS[qi], a=S.answers[qi];
+    const d=document.createElement("article"); d.className="ritem "+r; d.id="ri"+pos;
+    d.innerHTML='<div class="row" style="justify-content:space-between"><b></b><span class="tag '+r+'"></span></div><div class="ctag"></div><details class="rscen" hidden><summary>Show scenario</summary><div></div></details><p></p><div class="ans"><span class="you"></span><span class="key"></span></div><div class="exp"></div>';
+    d.querySelector("b").textContent="Question "+(pos+1)+(S.flags[qi]?"  ⚑":"");
+    d.querySelector(".tag").textContent= r==="ok"?"Correct":r==="bad"?"Incorrect":"Unanswered";
+    d.querySelector(".ctag").textContent=q.c+" · "+COMP[q.c][0];
+    if(q.scenario){ const s=d.querySelector(".rscen"); s.hidden=false; s.querySelector("div").textContent=q.scenario; }
+    d.querySelector("p").textContent=q.q;
+    d.querySelector(".you").textContent="Your answer: "+(a===undefined?"none":L[a]+". "+q.options[a]);
+    d.querySelector(".key").textContent="Correct answer: "+L[q.answer]+". "+q.options[q.answer];
+    d.querySelector(".exp").textContent=q.explanation;
+    list.appendChild(d);
+  });
+  if(!list.children.length) list.innerHTML='<p class="muted">No questions match this filter.</p>';
+}
+function setTabs(id,f){ $(id).querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed", String(t.dataset.f===f))); }
+
+/* ---------- Wiring ---------- */
+$("btnStart").onclick=()=>{ startAttempt(QUESTIONS.map((_,i)=>i), $("modePractice").checked?"practice":"exam", $("optShuffle").checked); };
+$("btnResume").onclick=()=>{ S=load(); if(!S) return; if(S.ended){ renderResults(); show("sResults"); } else begin(); };
+$("btnPrev").onclick=()=>go(S.cur-1);
+$("btnNext").onclick=()=>{ if(S.cur===S.order.length-1) openReview(); else go(S.cur+1); };
+$("btnFlag").onclick=()=>{ const qi=S.order[S.cur]; if(S.flags[qi]) delete S.flags[qi]; else S.flags[qi]=true; save(); renderQ(); };
+$("btnReview").onclick=()=>{ if(!$("sReview").hidden) show("sQ"); else openReview(); };
+$("btnEnd").onclick=askEnd;
+$("cfNo").onclick=()=>{ $("confirm").hidden=true; };
+$("btnTakeBreak").onclick=()=>{ S.brk="on"; S.breakLeft=BREAK; save(); openBreak(); };
+$("btnSkipBreak").onclick=endBreak;
+$("btnEndBreak").onclick=endBreak;
+$("cfYes").onclick=()=>finish(false);
+$("btnLayout").onclick=()=>{ S.split=!S.split; save(); renderQ(); };
+$("modePractice").onchange=$("modeExam").onchange=()=>{ const pr=$("modePractice").checked; $("optInstant").checked = pr || $("optInstant").dataset.user==="1"; $("optInstant").disabled = pr; };
+$("optInstant").onchange=()=>{ $("optInstant").dataset.user = $("optInstant").checked ? "1" : "0"; };
+$("hideTimer").onclick=()=>{ S.timerHidden=!S.timerHidden; save(); $("timer").hidden=S.timerHidden; $("hideTimer").textContent=S.timerHidden?"Show time":"Hide time"; };
+$("revTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; revFilter=t.dataset.f; setTabs("revTabs",revFilter); renderReview(); };
+$("resTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; resFilter=t.dataset.f; setTabs("resTabs",resFilter); renderResList(); };
+$("btnRetakeWrong").onclick=()=>{ const ids=S.order.filter(qi=>resultOf(qi)!=="ok"); const m=S.mode; resFilter="bad"; setTabs("resTabs","bad"); startAttempt(ids,m,false); };
+$("btnNew").onclick=()=>{ clearSave(); S=null; $("btnResume").hidden=true; $("prog").style.width="0"; show("sStart"); };
+
+document.addEventListener("keydown",e=>{
+  if(!S || S.ended || e.ctrlKey || e.metaKey || e.altKey) return;
+  if(!$("confirm").hidden){ if(e.key==="Escape") $("confirm").hidden=true; return; }
+  if(!$("sBreak").hidden) return;
+  if($("sQ").hidden) { if(e.key.toLowerCase()==="r") show("sQ"); return; }
+  const k=e.key.toLowerCase();
+  const idx="abcde".indexOf(k)>-1?"abcde".indexOf(k):"12345".indexOf(k);
+  if(idx>-1 && k.length===1 && idx<QUESTIONS[S.order[S.cur]].options.length){ choose(idx); e.preventDefault(); }
+  else if(k==="arrowright") { $("btnNext").click(); e.preventDefault(); }
+  else if(k==="arrowleft") { go(S.cur-1); e.preventDefault(); }
+  else if(k==="f") $("btnFlag").click();
+  else if(k==="r") openReview();
+});
+
+/* Restore a saved attempt, if any */
+(function init(){
+  const saved=load();
+  if(saved && saved.order && saved.order.length){
+    $("btnResume").hidden=false;
+    const done=Object.keys(saved.answers||{}).length;
+    $("btnResume").textContent = saved.ended ? "View last results" : "Resume saved attempt ("+done+" of "+saved.order.length+" answered)";
+  }
+  show("sStart");
+})();
+</script>
+
+</body>
+</html>

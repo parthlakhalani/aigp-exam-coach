@@ -7,8 +7,8 @@ Reads exams.json and, for each exam, data/<id>.json, then writes:
   practice-exams/index.html        landing page listing every exam by level
 
 Question file format (data/<id>.json): a list of
-  {"n": 1, "q": "question", "options": ["A", "B", "C", "D"],
-   "answer": 0-3, "explanation": "...", "c": "II.B"}
+  {"n": 1, "q": "question", "options": ["A", "B", "C", "D"] (4 or 5),
+   "answer": index of the correct option, "explanation": "...", "c": "II.B"}
 where "c" is the AIGP BoK v2.1 competency code (I.A ... IV.C).
 Optional: "scenario": "text" for scenario-based questions. Those questions are
 shown split screen, with the scenario on the left and the question on the right.
@@ -39,8 +39,8 @@ img{max-width:100%}
 def check(exam, qs):
     for q in qs:
         n = q.get("n")
-        assert len(q["options"]) == 4, f"{exam['id']} Q{n}: needs 4 options"
-        assert q["answer"] in (0, 1, 2, 3), f"{exam['id']} Q{n}: answer must be 0-3"
+        assert len(q["options"]) in (4, 5), f"{exam['id']} Q{n}: needs 4 or 5 options"
+        assert 0 <= q["answer"] < len(q["options"]), f"{exam['id']} Q{n}: answer out of range"
         assert q["c"] in CODES, f"{exam['id']} Q{n}: unknown BoK code {q['c']}"
         assert q["q"].strip() and q["explanation"].strip(), f"{exam['id']} Q{n}: empty text"
         assert isinstance(q.get("scenario", ""), str), f"{exam['id']} Q{n}: scenario must be text"

@@ -1,3 +1,14 @@
 [
-  {"id": "easy-1", "level": "Easy", "set": 1, "data": "data/easy-1.json"}
+  {
+    "id": "easy-1",
+    "level": "Easy",
+    "set": 1,
+    "data": "data/easy-1.json"
+  },
+  {
+    "id": "hard-1",
+    "level": "Hard",
+    "set": 1,
+    "data": "data/hard-1.json"
+  }
 ]
