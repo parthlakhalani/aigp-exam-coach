@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AIGP Practice Exams</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: same test-center shell as the exams. Header band, then one section per difficulty level. */
+:root{
+  --bg:#f3f5f8; --panel:#ffffff; --fg:#17212e; --muted:#5a6676; --line:#d5dbe3;
+  --chrome:#1d3a5c; --chrome-fg:#ffffff; --accent:#1f5f9e; --accent-soft:#e3edf8;
+  --flag:#b9770e; --flag-soft:#fbf0dc; --ok:#1d7a46; --ok-soft:#e1f3e8; --bad:#b3261e; --bad-soft:#fae3e1;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#10161e; --panel:#18212c; --fg:#e4e9ef; --muted:#9aa6b5; --line:#2c3846;
+  --chrome:#0b1a2b; --chrome-fg:#e8eef5; --accent:#6aa8e8; --accent-soft:#1a3049;
+  --flag:#e6a640; --flag-soft:#3a2d14; --ok:#5cc58a; --ok-soft:#163323; --bad:#ef7b72; --bad-soft:#3d1c1a; color-scheme:dark}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--font)}
+[hidden]{display:none!important}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));max-width:1000px;margin:0 auto}
+header{background:var(--chrome);color:var(--chrome-fg)}
+header .gut{padding-block:28px}
+header small{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;opacity:.75;font-weight:600}
+h1{margin:4px 0 6px;font-size:28px;text-wrap:balance}
+header p{margin:0;opacity:.85;max-width:62ch}
+main .gut{padding-block:24px;display:grid;gap:28px}
+h2{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:16px}
+.cnt{color:var(--muted);font-weight:400;font-size:14px}
+.lvl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 10px;border-radius:4px}
+.lvl-easy{background:var(--ok-soft);color:var(--ok)} .lvl-medium{background:var(--flag-soft);color:var(--flag)} .lvl-hard{background:var(--bad-soft);color:var(--bad)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.ex{display:grid;gap:2px;padding:16px;background:var(--panel);border:1px solid var(--line);border-radius:6px;color:var(--fg);text-decoration:none}
+.ex:hover{border-color:var(--accent)}
+.ex:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nm{font-weight:600;font-size:17px}
+.meta{color:var(--muted);font-size:13px}
+.last{margin-top:8px;font-size:13px;font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--muted)}
+.last.pass{color:var(--ok)} .last.fail{color:var(--bad)}
+.soon{margin:0;padding:16px;border:1px dashed var(--line);border-radius:6px;color:var(--muted)}
+footer .gut{padding-block:8px 32px;color:var(--muted);font-size:13px}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<header><div class="gut">
+  <small>IAPP Artificial Intelligence Governance Professional</small>
+  <h1>AIGP Practice Exams</h1>
+  <p>Full-length timed mock exams with a 15-minute break, flag for review, and a score report that shows which BoK areas to study next. Start with Easy, then move up.</p>
+</div></header>
+<main><div class="gut">
+__SECTIONS__
+</div></main>
+<footer><div class="gut">
+  Readiness target is 80% per exam. Your last full-exam score is saved in this browser only.
+  Independent study aid, not affiliated with the IAPP. Check the current AIGP Body of Knowledge at <a href="https://iapp.org/certify/aigp/">iapp.org</a>.
+  <a href="https://github.com/parthlakhalani/aigp-exam-coach">Source on GitHub</a>.
+</div></footer>
+<script>
+document.querySelectorAll(".ex").forEach(a=>{
+  let r=null; try{ r=JSON.parse(localStorage.getItem("aigp-"+a.dataset.id+"-v2-last")); }catch(e){}
+  if(!r) return;
+  const el=a.querySelector(".last");
+  el.textContent="Last score "+r.pct+"% · "+r.at;
+  el.classList.add(r.pct>=80?"pass":"fail");
+});
+</script>
+</body>
+</html>

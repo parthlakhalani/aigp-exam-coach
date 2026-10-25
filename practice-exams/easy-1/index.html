@@ -3,14 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Timed 100-question AIGP practice exam with an optional break, flag for review, and a weak-area score report.">
 <style>
 :root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
 img{max-width:100%}
 [hidden]{display:none!important}
 </style>
-<title>AIGP Practice Exam 1</title>
+<title>AIGP Easy Exam 1</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
@@ -95,6 +94,9 @@ ul.rules{margin:0;padding-left:20px;display:grid;gap:4px}
 /* Question */
 .qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
 .qnum{font-weight:600;color:var(--accent)}
+.lvl{display:inline-block;vertical-align:middle;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-left:6px}
+.lvl-easy{background:var(--ok-soft);color:var(--ok)} .lvl-medium{background:var(--flag-soft);color:var(--flag)} .lvl-hard{background:var(--bad-soft);color:var(--bad)}
+.back{font-size:14px;color:var(--accent)}
 .flagtag{color:var(--flag);font-weight:600;font-size:13px}
 .stem{font-size:18px;line-height:1.55;margin:0 0 20px;max-width:70ch}
 .choices{display:grid;gap:10px;max-width:820px}
@@ -205,7 +207,7 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
 <div class="app">
   <header class="bar">
     <div class="gut">
-      <div class="brand">AIGP Practice Exam<small>Set 1 &middot; 100 questions</small></div>
+      <div class="brand">AIGP Easy Exam 1<small>Easy &middot; 100 questions</small></div>
       <span id="qpos" class="chip" hidden></span>
       <span id="timer" class="chip" hidden aria-live="off"></span>
       <button id="hideTimer" class="linkbtn" hidden type="button">Hide time</button>
@@ -219,8 +221,8 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
       <div class="start">
         <div>
           <div class="eyebrow">IAPP Artificial Intelligence Governance Professional</div>
-          <h1>Practice Exam, Set 1</h1>
-          <p class="muted">Work through 100 multiple-choice questions under conditions close to the real exam.</p>
+          <h1>Easy Practice Exam 1 <span class="lvl lvl-easy">Easy</span></h1>
+          <p class="muted">Work through 100 multiple-choice questions under conditions close to the real exam.</p><p style="margin:8px 0 0"><a class="back" href="../index.html">&larr; All practice exams</a></p>
         </div>
         <dl class="facts">
           <div><dt>Questions</dt><dd>100</dd></div>
@@ -400,7 +402,7 @@ const QUESTIONS = [{"n": 1, "q": "In the context of employment, which of the fol
 const LIMIT = 180 * 60;           // exam time, seconds
 const BREAK = 15 * 60;            // optional break, seconds
 const TARGET = 80;                // readiness target, percent
-const KEY = "aigp-set1-v2";
+const KEY = "aigp-easy-1-v2";
 const DOMAINS = {I:"Foundations of AI governance", II:"Laws, standards and frameworks", III:"Governing AI development", IV:"Governing AI deployment and use"};
 const COMP = {
  "I.A":["What AI is and why it needs governance","Review AI definitions and types, the harms AI can cause, what makes AI different (opacity, autonomy, scale, probabilistic outputs) and the core responsible AI principles."],
@@ -557,6 +559,10 @@ function askEnd(){
 }
 function finish(auto){
   $("confirm").hidden=true; clearInterval(tick); S.ended=true; S.auto=!!auto; save(); renderResults(); show("sResults");
+  if(S.order.length===QUESTIONS.length){
+    const ok=S.order.filter(q=>resultOf(q)==="ok").length;
+    try{ localStorage.setItem(KEY+"-last", JSON.stringify({pct:Math.round(ok/S.order.length*100), at:new Date().toISOString().slice(0,10), mode:S.mode})); }catch(e){}
+  }
 }
 function resultOf(qi){ const a=S.answers[qi]; return a===undefined ? "skip" : a===QUESTIONS[qi].answer ? "ok" : "bad"; }
 function renderResults(){
