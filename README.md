@@ -34,6 +34,7 @@ aigp-exam-coach/
     ├── domains.md          # The 4 domains, question ranges and topics
     ├── key-frameworks.md   # EU AI Act, NIST AI RMF, ISO/IEC 42001 and 42005, OECD, GDPR automated decisions
     └── exam-tips.md        # Exam format, answering strategy, study tips
+aigp-exam-coach.zip         # Ready-to-upload skill package
 practice-exams/
 ├── index.html              # Landing page listing every exam by level
 ├── easy-1/index.html       # One self-contained exam per folder
@@ -42,11 +43,17 @@ practice-exams/
 
 ## Install
 
-**Claude apps:** Download this repo as a zip, then upload the `aigp-exam-coach` folder (zipped) under Settings > Capabilities > Skills.
+**Claude apps (web, desktop):**
+1. Download [aigp-exam-coach.zip](https://github.com/parthlakhalani/aigp-exam-coach/raw/main/aigp-exam-coach.zip). Do not unzip it.
+2. Make sure **Settings > Capabilities > Create and edit files** is turned on.
+3. Go to **Customize > Skills**, click **+**, then **Create skill > Upload a skill**, and choose the zip.
+4. Turn the skill on in your skills list.
+
+On Team and Enterprise plans, an owner may need to allow custom skills first.
 
 **Claude Code:** Copy the `aigp-exam-coach` folder into `~/.claude/skills/`.
 
-Then try: *"Quiz me on AIGP Domain II"* or *"Make me an AIGP study plan."*
+**Try it:** start a new chat and ask *"Quiz me on AIGP Domain II"*, *"Explain the EU AI Act risk tiers"* or *"Make me an AIGP study plan."*
 
 **Practice exam online:** in this repo go to Settings > Pages, set the source to the `main` branch and `/ (root)`, then open `https://<your-username>.github.io/aigp-exam-coach/practice-exams/`.
 
