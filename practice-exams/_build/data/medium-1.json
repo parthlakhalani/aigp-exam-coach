@@ -1,0 +1,1349 @@
+[
+ {
+  "n": 1,
+  "q": "What should a provider's instructions for use give to deployers of a high-risk AI system?",
+  "options": [
+   "Guidance on how the deployer can obtain its own CE marking for its specific use.",
+   "A detailed summary of the provider's internal quality management procedures.",
+   "Intended purpose, performance limits, oversight measures and how to read outputs.",
+   "The full training dataset, so that deployers can retrain the system themselves."
+  ],
+  "answer": 2,
+  "explanation": "Deployers need this information to use the system safely and meet their own duties. Training data, internal QMS details and CE marking guidance are not what instructions for use cover.",
+  "c": "III.C"
+ },
+ {
+  "n": 2,
+  "q": "Which weakness explains this?",
+  "options": [
+   "Data leakage between the training images and the test images.",
+   "Overly strict data minimization when the images were collected.",
+   "Concept drift, caused by changes in what the images mean over time.",
+   "Lack of robustness, from testing that missed varied real-world conditions."
+  ],
+  "answer": 3,
+  "explanation": "Failure under changed conditions points to weak robustness and narrow testing. The meaning of the images has not changed, and leakage or minimization would not cause this specific pattern.",
+  "c": "III.C",
+  "scenario": "An image recognition model works well in the lab but fails on photos taken in rain or low light."
+ },
+ {
+  "n": 3,
+  "q": "Which policy element best ensures that every new AI use case is reviewed before development starts?",
+  "options": [
+   "A post-deployment monitoring standard.",
+   "A use case intake and risk triage process.",
+   "A model documentation template.",
+   "An annual audit of all AI systems."
+  ],
+  "answer": 1,
+  "explanation": "Intake and triage catch use cases at the start. Annual audits and monitoring happen later, and a documentation template does not by itself trigger a review.",
+  "c": "I.C"
+ },
+ {
+  "n": 4,
+  "q": "What should be in place with the vendor?",
+  "options": [
+   "Customer consent for the transfer, collected from each customer before the records are sent.",
+   "A non-disclosure agreement covering the confidentiality of all customer records shared.",
+   "A joint controller agreement, since both parties will benefit from and use the trained model.",
+   "A data processing agreement with instructions, security terms, sub-processor rules and use limits."
+  ],
+  "answer": 3,
+  "explanation": "A controller using a processor needs a contract with defined processing terms. An NDA is too narrow, consent is not automatically required, and the vendor is acting on instructions, so it is a processor.",
+  "c": "II.A",
+  "scenario": "A company sends customer records to an AI vendor that will fine-tune a model on the company's behalf."
+ },
+ {
+  "n": 5,
+  "q": "Which control is needed?",
+  "options": [
+   "A notice to customers in that country explaining the investigation and next steps.",
+   "A manual review by credit officers of every decision the tool makes in that country.",
+   "A rollback to the previous model version in every country until the investigation ends.",
+   "The ability to deactivate or geo-restrict the system, under a defined procedure and authority."
+  ],
+  "answer": 3,
+  "explanation": "Deactivation and localization controls allow targeted compliance. A global rollback is broader than needed, manual review still uses the tool, and a notice alone does not stop use.",
+  "c": "IV.C",
+  "scenario": "A regulator in one country orders a company to stop using its AI credit tool there while an investigation is under way. The tool must keep running in other countries."
+ },
+ {
+  "n": 6,
+  "q": "What should happen before the expansion?",
+  "options": [
+   "Launch to the new group and monitor complaints closely for three months.",
+   "Reassess risks and impacts for the new group and update safeguards before launch.",
+   "Update the terms of service to require parental consent, then launch.",
+   "Apply the existing adult safeguards, since the model is unchanged."
+  ],
+  "answer": 1,
+  "explanation": "A new user group brings new risks and legal duties. Safeguards must be assessed and updated first, not after launch or through terms alone.",
+  "c": "IV.C",
+  "scenario": "A company plans to extend an AI assistant designed for adults to a new group of users aged 13 to 17."
+ },
+ {
+  "n": 7,
+  "q": "Under the EU AI Act, when does a distributor or deployer take on provider obligations for a high-risk AI system?",
+  "options": [
+   "When it uses the system in more than one EU member state or across several business units.",
+   "When it rebrands it, substantially modifies it, or changes its intended purpose to a high-risk one.",
+   "When it trains its own staff to operate the system and assigns them to oversee its outputs.",
+   "When it integrates the system with its own internal IT systems without changing the system itself."
+  ],
+  "answer": 1,
+  "explanation": "Putting its name on the system, making a substantial modification or changing the intended purpose shifts provider duties. Integration, multi-country use or training staff do not.",
+  "c": "II.C"
+ },
+ {
+  "n": 8,
+  "q": "Which contract term most helps a deployer keep ongoing oversight of a vendor's high-risk AI system?",
+  "options": [
+   "A fixed price for the full term, with no increases on renewal of the contract.",
+   "A dedicated account manager and quarterly business reviews with the vendor.",
+   "Rights to documentation, test results, notice of model changes and audits.",
+   "A right to terminate for convenience at any time with 30 days' notice."
+  ],
+  "answer": 2,
+  "explanation": "Transparency and audit rights let the deployer meet its own duties. Pricing, termination rights and account management are useful but do not provide oversight.",
+  "c": "IV.B"
+ },
+ {
+  "n": 9,
+  "q": "Which GDPR principle is most directly challenged?",
+  "options": [
+   "Accuracy.",
+   "Storage limitation.",
+   "Purpose limitation.",
+   "Data minimization."
+  ],
+  "answer": 2,
+  "explanation": "Data collected for one purpose cannot be reused for an incompatible purpose without a proper assessment and lawful basis. Minimization and the others matter, but the core problem is the new purpose.",
+  "c": "II.A",
+  "scenario": "An EU bank wants to reuse personal data collected for credit decisions to train a marketing model that predicts which customers will buy insurance."
+ },
+ {
+  "n": 10,
+  "q": "What should the deployer do?",
+  "options": [
+   "Inform the provider and the relevant authorities and act to limit further harm.",
+   "Retrain the system on the incident data and resume use.",
+   "Inform the provider only, since reporting to authorities is the provider's duty.",
+   "Investigate fully before informing anyone, to avoid false reports."
+  ],
+  "answer": 0,
+  "explanation": "Deployers have their own duty to report serious incidents and should act to limit harm. Waiting for a full investigation can breach reporting duties, and deployers do not normally retrain a provider's system.",
+  "c": "IV.C",
+  "scenario": "A deployer of a high-risk AI system in the EU finds that the system contributed to a serious incident."
+ },
+ {
+  "n": 11,
+  "q": "Under the EU AI Act, which of these practices is prohibited?",
+  "options": [
+   "A customer service chatbot that clearly discloses to users that it is an AI system.",
+   "AI-based credit scoring of individual loan applicants by a bank in the EU.",
+   "Emotion recognition of employees at work, other than for medical or safety reasons.",
+   "Biometric verification so employees can unlock their company laptops with their face."
+  ],
+  "answer": 2,
+  "explanation": "Emotion recognition in workplaces and schools is banned except for medical or safety purposes. Biometric verification is not banned, credit scoring is high risk rather than prohibited, and a disclosed chatbot meets its transparency duty.",
+  "c": "II.C"
+ },
+ {
+  "n": 12,
+  "q": "Which test checks whether a model's error rates are similar across demographic groups?",
+  "options": [
+   "Comparing the share of each group in the training data.",
+   "Comparing model outputs before and after retraining.",
+   "Comparing false positive and false negative rates for each group.",
+   "Comparing overall accuracy on the test set against a target."
+  ],
+  "answer": 2,
+  "explanation": "Fairness testing compares error rates by group. Overall accuracy can hide group gaps, group shares describe the data rather than outcomes, and before-and-after comparison checks consistency.",
+  "c": "III.B"
+ },
+ {
+  "n": 13,
+  "q": "Which characteristic most clearly sets AI systems apart from traditional rule-based software from a governance point of view?",
+  "options": [
+   "AI systems are built from open-source code, so licensing is the main governance concern.",
+   "AI systems always process personal data, so privacy law is the only framework that applies.",
+   "Outputs are probabilistic and can shift as data changes, so behavior cannot be fully specified in advance.",
+   "Outputs are produced faster, so the main governance need is capacity and performance planning."
+  ],
+  "answer": 2,
+  "explanation": "AI learns patterns from data and produces likely rather than guaranteed results, and its behavior can change over time. That is why AI needs ongoing testing and monitoring. Speed, personal data and open source can matter, but none of them is what makes AI different in kind.",
+  "c": "I.A"
+ },
+ {
+  "n": 14,
+  "q": "Where such processing is permitted, what must the insurer provide?",
+  "options": [
+   "An option for customers to download the raw data used in the decision.",
+   "The right to obtain human intervention, express a view and contest the decision.",
+   "A general notice in the privacy policy that automated tools are used.",
+   "An annual accuracy report on the system filed with the regulator."
+  ],
+  "answer": 1,
+  "explanation": "Solely automated decisions with significant effects need meaningful safeguards for the person. A general notice, a report or data access alone do not give the person a way to challenge the outcome.",
+  "c": "II.A",
+  "scenario": "An EU insurer uses a fully automated system that rejects some claims with no human involvement. The decisions have significant effects on customers."
+ },
+ {
+  "n": 15,
+  "q": "Which control best addresses this?",
+  "options": [
+   "A firewall rule blocking all public AI websites, with no approved alternative offered to developers.",
+   "An acceptable use policy naming approved tools and banned data, with training and a safe approved tool.",
+   "A reminder email to all developers about confidentiality, followed by disciplinary action for repeats.",
+   "A formal request to the chatbot provider to delete any company code that has already been submitted."
+  ],
+  "answer": 1,
+  "explanation": "A clear policy plus a safe approved option changes behavior without stopping work. Blocking everything pushes use underground, reminders alone rarely work, and deletion requests cannot be verified.",
+  "c": "I.C",
+  "scenario": "Several developers have pasted proprietary source code into a free public chatbot to get debugging help."
+ },
+ {
+  "n": 16,
+  "q": "Which product liability theory fits best?",
+  "options": [
+   "Design defect.",
+   "Manufacturing defect.",
+   "Breach of warranty.",
+   "Failure to warn."
+  ],
+  "answer": 0,
+  "explanation": "A flaw in every unit comes from the design. A manufacturing defect affects units that differ from the design, and failure to warn concerns missing warnings or instructions.",
+  "c": "II.B",
+  "scenario": "A flaw in the dosing algorithm of an AI-powered insulin pump causes every unit of that model to calculate doses incorrectly."
+ },
+ {
+  "n": 17,
+  "q": "What is the best response?",
+  "options": [
+   "Enforce the use restrictions in its terms and suspend access for the prohibited use.",
+   "Ask the customer to add a clear disclaimer to its tenant screening decisions.",
+   "Leave it to the customer, since deployers are responsible for their own use.",
+   "Offer the customer a higher-accuracy model that is better suited to screening."
+  ],
+  "answer": 0,
+  "explanation": "Vendors should forecast and act on secondary uses and downstream harm. Enforcing the contract is the right response, rather than enabling or ignoring the misuse.",
+  "c": "IV.C",
+  "scenario": "A vendor sells a facial analysis API for organizing personal photo libraries. It discovers a customer using the API to screen tenants."
+ },
+ {
+  "n": 18,
+  "q": "Which record answers this request?",
+  "options": [
+   "Data lineage diagrams.",
+   "The model card.",
+   "Data provenance records.",
+   "The data dictionary."
+  ],
+  "answer": 2,
+  "explanation": "Provenance records origin, collection and rights. Lineage tracks how data moved and changed through pipelines, a model card summarizes the model, and a data dictionary defines fields.",
+  "c": "III.B",
+  "scenario": "An auditor asks the team to show where each training dataset came from, who collected it and under what license."
+ },
+ {
+  "n": 19,
+  "q": "Which activity best identifies risks like this during design?",
+  "options": [
+   "Penetration testing the access controls on the shared drive and its folders.",
+   "Threat modeling the system's components, data flows and attack surface.",
+   "Load testing the assistant with many concurrent users and long documents.",
+   "Bias testing the assistant's answers across different groups of employees."
+  ],
+  "answer": 1,
+  "explanation": "Threat modeling finds attack paths such as prompt injection through retrieved content, during design. Pen testing the drive, bias tests and load tests do not look at this attack path.",
+  "c": "III.C",
+  "scenario": "A team is building an assistant that answers questions using documents retrieved from a shared drive. Security worries that a document could contain hidden instructions that change the assistant's behavior."
+ },
+ {
+  "n": 20,
+  "q": "What must the lender provide?",
+  "options": [
+   "An adverse action notice with the specific main reasons for the denial.",
+   "A general notice that the decision was made by an automated system.",
+   "A copy of the model's validation report on request.",
+   "A list of every input variable used by the model for all applicants."
+  ],
+  "answer": 0,
+  "explanation": "US credit law requires specific reasons for adverse action, and model complexity is not an excuse. A generic notice, a variable list or a validation report does not tell the applicant why they were denied.",
+  "c": "II.B",
+  "scenario": "A US lender uses a complex machine learning model to decide credit applications and denies an applicant."
+ },
+ {
+  "n": 21,
+  "q": "Users report that an AI assistant sometimes gives wrong answers. Which issue management process is best?",
+  "options": [
+   "Collect all reports and review them together at the next quarterly governance committee meeting.",
+   "Add a disclaimer that answers may sometimes be wrong, then close the reports as resolved.",
+   "Log, triage by severity, assign an owner, fix and track to closure, and update the risk register.",
+   "Forward each report to the model vendor and mark it closed once the vendor has acknowledged it."
+  ],
+  "answer": 2,
+  "explanation": "A structured process turns reports into fixes and better risk knowledge. Quarterly batching is too slow, forwarding is not resolution, and a disclaimer does not fix the problem.",
+  "c": "IV.C"
+ },
+ {
+  "n": 22,
+  "q": "What is the main weakness in this policy?",
+  "options": [
+   "It does not include a detailed inventory of every AI system currently in use.",
+   "It does not reference a recognized framework such as the NIST AI RMF or ISO 42001.",
+   "It does not assign accountability to named roles, such as an owner per system.",
+   "It gives responsibility to the AI team instead of the legal and compliance team."
+  ],
+  "answer": 2,
+  "explanation": "Clear, named ownership tells people who decides and who escalates. A framework reference or inventory helps, but neither fixes unclear accountability, and moving it to legal does not either.",
+  "c": "I.B",
+  "scenario": "An internal AI policy states only that \"the AI team is responsible for all AI systems.\" During an incident, nobody is sure who can approve pausing a system."
+ },
+ {
+  "n": 23,
+  "q": "Which content is typically found in a model card?",
+  "options": [
+   "Pricing, licensing tiers and a product roadmap for prospective customers.",
+   "Intended use, limitations, performance across groups and a summary of training data.",
+   "Server configuration, uptime targets and support contacts for operations staff.",
+   "Source code, chosen hyperparameters and a full copy of the training dataset."
+  ],
+  "answer": 1,
+  "explanation": "Model cards give a structured summary of purpose, limits and performance. They do not include full code or data, operations details or commercial terms.",
+  "c": "III.C"
+ },
+ {
+  "n": 24,
+  "q": "What is the best governance response?",
+  "options": [
+   "Accept the terms but ask staff not to enter confidential data.",
+   "Accept the terms since the vendor anonymizes data before training.",
+   "Negotiate limits on the vendor's use of your data for training.",
+   "Accept the terms and add the vendor to the privacy notice."
+  ],
+  "answer": 2,
+  "explanation": "Data use terms are a key contract risk and are often negotiable. Relying on staff behavior, vendor claims or disclosure alone leaves confidentiality and privacy exposure.",
+  "c": "IV.B",
+  "scenario": "A generative AI vendor's standard contract lets it use customer prompts and files to improve its own models."
+ },
+ {
+  "n": 25,
+  "q": "Before buying an AI tool that screens job applicants, what should the procurement process require?",
+  "options": [
+   "A vendor risk assessment covering intended use, bias testing, documentation and contract terms.",
+   "Security certification of the vendor's hosting environment and its data encryption practices.",
+   "A pilot on current applicants to confirm the tool saves recruiters time and improves quality.",
+   "Reference calls with three other customers who already use the tool for similar hiring roles."
+  ],
+  "answer": 0,
+  "explanation": "Hiring is a high-risk use, so procurement must look at bias, documentation and contract protections. A pilot, hosting security or references alone leave major risks unchecked.",
+  "c": "I.C"
+ },
+ {
+  "n": 26,
+  "q": "What is a common advantage of a small language model compared with a large one for a narrow task?",
+  "options": [
+   "Lower cost, faster responses and easier private hosting for the task.",
+   "Fewer legal obligations under AI and privacy laws, as it is smaller.",
+   "Better general reasoning across a wide range of unrelated topics.",
+   "No need for testing, since a smaller model is simpler and safer."
+  ],
+  "answer": 0,
+  "explanation": "Smaller models trade broad capability for efficiency and control. They still need testing and are subject to the same laws.",
+  "c": "IV.A"
+ },
+ {
+  "n": 27,
+  "q": "Which AI risk does this best illustrate?",
+  "options": [
+   "Overfitting of the model to patterns in its historical training data.",
+   "Misalignment between the model's objective and the company's goals.",
+   "Model drift caused by a gradual change in the app's user demographics.",
+   "Data poisoning of the training set by a malicious outside party."
+  ],
+  "answer": 1,
+  "explanation": "The model did what it was told (maximize clicks), but that objective did not match what the company wanted. Nothing in the scenario points to an attack, overfitting or a demographic shift.",
+  "c": "I.A",
+  "scenario": "A news app trains a recommendation model to maximize clicks. Within weeks, the model begins promoting sensational and misleading stories, which damages user trust in the brand."
+ },
+ {
+  "n": 28,
+  "q": "When should an initial AI impact assessment be performed?",
+  "options": [
+   "During design, before major build work, then revisited when the system changes.",
+   "Just before launch, as part of the final release approval.",
+   "After the first month in production, using real user data.",
+   "After testing, when real performance results are available to assess."
+  ],
+  "answer": 0,
+  "explanation": "Early assessment lets findings shape the design. Doing it after testing, at launch or in production is too late to influence key design choices, although it should be revisited then.",
+  "c": "III.A"
+ },
+ {
+  "n": 29,
+  "q": "What concern does this raise?",
+  "options": [
+   "High model accuracy, so the level of human review can be reduced.",
+   "Model drift, so the system should be retrained on recent data.",
+   "Automation bias, meaning human oversight may not be effective.",
+   "Understaffing, so more loan officers should be hired to review."
+  ],
+  "answer": 2,
+  "explanation": "Near-total acceptance with little review time suggests people are deferring to the system. That points to oversight design and training, not proof of accuracy or drift.",
+  "c": "IV.C",
+  "scenario": "Monitoring shows that loan officers accept 99.8% of an AI system's recommendations, spending about five seconds on each case."
+ },
+ {
+  "n": 30,
+  "q": "After an AI incident is resolved, why should it be fully documented?",
+  "options": [
+   "To identify which employee should be held responsible and disciplined.",
+   "To show customers that the issue was minor and is now fully closed.",
+   "To meet a legal requirement that all AI incidents be published online.",
+   "To record cause, impact and actions, support reporting and prevent repeats."
+  ],
+  "answer": 3,
+  "explanation": "Documentation supports learning, accountability and compliance. Blame, reputation messaging or publishing every incident are not the main purpose.",
+  "c": "III.C"
+ },
+ {
+  "n": 31,
+  "q": "What does NYC Local Law 144 require?",
+  "options": [
+   "A one-time bias audit by the vendor before the tool is first used, kept on file for inspection.",
+   "Human review of every candidate the tool ranks below the cut-off, documented in the file.",
+   "Approval of the tool by the city's human rights commission before it is used for any hiring.",
+   "An independent bias audit within the past year, a published summary and notice to candidates."
+  ],
+  "answer": 3,
+  "explanation": "Local Law 144 requires a recent independent bias audit, a published summary and candidate notice. A one-time vendor audit, pre-approval or full human review are not what it requires.",
+  "c": "II.C",
+  "scenario": "An employer in New York City uses an automated tool to rank job candidates for interviews."
+ },
+ {
+  "n": 32,
+  "q": "Which contract term best protects a deployer against third-party claims that a generative AI tool's outputs infringe IP?",
+  "options": [
+   "A limitation of liability capped at annual fees.",
+   "A warranty that the tool meets its documentation.",
+   "A service level agreement for availability.",
+   "An intellectual property indemnity from the vendor."
+  ],
+  "answer": 3,
+  "explanation": "An IP indemnity shifts the cost of infringement claims to the vendor. A performance warranty, a liability cap or an availability SLA do not cover IP claims.",
+  "c": "IV.B"
+ },
+ {
+  "n": 33,
+  "q": "What is the main purpose of red teaming an AI system?",
+  "options": [
+   "To try to make the system fail or cause harm, so weaknesses are found first.",
+   "To confirm the system meets its documented accuracy targets on held-out data.",
+   "To check the system's code against secure coding standards before release.",
+   "To measure how users rate the system's helpfulness in realistic scenarios."
+  ],
+  "answer": 0,
+  "explanation": "Red teaming uses an adversarial mindset to find weaknesses. Accuracy checks, code review and user ratings are other activities.",
+  "c": "III.C"
+ },
+ {
+  "n": 34,
+  "q": "What is the main purpose of stakeholder mapping during AI design?",
+  "options": [
+   "To identify who is affected by or can influence the system, including people outside the project.",
+   "To identify the customer segments most likely to adopt and pay for the new AI product.",
+   "To assign each project stakeholder a clear role and responsibility in the project RACI chart.",
+   "To list the internal teams and committees that must approve the system before it can launch."
+  ],
+  "answer": 0,
+  "explanation": "Stakeholder mapping brings in affected people early, including those with no voice in the project. Approval lists, RACI charts and sales targeting are narrower activities.",
+  "c": "III.A"
+ },
+ {
+  "n": 35,
+  "q": "Under the EU AI Act, which type of violation can lead to the highest fines?",
+  "options": [
+   "Breaching the transparency rules for chatbots and deepfakes.",
+   "Placing on the market or using a prohibited AI practice.",
+   "Breaching the obligations for high-risk AI systems.",
+   "Supplying incorrect information to authorities."
+  ],
+  "answer": 1,
+  "explanation": "The top penalty tier is for prohibited practices. High-risk and transparency breaches fall in a lower tier, and incorrect information in a lower one still.",
+  "c": "II.C"
+ },
+ {
+  "n": 36,
+  "q": "Why use interpretability tools, such as feature importance, during model testing?",
+  "options": [
+   "To check the model does not rely on proxies for protected traits.",
+   "To improve the model's accuracy on the validation and test sets.",
+   "To meet the GDPR requirement to publish the model's internal logic.",
+   "To reduce the number of features the model needs in production."
+  ],
+  "answer": 0,
+  "explanation": "Interpretability helps reveal hidden proxies and spurious patterns. It may support feature selection, but its governance value is spotting problematic reliance, and the GDPR does not require publishing model logic.",
+  "c": "III.B"
+ },
+ {
+  "n": 37,
+  "q": "Which obligation applies to the clinic?",
+  "options": [
+   "Carry out the conformity assessment and affix the CE marking to the system.",
+   "Assign competent human oversight, monitor the system and keep the logs it controls.",
+   "Establish and maintain the quality management system for the AI system.",
+   "Draw up and keep up to date the system's full technical documentation."
+  ],
+  "answer": 1,
+  "explanation": "The clinic is a deployer. Conformity assessment, CE marking, the quality management system and technical documentation are provider duties.",
+  "c": "II.C",
+  "scenario": "A private clinic in France buys a high-risk AI triage system from a certified provider and uses it exactly as instructed."
+ },
+ {
+  "n": 38,
+  "q": "Which design best supports effective human oversight?",
+  "options": [
+   "Reviewers check a random 1% sample each quarter after decisions are final.",
+   "Reviewers get explanations and authority to override, and override rates are tracked.",
+   "Reviewers handle only cases the applicant appeals after a decision.",
+   "Reviewers approve every case, with the model's score shown as a single number."
+  ],
+  "answer": 1,
+  "explanation": "Oversight works when reviewers have context, real authority and monitoring that reveals automation bias. A bare score, after-the-fact sampling or appeal-only review is weak oversight.",
+  "c": "III.A",
+  "scenario": "A team is designing human review for an AI model that recommends credit limits."
+ },
+ {
+  "n": 39,
+  "q": "Why should red teaming continue after an AI system is deployed?",
+  "options": [
+   "It replaces the need for continuous monitoring of the system's outputs.",
+   "New attacks, model updates and new usage patterns create new risks.",
+   "Pre-deployment red teaming is not accepted as evidence by regulators.",
+   "Production traffic is needed before any red team exercise can be run."
+  ],
+  "answer": 1,
+  "explanation": "Threats and systems change, so testing must be repeated. Red teaming complements monitoring and is valuable before deployment too.",
+  "c": "IV.C"
+ },
+ {
+  "n": 40,
+  "q": "Why should an AI policy require documentation at each stage of the AI life cycle?",
+  "options": [
+   "It prevents model drift by fixing the system's expected behavior at the time of release.",
+   "It is mainly needed to produce user-facing marketing and sales materials for the product.",
+   "It reduces the amount of testing needed before the system is released to production.",
+   "It creates evidence of decisions and controls for audits, regulators and incidents."
+  ],
+  "answer": 3,
+  "explanation": "Documentation provides traceability and evidence. It does not replace testing, prevent drift or exist mainly for marketing.",
+  "c": "I.C"
+ },
+ {
+  "n": 41,
+  "q": "Which provides the most independent assurance that an AI system meets its requirements?",
+  "options": [
+   "An audit by a qualified, independent external auditor.",
+   "A review by the vendor that supplied the model.",
+   "A self-assessment by the development team.",
+   "An internal audit by the company's compliance team."
+  ],
+  "answer": 0,
+  "explanation": "Independence drives assurance. Internal audit is somewhat independent, but an external auditor is more so, and self-assessment or vendor review is the least independent.",
+  "c": "III.C"
+ },
+ {
+  "n": 42,
+  "q": "Which of these is one of the OECD AI Principles?",
+  "options": [
+   "Robustness, security and safety.",
+   "Data minimization and storage limitation.",
+   "Proportionality and necessity.",
+   "Risk-based conformity assessment."
+  ],
+  "answer": 0,
+  "explanation": "The OECD values-based principles include robustness, security and safety, alongside inclusive growth, human rights, transparency and accountability. The other options come from privacy law or regulatory design, not the OECD list.",
+  "c": "II.D"
+ },
+ {
+  "n": 43,
+  "q": "Which statement about the Govern function of the NIST AI RMF is accurate?",
+  "options": [
+   "It is performed after Map and Measure are complete.",
+   "It is cross-cutting and informs the other three functions.",
+   "It applies mainly at deployment and decommissioning.",
+   "It focuses on technical testing of model performance."
+  ],
+  "answer": 1,
+  "explanation": "Govern runs across the whole framework and life cycle. It is not a single step in a sequence, and technical testing sits mainly in Measure.",
+  "c": "II.D"
+ },
+ {
+  "n": 44,
+  "q": "Which control is most important before deployment?",
+  "options": [
+   "Least-privilege permissions and human approval for high-impact or irreversible actions.",
+   "A user survey after launch to confirm that staff find the agent helpful and accurate.",
+   "A detailed system prompt instructing the agent to act responsibly and avoid mistakes.",
+   "A monthly review of a random sample of the agent's completed emails and purchases."
+  ],
+  "answer": 0,
+  "explanation": "Agents act in the real world, so permission limits and approval gates are key. Prompts alone can be bypassed, and monthly sampling finds problems after damage is done.",
+  "c": "IV.A",
+  "scenario": "A company plans to deploy an AI agent that can send emails, update records and make purchases for staff."
+ },
+ {
+  "n": 45,
+  "q": "What is the most likely data issue?",
+  "options": [
+   "The test data was drawn from a different time period than training.",
+   "The model was trained for too few epochs to learn the task well.",
+   "The training data is not representative of the system's users.",
+   "The training data contains too many labeling errors and duplicates."
+  ],
+  "answer": 2,
+  "explanation": "Unrepresentative training data leads to uneven performance across groups. The fix is more diverse data and testing results by subgroup.",
+  "c": "III.B",
+  "scenario": "A speech recognition model trained mostly on one regional accent performs poorly for speakers of other accents."
+ },
+ {
+  "n": 46,
+  "q": "Which deployment option fits best?",
+  "options": [
+   "Private cloud in the company's head office.",
+   "Hybrid cloud with nightly synchronization.",
+   "Public cloud with a regional data center.",
+   "Edge deployment at the production line."
+  ],
+  "answer": 3,
+  "explanation": "Edge deployment gives low latency without depending on the network. All cloud options need a reliable connection for real-time decisions.",
+  "c": "IV.A",
+  "scenario": "A factory uses AI to inspect products on a fast production line. Decisions must be made in milliseconds, and the internet connection is unreliable."
+ },
+ {
+  "n": 47,
+  "q": "Why should the hospital still perform its own impact assessment?",
+  "options": [
+   "The vendor's assessment covers only the underlying model, not the scheduling software itself.",
+   "Impacts depend on the hospital's own context, users and data, which the vendor cannot fully assess.",
+   "Impact assessments must be repeated every 12 months by law, so the vendor's is out of date.",
+   "Vendor impact assessments are not valid unless an independent auditor has signed them off."
+  ],
+  "answer": 1,
+  "explanation": "The vendor's assessment is a useful input, but the deployment context drives real impacts. The other statements are not general rules.",
+  "c": "IV.B",
+  "scenario": "A vendor provides an impact assessment for its AI scheduling tool. A hospital plans to use the tool for nurse shift planning."
+ },
+ {
+  "n": 48,
+  "q": "Which statement describes South Korea's AI Basic Act?",
+  "options": [
+   "Certain foreign AI business operators must designate a domestic agent in Korea.",
+   "It is a voluntary code of conduct with no binding obligations, enforcement or penalties.",
+   "It uses the same four risk tiers and the same provider and deployer roles as the EU AI Act.",
+   "It applies only to AI systems that are developed or used by Korean government agencies."
+  ],
+  "answer": 0,
+  "explanation": "The Act places duties on AI business operators, including a domestic agent requirement for some foreign operators. It does not copy the EU role model, it covers businesses, and it is binding law.",
+  "c": "II.C"
+ },
+ {
+  "n": 49,
+  "q": "What is a key risk of deploying an AI model the organization built itself, compared with buying one?",
+  "options": [
+   "It cannot be updated or retrained without prior approval from a regulator.",
+   "It is harder to monitor, since in-house models do not produce usable logs.",
+   "It must be released as open source if it is used anywhere in the EU.",
+   "It carries full responsibility as developer and deployer, including liability."
+  ],
+  "answer": 3,
+  "explanation": "Building and deploying your own model means no vendor shares obligations or liability. The other options are not true.",
+  "c": "IV.B"
+ },
+ {
+  "n": 50,
+  "q": "Which monitoring set is most appropriate for a customer-facing generative AI chatbot after launch?",
+  "options": [
+   "Token usage and cost per conversation, reviewed each month against the approved budget.",
+   "Daily active users, session length and conversion rate, reported monthly to leadership.",
+   "Quality checks, harmful-output rates, complaints and drift, with alert thresholds and owners.",
+   "Uptime, response latency and error rates, with automatic alerts to the on-call engineer."
+  ],
+  "answer": 2,
+  "explanation": "Monitoring must cover output quality and harm, not just operations or business metrics. Thresholds and owners make the alerts actionable.",
+  "c": "IV.C"
+ },
+ {
+  "n": 51,
+  "q": "Which response best reflects GDPR requirements?",
+  "options": [
+   "Collect everything, but set a short retention period for unused fields.",
+   "Collect everything, as long as customers are told in the privacy notice.",
+   "Collect only data that is adequate, relevant and necessary for the stated purpose.",
+   "Collect everything, but pseudonymize it before the model is trained."
+  ],
+  "answer": 2,
+  "explanation": "Data minimization applies to AI. Pseudonymization, short retention and transparency are good practices, but they do not justify collecting data that is not needed.",
+  "c": "II.A",
+  "scenario": "A data science team wants to collect every available customer field \"in case it turns out to be useful\" for a churn model."
+ },
+ {
+  "n": 52,
+  "q": "Which of the following is best described as a societal harm rather than a harm to an individual or a single organization?",
+  "options": [
+   "A patient's health record exposed through an AI system breach.",
+   "AI-generated disinformation at scale that weakens public trust in elections.",
+   "A qualified applicant wrongly screened out by an AI hiring tool.",
+   "A company losing market value after its chatbot gives false answers."
+  ],
+  "answer": 1,
+  "explanation": "Societal harms affect groups, institutions or democratic processes. The other options are serious but fall on one person or one organization.",
+  "c": "I.A"
+ },
+ {
+  "n": 53,
+  "q": "What is this called?",
+  "options": [
+   "Data leakage.",
+   "Overfitting.",
+   "Data drift.",
+   "Concept drift."
+  ],
+  "answer": 3,
+  "explanation": "Concept drift is a change in the relationship between inputs and the target. Data drift is a change in the input distribution itself, and leakage and overfitting are development problems.",
+  "c": "III.C",
+  "scenario": "Months after launch, a fraud model's accuracy drops. Fraudsters have changed their methods, so the same transaction patterns now relate to fraud differently."
+ },
+ {
+  "n": 54,
+  "q": "Which step belongs in a plan to retire (decommission) an AI system?",
+  "options": [
+   "Handle data retention or deletion, notify users, archive records and switch off integrations.",
+   "Keep the model running quietly in the background in case the business needs it again.",
+   "Transfer the model and its training data to the original vendor for reuse elsewhere.",
+   "Delete the model, its data and all related documentation immediately and permanently."
+  ],
+  "answer": 0,
+  "explanation": "Decommissioning needs orderly handling of data, users, records and dependencies. Leaving it running, deleting records or handing data to a vendor creates risk.",
+  "c": "IV.C"
+ },
+ {
+  "n": 55,
+  "q": "Under the EU AI Act, what does post-market monitoring require of a high-risk AI provider?",
+  "options": [
+   "Actively collecting and analyzing performance data over the system's life.",
+   "Repeating the conformity assessment every year.",
+   "Monitoring deployers' staff to check they follow instructions.",
+   "Reviewing customer complaints during the first year after launch."
+  ],
+  "answer": 0,
+  "explanation": "Post-market monitoring is active and lasts for the life of the system. It is not limited to complaints or one year, it does not mean supervising deployers' staff, and it is not an annual re-certification.",
+  "c": "III.C"
+ },
+ {
+  "n": 56,
+  "q": "An organization wants its AI training program to work across 5,000 employees. Which approach is best?",
+  "options": [
+   "Basic AI literacy for everyone, plus deeper role-based training for people who build, buy or oversee AI.",
+   "A single policy acknowledgment that every employee signs once, with no further training.",
+   "Deep technical training on machine learning for every employee, delivered in the first month.",
+   "Training only for data scientists and engineers, since they are the ones who build AI systems."
+  ],
+  "answer": 0,
+  "explanation": "Different roles need different depth. Deep training for all is wasteful, builder-only training ignores buyers and users, and a signature alone does not build understanding.",
+  "c": "I.B"
+ },
+ {
+  "n": 57,
+  "q": "Which existing policy should be reviewed and updated first?",
+  "options": [
+   "The information security policy, to add encryption for the training data.",
+   "The records retention policy, to keep the call recordings for longer.",
+   "The vendor management policy, to add the model provider as a supplier.",
+   "The privacy and data use policy and notices, to cover the new purpose."
+  ],
+  "answer": 3,
+  "explanation": "Reusing personal data for a new purpose raises purpose limitation and transparency issues first. Security, retention and vendor policies may also need updates, but they do not address whether the new use is allowed.",
+  "c": "I.C",
+  "scenario": "A software company decides to use recorded customer support calls to fine-tune a language model. The calls were originally collected only for quality assurance."
+ },
+ {
+  "n": 58,
+  "q": "Which statement best describes ethics by design?",
+  "options": [
+   "The company publishes its AI ethics principles prominently on its website.",
+   "An ethics board reviews and approves the finished system just before launch.",
+   "Bias testing is run once the model has been fully trained and is ready for release.",
+   "Ethical requirements shape design choices from the start of the project."
+  ],
+  "answer": 3,
+  "explanation": "Ethics by design means ethics shapes requirements and design. Late approval, public statements or post-training tests can help but come too late to shape the design.",
+  "c": "I.C"
+ },
+ {
+  "n": 59,
+  "q": "Which obligation applies to all providers of general-purpose AI models under the EU AI Act, not only those with systemic risk?",
+  "options": [
+   "A third-party conformity assessment by a notified body before the model is placed on the market.",
+   "Technical documentation, downstream information, a copyright policy and a training content summary.",
+   "Model evaluations, adversarial testing and serious incident reporting to the EU AI Office.",
+   "Registration of the model in the EU database for high-risk AI systems before release."
+  ],
+  "answer": 1,
+  "explanation": "These four items are baseline duties for every GPAI provider. Evaluations, adversarial testing and incident reporting are extra duties for models with systemic risk.",
+  "c": "II.C"
+ },
+ {
+  "n": 60,
+  "q": "What should it check first?",
+  "options": [
+   "Whether the license requires visible attribution in the product's user interface.",
+   "Whether the license allows commercial use without paying any fees or royalties.",
+   "Whether the model's published benchmark results meet the team's quality needs.",
+   "Whether its use is allowed and whether the restrictions must pass to its users."
+  ],
+  "answer": 3,
+  "explanation": "Responsible AI licenses can restrict uses and require those restrictions to pass downstream. Fees, benchmarks and attribution matter, but use restrictions decide whether deployment is allowed at all.",
+  "c": "IV.B",
+  "scenario": "A team wants to deploy an open-weight model released under a responsible AI license that lists prohibited uses."
+ },
+ {
+  "n": 61,
+  "q": "Which is the best approach to model maintenance and retraining?",
+  "options": [
+   "Retrain on a fixed monthly schedule and redeploy automatically to save time.",
+   "Avoid retraining, to keep outputs stable and consistent for audit purposes.",
+   "Use monitoring triggers plus a regular schedule, and re-test before redeploying.",
+   "Retrain only when users complain about the quality of the system's outputs."
+  ],
+  "answer": 2,
+  "explanation": "Planned, monitored and tested retraining keeps performance and compliance in check. Automatic redeploys skip testing, complaint-driven retraining is too late, and never retraining lets drift grow.",
+  "c": "III.C"
+ },
+ {
+  "n": 62,
+  "q": "Which use case is listed as high risk under the EU AI Act?",
+  "options": [
+   "AI that detects fraud in payment transactions.",
+   "AI that forecasts inventory for a retail chain.",
+   "AI that evaluates the creditworthiness of individuals.",
+   "AI that recommends songs on a music platform."
+  ],
+  "answer": 2,
+  "explanation": "Credit scoring of individuals is a listed high-risk use. Fraud detection is specifically carved out of that category, and inventory forecasting and music recommendations are not listed.",
+  "c": "II.C"
+ },
+ {
+  "n": 63,
+  "q": "In which situation is a data protection impact assessment (DPIA) most clearly required?",
+  "options": [
+   "Using a new AI tool to systematically score job applicants with significant effects.",
+   "Using a cloud spreadsheet to track employees' annual leave balances across departments.",
+   "Using a CRM system to send monthly newsletters to customers who have opted in.",
+   "Using an AI grammar checker on internal emails with no profiling of individual staff."
+  ],
+  "answer": 0,
+  "explanation": "Systematic evaluation of people with significant effects using new technology is a classic DPIA trigger. The other activities carry much lower risk.",
+  "c": "II.A"
+ },
+ {
+  "n": 64,
+  "q": "A company advertises that its AI hiring tool \"eliminates all bias\" but has no testing to support the claim. Which legal risk does this create?",
+  "options": [
+   "A patent invalidity claim brought by a competitor.",
+   "A disparate impact claim under federal employment law.",
+   "A deceptive practices claim under consumer protection law.",
+   "A breach of contract claim brought by its own vendor."
+  ],
+  "answer": 2,
+  "explanation": "Regulators such as the FTC treat unsupported AI performance claims as potentially deceptive. Discrimination may be a separate issue, but the unsupported advertising claim itself is a consumer protection problem.",
+  "c": "II.B"
+ },
+ {
+  "n": 65,
+  "q": "Which NIST AI RMF function are they performing?",
+  "options": [
+   "Manage.",
+   "Govern.",
+   "Measure.",
+   "Map."
+  ],
+  "answer": 3,
+  "explanation": "Map establishes context and identifies impacts. Measure assesses and tracks risks, Manage prioritizes and treats them, and Govern sets culture, roles and policy.",
+  "c": "II.D",
+  "scenario": "A governance team is documenting a new AI system's intended purpose, deployment context, users and the people who may be affected."
+ },
+ {
+  "n": 66,
+  "q": "Which characteristic of AI creates this governance challenge?",
+  "options": [
+   "Opacity of complex models.",
+   "Autonomy of the system.",
+   "Speed and scale of decisions.",
+   "Probabilistic outputs."
+  ],
+  "answer": 0,
+  "explanation": "Opacity (the black box problem) is what blocks a clear explanation of one decision. Autonomy, scale and probabilistic outputs are real AI traits, but the inability to explain the reasoning comes from opacity.",
+  "c": "I.A",
+  "scenario": "A bank uses a deep neural network to approve personal loans. A rejected applicant asks why, and the bank's data science team cannot give a clear, specific reason."
+ },
+ {
+  "n": 67,
+  "q": "Which approach fits best?",
+  "options": [
+   "Prompting the base model with short policy summaries.",
+   "Training a new model from scratch on all company files.",
+   "Fine-tuning the model once on the current policy set.",
+   "Retrieval augmented generation (RAG) over current documents."
+  ],
+  "answer": 3,
+  "explanation": "RAG pulls current documents at query time and can cite them. Fine-tuning goes stale as policies change, summaries lose detail and citations, and training from scratch is costly.",
+  "c": "IV.A",
+  "scenario": "A company wants a chatbot to answer employee questions using internal policies that change every month, and answers must cite the source document."
+ },
+ {
+  "n": 68,
+  "q": "Which should be confirmed before releasing a high-risk AI system on the EU market?",
+  "options": [
+   "Users in a beta program have rated the system highly for usefulness and ease of use.",
+   "The system outperforms competing products on recognized public benchmarks.",
+   "The deployer has completed its fundamental rights impact assessment for the system.",
+   "Conformity requirements are met and the accountable owner signs off on test results."
+  ],
+  "answer": 3,
+  "explanation": "Release readiness is about meeting requirements, with evidence and accountable approval. Ratings and benchmarks are not compliance, and the deployer's own assessment is a separate duty.",
+  "c": "III.C"
+ },
+ {
+  "n": 69,
+  "q": "What is the US Copyright Office's position on images generated entirely by AI from a text prompt?",
+  "options": [
+   "The person who wrote the prompt owns full copyright in the resulting image automatically.",
+   "The image is protected only if it is registered with the Copyright Office within 90 days.",
+   "The developer of the AI tool owns copyright in every output, unless its terms assign it.",
+   "Without enough human authorship, the material is generally not protected by copyright."
+  ],
+  "answer": 3,
+  "explanation": "US copyright requires human authorship. Writing a prompt usually does not make someone the author, and developers do not own outputs by default.",
+  "c": "II.B"
+ },
+ {
+  "n": 70,
+  "q": "What is the key governance concern?",
+  "options": [
+   "Synthetic data counts as special category data under the GDPR, so it needs explicit consent.",
+   "Synthetic data cannot be used for training in regulated sectors such as healthcare.",
+   "Synthetic data always reduces model accuracy on real cases, so it should be avoided.",
+   "Synthetic data may copy source biases or miss real conditions, so validate it on real data."
+  ],
+  "answer": 3,
+  "explanation": "Synthetic data is useful but can mislead if not checked. It is not banned in regulated sectors, it is not automatically personal data, and it does not always reduce accuracy.",
+  "c": "III.B",
+  "scenario": "A team uses synthetic data to add more examples of rare medical conditions to its training set."
+ },
+ {
+  "n": 71,
+  "q": "Why run a limited pre-deployment pilot of a new AI system?",
+  "options": [
+   "To let users decide whether the system needs an impact assessment.",
+   "To see real-world performance and harms at small scale before full rollout.",
+   "To generate more training data so validation testing can be skipped.",
+   "To meet a legal rule that every AI system be piloted for one year."
+  ],
+  "answer": 1,
+  "explanation": "Pilots reveal issues that lab tests miss while limiting impact. They do not replace validation or assessments, and no fixed one-year rule exists.",
+  "c": "III.A"
+ },
+ {
+  "n": 72,
+  "q": "What is algorithmic disgorgement as used by the US Federal Trade Commission?",
+  "options": [
+   "Requiring a company to publish the source code of a deceptive model.",
+   "Requiring a company to pay back profits earned from a biased model.",
+   "Requiring a company to delete models built using improperly obtained data.",
+   "Requiring a company to retrain a model on fully consented data."
+  ],
+  "answer": 2,
+  "explanation": "The FTC has ordered companies to destroy unlawfully obtained data and the models trained on it. Disgorgement here means giving up the model, not publishing it or retraining it.",
+  "c": "II.B"
+ },
+ {
+  "n": 73,
+  "q": "Which responsible AI principle does this policy most directly support?",
+  "options": [
+   "Fairness and non-discrimination.",
+   "Robustness and system reliability.",
+   "Human oversight and human-centricity.",
+   "Privacy and data protection by design."
+  ],
+  "answer": 2,
+  "explanation": "Keeping clinicians informed and in control of the final decision is human oversight. Robustness, fairness and privacy are separate principles that this policy does not mainly address.",
+  "c": "I.A",
+  "scenario": "A hospital deploys an AI tool that suggests triage priority for emergency patients. Policy requires clinicians to be told when the tool is used and to be able to override its suggestion at any time."
+ },
+ {
+  "n": 74,
+  "q": "What is the main reason to secure senior leadership sponsorship for an AI governance program?",
+  "options": [
+   "It gives the program authority, resources and an escalation path across units.",
+   "It moves day-to-day ownership of each AI system to members of the executive team.",
+   "It shows regulators that the program is compliant without needing further evidence.",
+   "It allows lower-risk AI systems to skip the standard review and approval process."
+  ],
+  "answer": 0,
+  "explanation": "Leadership backing makes governance stick and resolves conflicts. It does not create exemptions, prove compliance or move daily ownership to executives.",
+  "c": "I.B"
+ },
+ {
+  "n": 75,
+  "q": "Which responsibility belongs mainly to the retailer as deployer rather than to the vendor as developer?",
+  "options": [
+   "Running pre-release testing of the base model for robustness, accuracy and bias.",
+   "Monitoring the chatbot's answers in its own setting and training staff who manage it.",
+   "Writing the instructions for use that describe the model's limitations and risks.",
+   "Documenting the training data sources and the reasons for the model's architecture."
+  ],
+  "answer": 1,
+  "explanation": "Deployers control how the system is used, so in-context monitoring and staff training sit with them. Training data documentation, pre-release model testing and instructions for use are developer or provider tasks.",
+  "c": "I.B",
+  "scenario": "A retailer buys an off-the-shelf AI chatbot from a vendor and uses it on its website to answer customer questions."
+ },
+ {
+  "n": 76,
+  "q": "Which system is the best example of generative AI?",
+  "options": [
+   "A model that predicts which customers are likely to cancel.",
+   "A model that sorts product photos into the right store categories.",
+   "A tool that drafts product descriptions from a few keywords.",
+   "A model that flags unusual card transactions for review."
+  ],
+  "answer": 2,
+  "explanation": "Generative AI creates new content such as text or images. Sorting, predicting churn and flagging fraud are classification or prediction tasks typical of classic machine learning.",
+  "c": "I.A"
+ },
+ {
+  "n": 77,
+  "q": "Which consideration relates to workforce readiness?",
+  "options": [
+   "Integration of the assistant with the call routing and CRM systems.",
+   "Training agents, role changes and how they will check AI suggestions.",
+   "The vendor's uptime and support commitments in the contract.",
+   "Latency targets for suggestions so they arrive during live calls."
+  ],
+  "answer": 1,
+  "explanation": "Workforce readiness covers skills, role changes and oversight by staff. Integration, latency and uptime are technical and contract questions.",
+  "c": "IV.A",
+  "scenario": "A call center plans to introduce an AI assistant that suggests replies to agents during calls."
+ },
+ {
+  "n": 78,
+  "q": "Which dataset is used to tune model settings during development, separate from the final evaluation?",
+  "options": [
+   "Test dataset.",
+   "Benchmark dataset.",
+   "Training dataset.",
+   "Validation dataset."
+  ],
+  "answer": 3,
+  "explanation": "Validation data guides tuning. Training data fits the model, and test data is kept apart for the final, unbiased check.",
+  "c": "III.B"
+ },
+ {
+  "n": 79,
+  "q": "What is the main benefit of including legal, privacy, security, HR, business and data science in an AI governance committee?",
+  "options": [
+   "It satisfies a legal rule that AI committees must include at least six business functions.",
+   "It shares accountability evenly across functions so no single owner is needed per system.",
+   "Each function spots different risks, so decisions blend technical and non-technical views.",
+   "It allows the committee to approve new systems without separate risk assessments."
+  ],
+  "answer": 2,
+  "explanation": "Diverse expertise improves risk spotting and decision quality. It does not replace named owners or assessments, and no law sets a fixed number of functions.",
+  "c": "I.B"
+ },
+ {
+  "n": 80,
+  "q": "Which factor matters most when choosing an open-weight model instead of a proprietary API?",
+  "options": [
+   "The number of languages and file formats the model can support.",
+   "License limits, security, self-hosting and who provides patches and support.",
+   "Benchmark scores published by the model's developer for common tasks.",
+   "The model's ranking on public leaderboards and its download numbers."
+  ],
+  "answer": 1,
+  "explanation": "Open-weight models give control but shift security and support duties to the deployer, within the license. Benchmarks, popularity and language coverage matter less to governance.",
+  "c": "IV.A"
+ },
+ {
+  "n": 81,
+  "q": "Which of the following is NOT one of the trustworthy AI characteristics in the NIST AI RMF?",
+  "options": [
+   "Privacy-enhanced.",
+   "Efficient and scalable.",
+   "Explainable and interpretable.",
+   "Valid and reliable."
+  ],
+  "answer": 1,
+  "explanation": "NIST lists valid and reliable, safe, secure and resilient, accountable and transparent, explainable and interpretable, privacy-enhanced, and fair with harmful bias managed. Efficiency and scalability are not on the list.",
+  "c": "II.D"
+ },
+ {
+  "n": 82,
+  "q": "What should user training cover when an AI tool is deployed to staff?",
+  "options": [
+   "Capabilities and limits, when to rely on it, and how to report problems.",
+   "How the model was trained and how its architecture works in detail.",
+   "The vendor's product roadmap and the features planned for next year.",
+   "How to write shorter prompts so the tool returns answers more quickly."
+  ],
+  "answer": 0,
+  "explanation": "Users need to know limits and escalation paths to use AI safely. Deep technical detail, roadmaps or speed tips do not build safe use.",
+  "c": "IV.C"
+ },
+ {
+  "n": 83,
+  "q": "What extra governance consideration comes with a model that accepts both images and text?",
+  "options": [
+   "Automatic classification as a high-risk AI system under the EU AI Act.",
+   "Higher compute and storage costs, so a larger infrastructure budget must be approved.",
+   "Lower accuracy than text-only models, so outputs should be used only as rough drafts.",
+   "New ways to inject harmful content or hidden instructions, and privacy of people in images."
+  ],
+  "answer": 3,
+  "explanation": "More input types mean more ways to attack or misuse the system and more privacy exposure. Cost and accuracy are operational issues, and multimodality alone does not make a system high risk.",
+  "c": "IV.A"
+ },
+ {
+  "n": 84,
+  "q": "In a risk mitigation hierarchy, which option is generally preferred first?",
+  "options": [
+   "Transfer the risk to a third party through insurance or contracts.",
+   "Reduce the risk by adding technical controls and close monitoring.",
+   "Remediate any harm promptly after it occurs and compensate people.",
+   "Avoid the risk, for example by redesigning or dropping the feature."
+  ],
+  "answer": 3,
+  "explanation": "Mitigation hierarchies start with avoidance, then reduction, then remediation or compensation. Transfer shifts cost but leaves the harm possible.",
+  "c": "III.A"
+ },
+ {
+  "n": 85,
+  "q": "What risk does this create?",
+  "options": [
+   "Data leakage between the training data and the test data.",
+   "Overfitting caused by having too little training data.",
+   "A feedback loop that reinforces existing patterns and biases.",
+   "Concept drift caused by users' changing tastes over time."
+  ],
+  "answer": 2,
+  "explanation": "When outputs shape future training data, the system can lock in its own patterns. The scenario does not describe leakage, a change in what clicks mean or a small dataset.",
+  "c": "IV.C",
+  "scenario": "A content platform retrains its recommendation model on what users clicked, but users can only click what the model already showed them."
+ },
+ {
+  "n": 86,
+  "q": "Which standard should it certify against?",
+  "options": [
+   "ISO/IEC 22989.",
+   "ISO/IEC 42001.",
+   "ISO/IEC 42005.",
+   "ISO/IEC 23894."
+  ],
+  "answer": 1,
+  "explanation": "ISO/IEC 42001 is the certifiable AI management system standard. ISO/IEC 42005 guides impact assessments, 23894 gives risk management guidance, and 22989 defines concepts and terms.",
+  "c": "II.D",
+  "scenario": "An organization wants an independent certificate showing that it runs a structured management system for AI."
+ },
+ {
+  "n": 87,
+  "q": "What is the best first step?",
+  "options": [
+   "Pursue ISO/IEC 42001 certification for all AI before allowing any further use.",
+   "Form a cross-functional AI group with clear roles and a risk-based intake process.",
+   "Assign all AI decisions to the CISO, since AI is mainly an information security risk.",
+   "Ask each department to write and enforce its own separate AI policy and process."
+  ],
+  "answer": 1,
+  "explanation": "A proportionate, cross-functional start with clear roles and risk triage fits a mid-sized firm. Certification first is heavy for a starting program, separate departmental policies create gaps, and AI risk is wider than security.",
+  "c": "I.B",
+  "scenario": "A mid-sized logistics company with no AI-specific regulator is starting to use AI in several departments. Leadership wants governance that is effective but not heavy."
+ },
+ {
+  "n": 88,
+  "q": "Which element belongs in an AI incident management policy that a standard IT incident policy may lack?",
+  "options": [
+   "Criteria for AI-specific harms, such as biased outputs or drift, and who may pause the system.",
+   "Steps for restoring affected systems and data from backup after a ransomware attack.",
+   "Contact lists for the IT help desk, on-call engineers and key infrastructure suppliers.",
+   "Severity levels and response times for service outages, data breaches and system failures."
+  ],
+  "answer": 0,
+  "explanation": "AI incidents include harms that are not outages or breaches. Severity levels, backups and contact lists are already part of standard IT incident policies.",
+  "c": "I.C"
+ },
+ {
+  "n": 89,
+  "q": "Which policy update best addresses this concern?",
+  "options": [
+   "Update the HR policy so engineers are personally liable for any infringement found.",
+   "Update the security policy to require code signing and peer review for all commits.",
+   "Update the data retention policy to delete all AI assistant prompts after 30 days.",
+   "Update the IP policy to cover AI-generated code, with license scanning and review."
+  ],
+  "answer": 3,
+  "explanation": "The risk is license and ownership exposure, which an IP policy update with scanning and review addresses. Code signing, prompt deletion and shifting liability to staff do not detect or prevent license problems.",
+  "c": "I.C",
+  "scenario": "Engineers are increasingly using AI coding assistants. Legal is concerned about code that may be copied from open-source projects with restrictive licenses."
+ },
+ {
+  "n": 90,
+  "q": "What should happen first?",
+  "options": [
+   "Gather all historical ticket data so the team can see what is available to train on.",
+   "Run a quick prototype on a sample of tickets to show leadership the value of the idea.",
+   "Define the business problem, users and success criteria, and confirm AI is the right fit.",
+   "Select a model architecture that has already worked well on similar prioritization tasks."
+  ],
+  "answer": 2,
+  "explanation": "Design starts with the use case and success criteria. Data gathering, prototyping and model choice depend on that definition, so they come after it.",
+  "c": "III.A",
+  "scenario": "A utility company wants to build an AI tool to prioritize maintenance tickets. Engineers are eager to start training a model right away."
+ },
+ {
+  "n": 91,
+  "q": "What is the best governance step?",
+  "options": [
+   "Let the fraud operations team adjust the threshold daily based on current volumes.",
+   "Lower the threshold step by step until complaints return to last year's level.",
+   "Set the decision threshold to maximize overall accuracy on the held-out test set.",
+   "Agree and document thresholds for false positives and false negatives based on each harm."
+  ],
+  "answer": 3,
+  "explanation": "Thresholds involve value judgments about different harms, so they should be agreed and documented. Overall accuracy hides the trade-off, and ad hoc tuning lacks accountability.",
+  "c": "III.A",
+  "scenario": "A fraud detection model catches most fraud but also blocks many legitimate payments, which leads to customer complaints. Business and risk teams disagree on the right balance."
+ },
+ {
+  "n": 92,
+  "q": "Which factor should most shape how strict an organization's AI governance controls are?",
+  "options": [
+   "The level of assurance its AI vendors provide in their contracts and audits.",
+   "The governance approach used by its largest competitor in the same sector.",
+   "The total number of AI systems in use, with one fixed set of controls for each one.",
+   "The risk of its AI uses, along with its size, maturity, sector and risk appetite."
+  ],
+  "answer": 3,
+  "explanation": "Governance should be proportionate to risk and context. Counting systems, copying a competitor or relying on vendor assurance ignores the actual risk of the organization's own uses.",
+  "c": "I.B"
+ },
+ {
+  "n": 93,
+  "q": "What problem does this reveal?",
+  "options": [
+   "Label noise in the training and test data.",
+   "Data leakage between training and test sets.",
+   "Concept drift after the model was deployed.",
+   "Underfitting caused by a too simple model."
+  ],
+  "answer": 1,
+  "explanation": "Overlap between training and test data makes test results look better than real performance. Drift happens after deployment, and underfitting or label noise would show poor test results too.",
+  "c": "III.B",
+  "scenario": "A model scores 99% accuracy in testing but performs poorly in production. Investigation shows that many records in the test set also appeared in the training set."
+ },
+ {
+  "n": 94,
+  "q": "Which model type is the best fit?",
+  "options": [
+   "A classic predictive model with interpretable features.",
+   "A general-purpose AI model accessed through an API.",
+   "A large language model fine-tuned on past loan files.",
+   "A reinforcement learning agent trained on loan outcomes."
+  ],
+  "answer": 0,
+  "explanation": "Consistent, explainable classification suits classic machine learning. Generative and general-purpose models add variability and are harder to explain, and reinforcement learning is a poor fit for this task.",
+  "c": "IV.A",
+  "scenario": "A bank needs consistent, explainable yes or no decisions on small business loans."
+ },
+ {
+  "n": 95,
+  "q": "During an AI incident that affects customers, which external communication approach is best?",
+  "options": [
+   "Wait until the root cause is fully confirmed before making any public statement at all.",
+   "Follow a pre-approved plan with clear roles for timely, accurate disclosure as required.",
+   "Let the vendor handle all external communication, since it built and trained the model.",
+   "Issue a short holding statement and handle any questions from people case by case."
+  ],
+  "answer": 1,
+  "explanation": "A planned, coordinated response builds trust and meets legal timing duties. Waiting for full root cause can breach deadlines, ad hoc handling is inconsistent, and the deployer keeps responsibility for its customers.",
+  "c": "IV.C"
+ },
+ {
+  "n": 96,
+  "q": "Which contract clause best supports a deployer's incident management?",
+  "options": [
+   "A vendor duty to provide 24/7 help desk support by phone, email and chat for all users.",
+   "A vendor duty to maintain ISO/IEC 27001 certification for the full term of the contract.",
+   "A vendor duty to keep backups of all customer data for at least one year after creation.",
+   "A vendor duty to promptly report incidents and vulnerabilities that affect the customer."
+  ],
+  "answer": 3,
+  "explanation": "Fast notice lets the deployer respond and meet its own duties. Help desk access, backups and certification are useful but do not ensure you learn about incidents.",
+  "c": "IV.B"
+ },
+ {
+  "n": 97,
+  "q": "How does the GDPR treat the facial data in this case?",
+  "options": [
+   "As special category data, needing a valid exception and extra safeguards.",
+   "As employee data covered fully by the employment contract.",
+   "As anonymous data, since faces are stored as numeric templates.",
+   "As ordinary personal data, since it is used only for building security."
+  ],
+  "answer": 0,
+  "explanation": "Biometric data used to uniquely identify a person is special category data. Templates are still personal data, and an employment contract does not by itself provide a valid exception.",
+  "c": "II.A",
+  "scenario": "A company in Germany plans to use facial recognition to let employees enter the office building."
+ },
+ {
+  "n": 98,
+  "q": "What does this result most likely indicate?",
+  "options": [
+   "Possible adverse impact, since 30% is well below four-fifths of 60%.",
+   "No issue, since the gap is within normal statistical variation.",
+   "No issue, since protected attributes were not used as model inputs.",
+   "Possible adverse impact, but only if the company intended the result."
+  ],
+  "answer": 0,
+  "explanation": "A ratio of 50% is far below the 80% guideline used as evidence of adverse impact. Removing protected inputs does not stop proxy bias, and adverse impact does not require intent.",
+  "c": "II.B",
+  "scenario": "A US company's hiring tool selects 60% of applicants from one group but only 30% from another group with similar qualifications."
+ },
+ {
+  "n": 99,
+  "q": "How should this risk be treated?",
+  "options": [
+   "As a risk to revisit only if a near miss or incident is reported during operation.",
+   "As a low priority, since the very low likelihood score keeps its overall risk rating low.",
+   "As a priority for mitigation or escalation, since severe impact can outweigh low likelihood.",
+   "As an accepted risk, provided it is recorded in the risk register with a named owner."
+  ],
+  "answer": 2,
+  "explanation": "A probability and severity matrix gives weight to severity. Catastrophic safety harms usually need action even when unlikely, rather than passive acceptance.",
+  "c": "III.A",
+  "scenario": "A risk workshop identifies a failure mode with very low likelihood but catastrophic severity for patient safety."
+ },
+ {
+  "n": 100,
+  "q": "What should it do before using the data?",
+  "options": [
+   "Check that the websites were publicly accessible without a login or paywall.",
+   "Remove duplicates and low-quality pages to improve training efficiency and accuracy.",
+   "Confirm and document its right to use the data, including licenses, terms and opt-outs.",
+   "Encrypt the scraped data while it is stored and while it is used for training."
+  ],
+  "answer": 2,
+  "explanation": "Public availability does not mean unrestricted use. Lawful rights must be checked first. Cleaning and encryption are good steps but do not settle whether the data may be used.",
+  "c": "III.B",
+  "scenario": "A team plans to train a model on text scraped from public websites."
+ }
+]

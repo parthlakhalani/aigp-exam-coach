@@ -6,6 +6,12 @@
     "data": "data/easy-1.json"
   },
   {
+    "id": "medium-1",
+    "level": "Medium",
+    "set": 1,
+    "data": "data/medium-1.json"
+  },
+  {
     "id": "hard-1",
     "level": "Hard",
     "set": 1,

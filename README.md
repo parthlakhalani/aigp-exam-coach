@@ -18,7 +18,7 @@ Browser-based mock exams that work like the real test: 100 questions, a 180-minu
 | Level | Exams |
 |---|---|
 | Easy | [Easy Exam 1](practice-exams/easy-1/index.html) |
-| Medium | Coming soon |
+| Medium | [Medium Exam 1](practice-exams/medium-1/index.html) |
 | Hard | [Hard Exam 1](practice-exams/hard-1/index.html) |
 
 **Open them:** start at [practice-exams/index.html](practice-exams/index.html). Download the repo and open it in any browser, or use GitHub Pages (see below).
@@ -53,7 +53,7 @@ Then try: *"Quiz me on AIGP Domain II"* or *"Make me an AIGP study plan."*
 ## Disclaimer
 
 - This is an independent study aid. It is not affiliated with or endorsed by the IAPP.
-- The skill files are original content. The practice exam questions come from third-party practice sets. They are not official IAPP exam or practice questions.
+- The skill files and Medium Exam 1 are original content. The Easy Exam 1 and Hard Exam 1 questions come from third-party practice sets. None are official IAPP exam or practice questions.
 - Domain tags on practice exam questions are mapped by hand to BoK v2.1 and are estimates.
 - A few practice questions may be outdated (for example, references to US Executive Order 14110, which was revoked in January 2025). Check anything doubtful against current sources.
 - Laws and standards change. Always check the official AIGP Body of Knowledge at [iapp.org](https://iapp.org/certify/aigp/).
@@ -61,4 +61,4 @@ Then try: *"Quiz me on AIGP Domain II"* or *"Make me an AIGP study plan."*
 
 ## License
 
-MIT, for the skill files and the practice exam interface code. The practice exam questions are third-party content and are not covered by this license.
+MIT, for the skill files, the practice exam interface code and the Medium Exam 1 questions. The Easy Exam 1 and Hard Exam 1 questions are third-party content and are not covered by this license.
