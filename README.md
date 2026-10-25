@@ -15,13 +15,15 @@ A Claude skill that helps you prepare for the **IAPP AIGP (Artificial Intelligen
 
 Browser-based mock exams that work like the real test: 100 questions, a 180-minute timer, an optional 15-minute break after question 50, flag for review, and a review screen. At the end you get a score report against an 80% readiness target, a breakdown by BoK domain, and the topics to study next.
 
-| Level | Exams |
-|---|---|
-| Easy | [Easy Exam 1](practice-exams/easy-1/index.html) |
-| Medium | [Medium Exam 1](practice-exams/medium-1/index.html) |
-| Hard | [Hard Exam 1](practice-exams/hard-1/index.html) |
+**Start here:** [https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/)
 
-**Open them:** start at [practice-exams/index.html](practice-exams/index.html). Download the repo and open it in any browser, or use GitHub Pages (see below).
+| Level | Exam | Direct link |
+|---|---|---|
+| Easy | Easy Exam 1 | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/easy-1/) |
+| Medium | Medium Exam 1 (original questions) | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/medium-1/) |
+| Hard | Hard Exam 1 | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/hard-1/) |
+
+The links work once GitHub Pages is turned on for this repo (see below). You can also download the repo and open `practice-exams/index.html` in any browser.
 
 ## Structure
 
