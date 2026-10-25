@@ -183,6 +183,8 @@ kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-b
 .track b{position:absolute;top:-2px;bottom:-2px;left:80%;width:2px;background:var(--fg);opacity:.5}
 .st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:3px;margin-left:8px}
 .st.g{background:var(--ok-soft);color:var(--ok)} .st.a{background:var(--flag-soft);color:var(--flag)} .st.r{background:var(--bad-soft);color:var(--bad)}
+.mods{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin-top:2px}
+.mods span{font-weight:600;color:var(--fg)}
 .focus{display:grid;gap:12px}
 .fitem{border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;background:var(--panel)}
 .fitem h3{margin:0;font-size:16px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
@@ -361,7 +363,7 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
             <p class="muted" style="margin:4px 0 0" id="anaSummary"></p>
           </div>
           <div class="doms" id="anaDomains"></div>
-          <p class="muted" style="font-size:12px;margin:0">Strong: 80% or more &middot; Borderline: 60 to 79% &middot; Needs work: below 60%. Topic tags are mapped to the AIGP Body of Knowledge v2.1.</p>
+          <p class="muted" style="font-size:12px;margin:0">Strong: 80% or more &middot; Borderline: 60 to 79% &middot; Needs work: below 60%. Topic tags are mapped to the AIGP Body of Knowledge v2.1. Module numbers refer to the IAPP AIGP training participant guide.</p>
         </div>
         <div class="card" style="display:grid;gap:14px">
           <h2>Where to focus next</h2>
@@ -422,6 +424,13 @@ const BREAK = 15 * 60;            // optional break, seconds
 const TARGET = 80;                // readiness target, percent
 const KEY = "aigp-__ID__-v2";
 const DOMAINS = {I:"Foundations of AI governance", II:"Laws, standards and frameworks", III:"Governing AI development", IV:"Governing AI deployment and use"};
+// Where each domain is taught in the IAPP AIGP training (participant guide modules)
+const MODULES = {
+  I:"Module 1 Foundations of AI, Module 2 AI impacts and responsible principles, Module 3 AI governance and risk management",
+  II:"Module 4 AI regulation, Module 5 Other laws that apply to AI (standards: Modules 2 and 3)",
+  III:"Module 6 Governing AI development (release and monitoring: Module 7)",
+  IV:"Module 7 Governing AI deployment (model types: Module 1)"
+};
 const COMP = {
  "I.A":["What AI is and why it needs governance","Review AI definitions and types, the harms AI can cause, what makes AI different (opacity, autonomy, scale, probabilistic outputs) and the core responsible AI principles."],
  "I.B":["Roles, teams and expectations","Learn who does what in an AI governance program: roles and accountability, cross-functional teams, training and awareness, and how duties differ for developers, deployers and users."],
@@ -626,8 +635,9 @@ function renderAnalysis(){
   dkeys.forEach(d=>{
     const x=dom[d], p=Math.round(x.k/x.t*100), [cls,lab,col]=band(p);
     const el=document.createElement("div"); el.className="dom";
-    el.innerHTML='<div class="nm"><small>Domain '+d+'</small><span></span><span class="st '+cls+'">'+lab+'</span></div><div class="val">'+x.k+'/'+x.t+' &middot; '+p+'%</div><div class="track" role="img" aria-label="'+p+' percent"><i style="width:'+p+'%;background:'+col+'"></i><b title="80% target"></b></div>';
+    el.innerHTML='<div class="nm"><small>Domain '+d+'</small><span></span><span class="st '+cls+'">'+lab+'</span></div><div class="val">'+x.k+'/'+x.t+' &middot; '+p+'%</div><div class="track" role="img" aria-label="'+p+' percent"><i style="width:'+p+'%;background:'+col+'"></i><b title="80% target"></b></div><div class="mods"><span>Study in training:</span> </div>';
     el.querySelector(".nm span").textContent=DOMAINS[d];
+    el.querySelector(".mods").append(MODULES[d]);
     box.appendChild(el);
   });
   // Summary sentence
