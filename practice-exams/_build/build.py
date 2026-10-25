@@ -10,6 +10,9 @@ Question file format (data/<id>.json): a list of
   {"n": 1, "q": "question", "options": ["A", "B", "C", "D"],
    "answer": 0-3, "explanation": "...", "c": "II.B"}
 where "c" is the AIGP BoK v2.1 competency code (I.A ... IV.C).
+Optional: "scenario": "text" for scenario-based questions. Those questions are
+shown split screen, with the scenario on the left and the question on the right.
+Separate paragraphs in the scenario with a blank line.
 """
 import html, json, pathlib
 
@@ -40,6 +43,7 @@ def check(exam, qs):
         assert q["answer"] in (0, 1, 2, 3), f"{exam['id']} Q{n}: answer must be 0-3"
         assert q["c"] in CODES, f"{exam['id']} Q{n}: unknown BoK code {q['c']}"
         assert q["q"].strip() and q["explanation"].strip(), f"{exam['id']} Q{n}: empty text"
+        assert isinstance(q.get("scenario", ""), str), f"{exam['id']} Q{n}: scenario must be text"
 
 
 def render_exam(exam, qs, standalone=True):

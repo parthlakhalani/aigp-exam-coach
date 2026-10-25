@@ -109,6 +109,24 @@ ul.rules{margin:0;padding-left:20px;display:grid;gap:4px}
 .keys{margin-top:22px;font-size:12px;color:var(--muted)}
 kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 4px;background:var(--panel)}
 
+/* Split layout */
+.qbody{display:grid;gap:20px}
+.qbody.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;align-items:start}
+.qbody.split .pane{min-width:0}
+.qbody.split #qLeft{padding-right:24px;border-right:1px solid var(--line);max-height:calc(100vh - 260px);overflow-y:auto}
+.qbody.split #qRight{padding-left:24px}
+.qbody.split .stem{margin-bottom:16px}
+.scen{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-bottom:16px;font-size:15px;line-height:1.6;max-width:70ch}
+.scen p{margin:.4em 0 0}
+.qbody.split .scen{margin-bottom:0;border:0;background:none;padding:0}
+@media (max-width:820px){
+  .qbody.split{grid-template-columns:1fr;gap:16px}
+  .qbody.split #qLeft{padding-right:0;border-right:0;max-height:none;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .qbody.split #qRight{padding-left:0}
+}
+.rscen{font-size:13px;color:var(--muted);margin:6px 0}
+.rscen summary{font-size:13px}
+
 /* Footer nav */
 .foot{flex:none;background:var(--panel);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
 .foot .gut{max-width:1100px;margin:0 auto;padding-block:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
@@ -199,6 +217,7 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
       <div class="brand">AIGP __LEVEL__ Exam __SET__<small>__LEVEL__ &middot; __COUNT__ questions</small></div>
       <span id="qpos" class="chip" hidden></span>
       <span id="timer" class="chip" hidden aria-live="off"></span>
+      <button id="btnLayout" class="linkbtn" hidden type="button" aria-pressed="false">Layout: stacked</button>
       <button id="hideTimer" class="linkbtn" hidden type="button">Hide time</button>
     </div>
     <div class="progress"><i id="prog"></i></div>
@@ -223,15 +242,18 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
           <h2>Choose a mode</h2>
           <div class="modes">
             <label class="mode"><input type="radio" name="mode" id="modeExam" value="exam" checked><span><b>Exam mode</b><span class="muted">Timed. No feedback until you end the exam. Change answers freely.</span></span></label>
-            <label class="mode"><input type="radio" name="mode" id="modePractice" value="practice"><span><b>Practice mode</b><span class="muted">Untimed. See the answer and explanation right after each question.</span></span></label>
+            <label class="mode"><input type="radio" name="mode" id="modePractice" value="practice"><span><b>Practice mode</b><span class="muted">Untimed, no break. See the answer and explanation right after each question.</span></span></label>
           </div>
           <div class="opts">
             <label><input type="checkbox" id="optShuffle"> Shuffle question order</label>
+            <label><input type="checkbox" id="optInstant"> Show the answer and explanation after each question</label>
           </div>
           <ul class="rules muted">
             <li>After question 50 you can take an optional 15-minute break. The exam clock stops during the break.</li>
             <li>Flag any question to come back to it from the review screen.</li>
             <li>Unanswered questions count as wrong, so answer every one.</li>
+            <li>Exam mode gives full feedback on every question in the score report at the end. Tick the option above to also see feedback after each question while the timer runs.</li>
+            <li>Scenario questions show the scenario on the left and the question on the right. Use the Layout button to view every question side by side.</li>
             <li>In exam mode, the exam ends automatically when time runs out.</li>
             <li>Your progress is saved in this browser, so you can resume later.</li>
           </ul>
@@ -251,9 +273,16 @@ details summary{cursor:pointer;font-weight:500;color:var(--accent)}
           <span class="qnum" id="qLabel"></span>
           <span class="flagtag" id="qFlagTag" hidden>&#9873; Flagged for review</span>
         </div>
-        <p class="stem" id="qStem"></p>
-        <div class="choices" id="qChoices" role="radiogroup" aria-labelledby="qStem"></div>
-        <div id="qFeedback" class="feedback" hidden></div>
+        <div class="qbody" id="qBody">
+          <div class="pane" id="qLeft">
+            <div class="scen" id="qScen" hidden><div class="eyebrow">Scenario</div><div id="qScenTxt"></div></div>
+            <p class="stem" id="qStem"></p>
+          </div>
+          <div class="pane" id="qRight">
+            <div class="choices" id="qChoices" role="radiogroup" aria-labelledby="qStem"></div>
+            <div id="qFeedback" class="feedback" hidden></div>
+          </div>
+        </div>
         <div class="keys hide-sm">Keys: <kbd>A</kbd>&ndash;<kbd>D</kbd> choose &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review screen</div>
       </div>
     </section>
@@ -430,17 +459,20 @@ function show(screen){
   $("qpos").hidden = screen!=="sQ";
   $("timer").hidden = !(inExam || screen==="sBreak") || (S && S.timerHidden && screen!=="sBreak");
   $("hideTimer").hidden = !inExam;
+  $("btnLayout").hidden = screen!=="sQ";
   $("main").scrollTop = 0;
 }
 
 /* ---------- Start ---------- */
 function startAttempt(ids, mode, shuffled){
   S = { mode, order: shuffled ? shuffle(ids) : ids, answers:{}, flags:{}, cur:0,
-        elapsed:0, ended:false, timerHidden:false, brk:"none", breakLeft:BREAK, pendingGo:null };
+        elapsed:0, ended:false, timerHidden:false, brk:"none", breakLeft:BREAK, pendingGo:null,
+        instant: mode==="practice" || $("optInstant").checked, split:false };
   save(); begin();
 }
 function begin(){
   clearInterval(tick);
+  if(S.instant===undefined) S.instant = S.mode==="practice";
   tick = setInterval(()=>{ if(!S || S.ended) return;
     if(S.brk==="on"){ S.breakLeft--; paintBreak(); if(S.breakLeft<=0) endBreak(); if(S.breakLeft%10===0) save(); return; }
     S.elapsed++; paintTimer();
@@ -481,7 +513,17 @@ function endBreak(){
 /* ---------- Question ---------- */
 function renderQ(){
   const qi=S.order[S.cur], q=QUESTIONS[qi], picked=S.answers[qi];
-  const locked = S.mode==="practice" && picked!==undefined;
+  const locked = S.instant && picked!==undefined;
+  // Layout: scenario questions always split (scenario left, question right); others follow the Layout toggle
+  const hasScen = !!q.scenario, split = hasScen || S.split;
+  $("qBody").classList.toggle("split", split);
+  $("qScen").hidden = !hasScen;
+  if(hasScen){ const st=$("qScenTxt"); st.innerHTML=""; q.scenario.split(/\n\s*\n/).forEach(par=>{ const p=document.createElement("p"); p.textContent=par.trim(); st.appendChild(p); }); }
+  const stem=$("qStem");
+  if(hasScen) $("qRight").insertBefore(stem, $("qChoices")); else $("qLeft").appendChild(stem);
+  $("qLeft").scrollTop=0;
+  $("btnLayout").textContent = hasScen ? "Layout: scenario split" : (S.split ? "Layout: side by side" : "Layout: stacked");
+  $("btnLayout").setAttribute("aria-pressed", String(!!S.split));
   $("qLabel").textContent = "Question "+(S.cur+1)+" of "+S.order.length;
   $("qpos").textContent = (S.cur+1)+" / "+S.order.length;
   $("qStem").textContent = q.q;
@@ -510,7 +552,7 @@ function renderQ(){
 }
 function choose(i){
   const qi=S.order[S.cur];
-  if(S.mode==="practice" && S.answers[qi]!==undefined) return;
+  if(S.instant && S.answers[qi]!==undefined) return;
   S.answers[qi]=i; save(); renderQ();
 }
 function go(n){
@@ -629,10 +671,11 @@ function renderResList(){
     if(!show) return;
     const q=QUESTIONS[qi], a=S.answers[qi];
     const d=document.createElement("article"); d.className="ritem "+r; d.id="ri"+pos;
-    d.innerHTML='<div class="row" style="justify-content:space-between"><b></b><span class="tag '+r+'"></span></div><div class="ctag"></div><p></p><div class="ans"><span class="you"></span><span class="key"></span></div><div class="exp"></div>';
+    d.innerHTML='<div class="row" style="justify-content:space-between"><b></b><span class="tag '+r+'"></span></div><div class="ctag"></div><details class="rscen" hidden><summary>Show scenario</summary><div></div></details><p></p><div class="ans"><span class="you"></span><span class="key"></span></div><div class="exp"></div>';
     d.querySelector("b").textContent="Question "+(pos+1)+(S.flags[qi]?"  ⚑":"");
     d.querySelector(".tag").textContent= r==="ok"?"Correct":r==="bad"?"Incorrect":"Unanswered";
     d.querySelector(".ctag").textContent=q.c+" · "+COMP[q.c][0];
+    if(q.scenario){ const s=d.querySelector(".rscen"); s.hidden=false; s.querySelector("div").textContent=q.scenario; }
     d.querySelector("p").textContent=q.q;
     d.querySelector(".you").textContent="Your answer: "+(a===undefined?"none":L[a]+". "+q.options[a]);
     d.querySelector(".key").textContent="Correct answer: "+L[q.answer]+". "+q.options[q.answer];
@@ -656,6 +699,9 @@ $("btnTakeBreak").onclick=()=>{ S.brk="on"; S.breakLeft=BREAK; save(); openBreak
 $("btnSkipBreak").onclick=endBreak;
 $("btnEndBreak").onclick=endBreak;
 $("cfYes").onclick=()=>finish(false);
+$("btnLayout").onclick=()=>{ S.split=!S.split; save(); renderQ(); };
+$("modePractice").onchange=$("modeExam").onchange=()=>{ const pr=$("modePractice").checked; $("optInstant").checked = pr || $("optInstant").dataset.user==="1"; $("optInstant").disabled = pr; };
+$("optInstant").onchange=()=>{ $("optInstant").dataset.user = $("optInstant").checked ? "1" : "0"; };
 $("hideTimer").onclick=()=>{ S.timerHidden=!S.timerHidden; save(); $("timer").hidden=S.timerHidden; $("hideTimer").textContent=S.timerHidden?"Show time":"Hide time"; };
 $("revTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; revFilter=t.dataset.f; setTabs("revTabs",revFilter); renderReview(); };
 $("resTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; resFilter=t.dataset.f; setTabs("resTabs",resFilter); renderResList(); };
