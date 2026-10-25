@@ -53,4 +53,4 @@ Then try: *"Quiz me on AIGP Domain II"* or *"Make me an AIGP study plan."*
 
 ## License
 
-MIT
+MIT, for the skill files and the practice exam interface code. The practice exam questions are third-party content and are not covered by this license.
