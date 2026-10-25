@@ -19,7 +19,7 @@ Browser-based mock exams that work like the real test: 100 questions, a 180-minu
 |---|---|
 | Easy | [Easy Exam 1](practice-exams/easy-1/index.html) |
 | Medium | Coming soon |
-| Hard | Coming soon |
+| Hard | [Hard Exam 1](practice-exams/hard-1/index.html) |
 
 **Open them:** start at [practice-exams/index.html](practice-exams/index.html). Download the repo and open it in any browser, or use GitHub Pages (see below).
 
