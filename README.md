@@ -19,9 +19,9 @@ Browser-based mock exams that work like the real test: 100 questions, a 180-minu
 
 | Level | Exam | Direct link |
 |---|---|---|
-| Easy | Easy Exam 1 | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/easy-1/) |
-| Medium | Medium Exam 1 | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/medium-1/) |
-| Hard | Hard Exam 1 | [Open exam](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/hard-1/) |
+| Easy | Easy Exam | [Easy 1](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/easy-1/) |
+| Medium | Medium Exam | [Medium 1](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/medium-1/) |
+| Hard | Hard Exam | [Hard 1](https://parthlakhalani.github.io/aigp-exam-coach/practice-exams/hard-1/) |
 
 The links work once GitHub Pages is turned on for this repo (see below). You can also download the repo and open `practice-exams/index.html` in any browser.
 
