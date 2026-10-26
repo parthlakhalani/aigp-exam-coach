@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<title>AIGP Easy Exam 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: test-center shell. Fixed header bar, scrolling item pane, fixed navigation bar. */
+:root{
+  --bg:#f3f5f8; --panel:#ffffff; --fg:#17212e; --muted:#5a6676; --line:#d5dbe3;
+  --chrome:#1d3a5c; --chrome-fg:#ffffff; --chrome-2:#284c74;
+  --accent:#1f5f9e; --accent-soft:#e3edf8;
+  --flag:#b9770e; --flag-soft:#fbf0dc;
+  --ok:#1d7a46; --ok-soft:#e1f3e8; --bad:#b3261e; --bad-soft:#fae3e1;
+  --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#10161e; --panel:#18212c; --fg:#e4e9ef; --muted:#9aa6b5; --line:#2c3846;
+  --chrome:#0b1a2b; --chrome-fg:#e8eef5; --chrome-2:#16304d;
+  --accent:#6aa8e8; --accent-soft:#1a3049;
+  --flag:#e6a640; --flag-soft:#3a2d14;
+  --ok:#5cc58a; --ok-soft:#163323; --bad:#ef7b72; --bad-soft:#3d1c1a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10161e; --panel:#18212c; --fg:#e4e9ef; --muted:#9aa6b5; --line:#2c3846;
+  --chrome:#0b1a2b; --chrome-fg:#e8eef5; --chrome-2:#16304d;
+  --accent:#6aa8e8; --accent-soft:#1a3049;
+  --flag:#e6a640; --flag-soft:#3a2d14;
+  --ok:#5cc58a; --ok-soft:#163323; --bad:#ef7b72; --bad-soft:#3d1c1a; color-scheme:dark}
+
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--font);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--chrome)}
+*{box-sizing:border-box}
+button{font:inherit;cursor:pointer}
+button:focus-visible,input:focus-visible,label:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+.app{display:flex;flex-direction:column;height:100%}
+.gut{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* Header */
+.bar{background:var(--chrome);color:var(--chrome-fg);flex:none}
+.bar .gut{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding-block:10px;max-width:1100px;margin:0 auto}
+.brand{font-weight:600;letter-spacing:.01em;margin-right:auto;min-width:0}
+.brand small{display:block;font-weight:400;opacity:.75;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.chip{font-family:var(--mono);font-variant-numeric:tabular-nums;background:var(--chrome-2);padding:4px 10px;border-radius:4px;font-size:14px;white-space:nowrap}
+.chip.warn{background:var(--bad);color:#fff}
+.linkbtn{background:none;border:1px solid rgba(255,255,255,.35);color:var(--chrome-fg);border-radius:4px;padding:3px 9px;font-size:13px}
+.progress{height:4px;background:var(--chrome-2)}
+.progress i{display:block;height:100%;background:var(--accent);width:0;transition:width .2s}
+
+/* Main pane */
+main{flex:1;overflow-y:auto}
+.wrap{max-width:1100px;margin:0 auto;padding-block:24px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:24px}
+h1,h2{text-wrap:balance;line-height:1.25;margin:0}
+h1{font-size:26px} h2{font-size:19px}
+.muted{color:var(--muted)}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+
+/* Start screen */
+.start{display:grid;gap:20px;max-width:760px;margin:0 auto}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0;padding:0}
+.facts div{border:1px solid var(--line);border-radius:6px;padding:12px 14px;background:var(--bg)}
+.facts dt{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.facts dd{margin:2px 0 0;font-weight:600;font-size:18px;font-variant-numeric:tabular-nums}
+.modes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.mode{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);border-radius:6px;padding:14px;cursor:pointer;background:var(--panel)}
+.mode:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.mode input{margin-top:4px;accent-color:var(--accent)}
+.mode b{display:block}
+.opts{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.opts label{display:flex;gap:8px;align-items:center}
+ul.rules{margin:0;padding-left:20px;display:grid;gap:4px}
+
+/* Buttons */
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:4px;padding:9px 16px;font-weight:500;display:inline-flex;align-items:center;gap:6px}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.danger{color:var(--bad);border-color:var(--bad)}
+.btn.flagged{background:var(--flag-soft);border-color:var(--flag);color:var(--flag)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* Question */
+.qhead{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.qnum{font-weight:600;color:var(--accent)}
+.lvl{display:inline-block;vertical-align:middle;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 9px;border-radius:4px;margin-left:6px}
+.lvl-easy{background:var(--ok-soft);color:var(--ok)} .lvl-medium{background:var(--flag-soft);color:var(--flag)} .lvl-hard{background:var(--bad-soft);color:var(--bad)}
+.back{font-size:14px;color:var(--accent)}
+.flagtag{color:var(--flag);font-weight:600;font-size:13px}
+.stem{font-size:18px;line-height:1.55;margin:0 0 20px;max-width:70ch}
+.choices{display:grid;gap:10px;max-width:820px}
+.choice{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--line);border-radius:6px;cursor:pointer;background:var(--panel)}
+.choice:hover{border-color:var(--accent)}
+.choice input{position:absolute;opacity:0;pointer-events:none}
+.letter{flex:none;width:28px;height:28px;border-radius:50%;border:1.5px solid var(--muted);display:grid;place-items:center;font-weight:600;font-size:13px;color:var(--muted)}
+.choice .txt{min-width:0;padding-top:2px}
+.choice.sel{border-color:var(--accent);background:var(--accent-soft)}
+.choice.sel .letter{background:var(--accent);border-color:var(--accent);color:#fff}
+.choice.right{border-color:var(--ok);background:var(--ok-soft)}
+.choice.right .letter{background:var(--ok);border-color:var(--ok);color:#fff}
+.choice.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.choice.wrong .letter{background:var(--bad);border-color:var(--bad);color:#fff}
+.choice.locked{cursor:default}
+.feedback{margin-top:18px;padding:14px 16px;border-radius:6px;border:1px solid var(--line);max-width:820px}
+.feedback.ok{background:var(--ok-soft);border-color:var(--ok)}
+.feedback.bad{background:var(--bad-soft);border-color:var(--bad)}
+.feedback b{display:block;margin-bottom:4px}
+.keys{margin-top:22px;font-size:12px;color:var(--muted)}
+kbd{font-family:var(--mono);font-size:11px;border:1px solid var(--line);border-bottom-width:2px;border-radius:3px;padding:0 4px;background:var(--panel)}
+
+/* Split layout */
+.qbody{display:grid;gap:20px}
+.qbody.split{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0;align-items:start}
+.qbody.split .pane{min-width:0}
+.qbody.split #qLeft{padding-right:24px;border-right:1px solid var(--line);max-height:calc(100vh - 260px);overflow-y:auto}
+.qbody.split #qRight{padding-left:24px}
+.qbody.split .stem{margin-bottom:16px}
+.scen{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:14px 16px;margin-bottom:16px;font-size:15px;line-height:1.6;max-width:70ch}
+.scen p{margin:.4em 0 0}
+.qbody.split .scen{margin-bottom:0;border:0;background:none;padding:0}
+@media (max-width:820px){
+  .qbody.split{grid-template-columns:1fr;gap:16px}
+  .qbody.split #qLeft{padding-right:0;border-right:0;max-height:none;border-bottom:1px solid var(--line);padding-bottom:16px}
+  .qbody.split #qRight{padding-left:0}
+}
+.rscen{font-size:13px;color:var(--muted);margin:6px 0}
+.rscen summary{font-size:13px}
+
+/* Footer nav */
+.foot{flex:none;background:var(--panel);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
+.foot .gut{max-width:1100px;margin:0 auto;padding-block:10px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.foot .spacer{flex:1}
+
+/* Review grid */
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:3px;border:1px solid var(--line);display:inline-block}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px;margin-top:16px}
+.cell{position:relative;height:42px;border:1px solid var(--line);border-radius:4px;background:var(--panel);font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px;color:var(--fg)}
+.cell.ans{background:var(--accent-soft);border-color:var(--accent)}
+.cell.cur{outline:2px solid var(--fg);outline-offset:1px}
+.cell.flg::after{content:"";position:absolute;top:3px;right:3px;width:0;height:0;border-left:9px solid transparent;border-top:9px solid var(--flag)}
+.cell.r-ok{background:var(--ok-soft);border-color:var(--ok)}
+.cell.r-bad{background:var(--bad-soft);border-color:var(--bad)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}
+.tab{border:1px solid var(--line);background:var(--panel);color:var(--fg);border-radius:20px;padding:5px 12px;font-size:13px}
+.tab[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* Results */
+.score{display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center}
+.ring{width:132px;height:132px}
+.ring text{font-family:var(--mono);fill:var(--fg)}
+.verdict{display:inline-block;font-weight:600;padding:3px 10px;border-radius:4px;font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+.verdict.ok{background:var(--ok-soft);color:var(--ok)}
+.verdict.bad{background:var(--bad-soft);color:var(--bad)}
+.stats{display:flex;gap:24px;flex-wrap:wrap;margin-top:10px}
+.stats div b{display:block;font-size:20px;font-variant-numeric:tabular-nums}
+.stats div span{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.rlist{display:grid;gap:12px;margin-top:16px}
+.ritem{border:1px solid var(--line);border-left-width:4px;border-radius:6px;padding:16px;background:var(--panel)}
+.ritem.ok{border-left-color:var(--ok)} .ritem.bad{border-left-color:var(--bad)} .ritem.skip{border-left-color:var(--muted)}
+.ritem p{margin:6px 0}
+.ritem .ans{font-size:14px;display:grid;gap:2px;margin:8px 0}
+.ritem .exp{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:8px;margin-top:8px}
+.tag{font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.tag.ok{color:var(--ok)} .tag.bad{color:var(--bad)} .tag.skip{color:var(--muted)}
+
+/* Break */
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.brk{display:grid;gap:12px;max-width:640px;margin:0 auto;text-align:left}
+.brk > div{display:grid;gap:12px}
+.bigclock{font-size:64px;font-weight:600;line-height:1;color:var(--accent);letter-spacing:.02em}
+
+/* Analysis */
+.doms{display:grid;gap:12px}
+.dom{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center}
+.dom .nm{font-weight:500;min-width:0}
+.dom .nm small{color:var(--muted);font-weight:400;margin-right:6px;font-family:var(--mono)}
+.dom .val{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:14px;white-space:nowrap}
+.track{grid-column:1/-1;height:10px;border-radius:5px;background:var(--bg);border:1px solid var(--line);position:relative;overflow:hidden}
+.track i{position:absolute;inset:0 auto 0 0;border-radius:5px}
+.track b{position:absolute;top:-2px;bottom:-2px;left:80%;width:2px;background:var(--fg);opacity:.5}
+.st{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:3px;margin-left:8px}
+.st.g{background:var(--ok-soft);color:var(--ok)} .st.a{background:var(--flag-soft);color:var(--flag)} .st.r{background:var(--bad-soft);color:var(--bad)}
+.mods{grid-column:1/-1;font-size:12.5px;color:var(--muted);margin-top:2px}
+.mods span{font-weight:600;color:var(--fg)}
+.focus{display:grid;gap:12px}
+.fitem{border:1px solid var(--line);border-radius:6px;padding:14px 16px;display:grid;gap:6px;background:var(--panel)}
+.fitem h3{margin:0;font-size:16px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.fitem h3 small{font-family:var(--mono);color:var(--muted);font-weight:500}
+.fitem p{margin:0;font-size:14px}
+.qchips{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:var(--muted)}
+.qchip{border:1px solid var(--bad);color:var(--bad);background:var(--bad-soft);border-radius:3px;padding:1px 7px;font-family:var(--mono);font-size:12px}
+details summary{cursor:pointer;font-weight:500;color:var(--accent)}
+.tblwrap{overflow-x:auto;margin-top:10px}
+.ctbl{border-collapse:collapse;width:100%;font-size:14px;min-width:420px}
+.ctbl th,.ctbl td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}
+.ctbl th{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:600}
+.ctbl td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.ctag{font-size:12px;color:var(--muted);font-family:var(--mono)}
+
+/* Confirm overlay */
+.overlay{position:fixed;inset:0;background:rgba(10,18,28,.55);display:grid;place-items:center;z-index:20;padding:16px}
+.dialog{background:var(--panel);border-radius:8px;max-width:440px;width:100%;padding:22px;border:1px solid var(--line);display:grid;gap:14px}
+
+@media (max-width:560px){
+  .stem{font-size:16px} h1{font-size:22px}
+  .score{grid-template-columns:1fr;justify-items:start}
+  .foot .btn{padding:8px 12px}
+  .hide-sm{display:none}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="gut">
+      <div class="brand">AIGP Easy Exam 2<small>Easy &middot; 100 questions</small></div>
+      <span id="qpos" class="chip" hidden></span>
+      <span id="timer" class="chip" hidden aria-live="off"></span>
+      <button id="btnLayout" class="linkbtn" hidden type="button" aria-pressed="false">Layout: stacked</button>
+      <button id="hideTimer" class="linkbtn" hidden type="button">Hide time</button>
+    </div>
+    <div class="progress"><i id="prog"></i></div>
+  </header>
+
+  <main id="main">
+    <!-- START -->
+    <section id="sStart" class="wrap gut">
+      <div class="start">
+        <div>
+          <div class="eyebrow">IAPP Artificial Intelligence Governance Professional</div>
+          <h1>Easy Practice Exam 2 <span class="lvl lvl-easy">Easy</span></h1>
+          <p class="muted">Work through 100 multiple-choice questions under conditions close to the real exam.</p><p style="margin:8px 0 0"><a class="back" href="../index.html">&larr; All practice exams</a></p>
+        </div>
+        <dl class="facts">
+          <div><dt>Questions</dt><dd>100</dd></div>
+          <div><dt>Time limit</dt><dd>180 min</dd></div>
+          <div><dt>Optional break</dt><dd>15 min after Q50</dd></div>
+          <div><dt>Readiness target</dt><dd>80%</dd></div>
+        </dl>
+        <div class="card" style="display:grid;gap:16px">
+          <h2>Choose a mode</h2>
+          <div class="modes">
+            <label class="mode"><input type="radio" name="mode" id="modeExam" value="exam" checked><span><b>Exam mode</b><span class="muted">Timed. No feedback until you end the exam. Change answers freely.</span></span></label>
+            <label class="mode"><input type="radio" name="mode" id="modePractice" value="practice"><span><b>Practice mode</b><span class="muted">Untimed, no break. See the answer and explanation right after each question.</span></span></label>
+          </div>
+          <div class="opts">
+            <label><input type="checkbox" id="optShuffle"> Shuffle question order</label>
+            <label><input type="checkbox" id="optInstant"> Show the answer and explanation after each question</label>
+          </div>
+          <ul class="rules muted">
+            <li>After question 50 you can take an optional 15-minute break. The exam clock stops during the break.</li>
+            <li>Flag any question to come back to it from the review screen.</li>
+            <li>Unanswered questions count as wrong, so answer every one.</li>
+            <li>Exam mode gives full feedback on every question in the score report at the end. Tick the option above to also see feedback after each question while the timer runs.</li>
+            <li>Scenario questions show the scenario on the left and the question on the right. Use the Layout button to view every question side by side.</li>
+            <li>In exam mode, the exam ends automatically when time runs out.</li>
+            <li>Your progress is saved in this browser, so you can resume later.</li>
+          </ul>
+          <div class="row">
+            <button id="btnStart" class="btn primary" type="button">Start exam</button>
+            <button id="btnResume" class="btn" type="button" hidden>Resume saved attempt</button>
+          </div>
+        </div>
+        <p class="muted" style="font-size:13px">Independent study aid. Not affiliated with or endorsed by the IAPP. Check the current AIGP Body of Knowledge at iapp.org.</p>
+      </div>
+    </section>
+
+    <!-- QUESTION -->
+    <section id="sQ" class="wrap gut" hidden>
+      <div class="card">
+        <div class="qhead">
+          <span class="qnum" id="qLabel"></span>
+          <span class="flagtag" id="qFlagTag" hidden>&#9873; Flagged for review</span>
+        </div>
+        <div class="qbody" id="qBody">
+          <div class="pane" id="qLeft">
+            <div class="scen" id="qScen" hidden><div class="eyebrow">Scenario</div><div id="qScenTxt"></div></div>
+            <p class="stem" id="qStem"></p>
+          </div>
+          <div class="pane" id="qRight">
+            <div class="choices" id="qChoices" role="radiogroup" aria-labelledby="qStem"></div>
+            <div id="qFeedback" class="feedback" hidden></div>
+          </div>
+        </div>
+        <div class="keys hide-sm">Keys: <kbd>A</kbd>&ndash;<kbd>E</kbd> choose &middot; <kbd>&larr;</kbd> <kbd>&rarr;</kbd> move &middot; <kbd>F</kbd> flag &middot; <kbd>R</kbd> review screen</div>
+      </div>
+    </section>
+
+    <!-- BREAK -->
+    <section id="sBreak" class="wrap gut" hidden>
+      <div class="card brk">
+        <div id="brkOffer">
+          <div class="eyebrow">Section 1 complete</div>
+          <h1>You have finished the first 50 questions</h1>
+          <p class="muted">You may take an optional 15-minute break now. The exam clock stops while you are on break. You can only take this break once.</p>
+          <p>Exam time remaining: <b class="mono" id="brkExamLeft"></b></p>
+          <div class="row">
+            <button id="btnTakeBreak" class="btn primary" type="button">Take 15-minute break</button>
+            <button id="btnSkipBreak" class="btn" type="button">Skip break and continue</button>
+          </div>
+        </div>
+        <div id="brkOn" hidden>
+          <div class="eyebrow">On break &middot; exam clock paused</div>
+          <div class="bigclock mono" id="brkClock">15:00</div>
+          <p class="muted">Stand up, drink some water, rest your eyes. The exam continues automatically when the break ends.</p>
+          <p>Exam time remaining when you return: <b class="mono" id="brkExamLeft2"></b></p>
+          <button id="btnEndBreak" class="btn primary" type="button">End break and resume exam</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEW SCREEN -->
+    <section id="sReview" class="wrap gut" hidden>
+      <div class="card">
+        <div class="row" style="justify-content:space-between">
+          <h2>Review your answers</h2>
+          <span class="muted" id="revSummary"></span>
+        </div>
+        <p class="muted">Select a number to go to that question.</p>
+        <div class="row" style="justify-content:space-between">
+          <div class="tabs" id="revTabs">
+            <button class="tab" type="button" data-f="all" aria-pressed="true">All</button>
+            <button class="tab" type="button" data-f="flagged" aria-pressed="false">Flagged</button>
+            <button class="tab" type="button" data-f="unanswered" aria-pressed="false">Unanswered</button>
+          </div>
+          <div class="legend">
+            <span><i class="sw" style="background:var(--accent-soft);border-color:var(--accent)"></i>Answered</span>
+            <span><i class="sw"></i>Unanswered</span>
+            <span><i class="sw" style="background:linear-gradient(225deg,var(--flag) 30%,var(--panel) 30%)"></i>Flagged</span>
+          </div>
+        </div>
+        <div class="grid" id="revGrid"></div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="sResults" class="wrap gut" hidden>
+      <div style="display:grid;gap:16px">
+        <div class="card score">
+          <svg class="ring" viewBox="0 0 120 120" aria-hidden="true">
+            <circle cx="60" cy="60" r="52" fill="none" stroke="var(--line)" stroke-width="10"></circle>
+            <circle id="ringArc" cx="60" cy="60" r="52" fill="none" stroke="var(--ok)" stroke-width="10" stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="0 400"></circle>
+            <text id="ringTxt" x="60" y="67" text-anchor="middle" font-size="24" font-weight="600">0%</text>
+          </svg>
+          <div style="min-width:0">
+            <div class="eyebrow">Score report</div>
+            <h1 id="resHead">Your result</h1>
+            <p style="margin:6px 0"><span id="resVerdict" class="verdict"></span></p>
+            <div class="stats">
+              <div><b id="stCorrect">0</b><span>Correct</span></div>
+              <div><b id="stWrong">0</b><span>Incorrect</span></div>
+              <div><b id="stSkip">0</b><span>Unanswered</span></div>
+              <div><b id="stTime">0:00</b><span>Time used</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="display:grid;gap:14px">
+          <div>
+            <h2>Performance by domain</h2>
+            <p class="muted" style="margin:4px 0 0" id="anaSummary"></p>
+          </div>
+          <div class="doms" id="anaDomains"></div>
+          <p class="muted" style="font-size:12px;margin:0">Strong: 80% or more &middot; Borderline: 60 to 79% &middot; Needs work: below 60%. Topic tags are mapped to the AIGP Body of Knowledge v2.1. Module numbers refer to the IAPP AIGP training participant guide.</p>
+        </div>
+        <div class="card" style="display:grid;gap:14px">
+          <h2>Where to focus next</h2>
+          <div class="focus" id="anaFocus"></div>
+          <details>
+            <summary>Score by competency</summary>
+            <div class="tblwrap"><table class="ctbl" id="anaTable"></table></div>
+          </details>
+        </div>
+        <div class="card">
+          <div class="row" style="justify-content:space-between">
+            <h2>Answer review</h2>
+            <div class="tabs" id="resTabs">
+              <button class="tab" type="button" data-f="all" aria-pressed="false">All</button>
+              <button class="tab" type="button" data-f="bad" aria-pressed="true">Incorrect</button>
+              <button class="tab" type="button" data-f="flagged" aria-pressed="false">Flagged</button>
+              <button class="tab" type="button" data-f="ok" aria-pressed="false">Correct</button>
+            </div>
+          </div>
+          <div class="grid" id="resGrid" style="grid-template-columns:repeat(auto-fill,minmax(44px,1fr))"></div>
+          <div class="rlist" id="resList"></div>
+        </div>
+        <div class="row">
+          <button id="btnRetakeWrong" class="btn primary" type="button">Retake incorrect questions</button>
+          <button id="btnNew" class="btn" type="button">Start a new attempt</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot" id="foot" hidden>
+    <div class="gut">
+      <button id="btnPrev" class="btn" type="button">&larr; Previous</button>
+      <button id="btnFlag" class="btn" type="button">&#9873; Flag</button>
+      <span class="spacer"></span>
+      <button id="btnReview" class="btn" type="button">Review</button>
+      <button id="btnEnd" class="btn danger" type="button">End exam</button>
+      <button id="btnNext" class="btn primary" type="button">Next &rarr;</button>
+    </div>
+  </footer>
+</div>
+
+<div id="confirm" class="overlay" hidden>
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="cfTitle">
+    <h2 id="cfTitle">End the exam?</h2>
+    <p id="cfBody" class="muted" style="margin:0"></p>
+    <div class="row" style="justify-content:flex-end">
+      <button id="cfNo" class="btn" type="button">Keep working</button>
+      <button id="cfYes" class="btn primary" type="button">End exam</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const QUESTIONS = [{"n": 1, "q": "What is a key benefit of applying a risk mitigation hierarchy during AI model development?", "options": ["It emphasizes technical optimization while deprioritizing ethical considerations", "It ensures that higher-level controls are applied before relying on procedural safeguards", "It simplifies stakeholder involvement by delegating all decisions to developers", "It allows risks to be addressed only after deployment to minimize upfront delays"], "answer": 1, "explanation": "A risk mitigation hierarchy prioritizes higher-level interventions, such as eliminating hazards, over less robust controls, such as warnings or training. This ensures more effective risk reduction.", "c": "III.A"}, {"n": 2, "q": "What is a best practice for ensuring secure data acquisition in AI governance?", "options": ["Limiting training data size", "Automating data cleaning processes", "Using public datasets exclusively", "Conducting vendor security assessments"], "answer": 3, "explanation": "Vendor security assessments ensure that third-party data sources meet privacy and security standards. This practice helps prevent vulnerabilities in the data acquisition process.", "c": "III.B"}, {"n": 3, "q": "How does insufficient testing contribute to a lack of robustness in AI models?", "options": ["Models require additional computational resources during inference stages.", "Models fail to generalize well to unseen data and real-world scenarios.", "Models become overfitted to the training data, reducing their accuracy.", "Models generate outputs that are difficult for stakeholders to interpret."], "answer": 1, "explanation": "Robustness ensures the model performs reliably under diverse conditions. Inadequate testing leaves the model vulnerable to failures when exposed to unfamiliar situations, which is unrelated to interpretability or computational needs.", "c": "III.C"}, {"n": 4, "q": "Which of the following requires a privacy impact assessment (PIA) under data privacy laws when developing AI systems?", "options": ["Developing an AI system with high risks to individual rights", "Training an AI model using anonymized datasets", "Processing publicly available non-personal data", "Collecting only aggregate data from IoT devices"], "answer": 0, "explanation": "PIAs are mandatory for processing activities that pose high risks to individuals’ rights and freedoms, such as AI systems handling sensitive personal data or engaging in automated decision-making.", "c": "II.A"}, {"n": 5, "q": "Which factor is most likely to influence the complexity of an organization’s AI governance approach?", "options": ["The company’s location within a single market.", "The size of the company’s data science team.", "The range and diversity of its AI products and services.", "The duration of the organization’s existence."], "answer": 2, "explanation": "A diverse range of AI products and services increases governance complexity due to varying risks, regulations, and operational requirements across applications and industries.", "c": "I.B"}, {"n": 6, "q": "How does documenting data analysis methods enhance compliance in AI governance?", "options": ["By prioritizing computational efficiency over stakeholder engagement.", "By reducing the scope of risk assessments to specific operational contexts.", "By limiting iterative reviews to accelerate model deployment timelines.", "By demonstrating how data is collected, processed, and validated for fairness."], "answer": 3, "explanation": "Documenting data analysis methods ensures transparency in how data is collected, processed, and validated, demonstrating compliance with fairness and ethical standards throughout the AI lifecycle.", "c": "III.B"}, {"n": 7, "q": "Why is it important to train stakeholders on AI risks and challenges as part of governance?", "options": ["To ensure all stakeholders can monitor AI systems independently.", "To identify opportunities for automating technical workflows.", "To reduce training time by focusing solely on AI’s benefits.", "To enable stakeholders to recognize and address governance risks effectively."], "answer": 3, "explanation": "Understanding AI risks empowers stakeholders to identify and mitigate potential governance issues, promoting ethical and responsible AI use across the organization.", "c": "I.B"}, {"n": 8, "q": "Which tool is most effective for managing data lineage in AI projects?", "options": ["Cloud-based data storage systems with enhanced encryption", "Automated hyperparameter tuning tools for model optimization", "Workflow management platforms with integrated data tracking features", "Dataset balancing tools for reducing class imbalances"], "answer": 2, "explanation": "Workflow management platforms designed for data tracking help document and monitor the flow of data through various stages. These tools provide end-to-end visibility, ensuring effective governance and reducing the risk of errors or non-compliance.", "c": "III.B"}, {"n": 9, "q": "What must organizations demonstrate to justify the processing of sensitive data for AI development?", "options": ["The data is acquired from publicly available sources", "The processing is necessary and cannot be avoided", "The AI system requires sensitive data for basic functionality", "Consent is obtained through a generalized privacy policy"], "answer": 1, "explanation": "Organizations must demonstrate that the processing of sensitive data is necessary and proportional to the intended purpose, ensuring adherence to privacy laws.", "c": "II.A"}, {"n": 10, "q": "Why should an impact assessment include a review of workforce readiness for deploying an AI model?", "options": ["To assess the model’s adaptability across different user interfaces", "To ensure that employees can effectively integrate the model into workflows", "To identify potential redundancies in roles affected by automation", "To evaluate the training requirements for AI governance professionals"], "answer": 1, "explanation": "Workforce readiness assessments identify training needs and help employees understand how to work with AI tools, ensuring smooth adoption and maximum effectiveness in deployment.", "c": "IV.A"}, {"n": 11, "q": "Why is it crucial to anticipate secondary uses of AI models before deployment?", "options": ["To prevent malicious or unethical uses that could harm users or society.", "To prioritize compliance with international data privacy regulations.", "To limit the scope of data collection to only essential information.", "To ensure models can scale efficiently across multiple industries."], "answer": 0, "explanation": "Anticipating secondary uses helps prevent the exploitation of AI models for unintended purposes, which could lead to ethical concerns, privacy violations, or societal harm. Compliance and scalability are important but secondary to mitigating these risks.", "c": "IV.C"}, {"n": 12, "q": "What is a common requirement for processing biometric data under existing data privacy laws?", "options": ["Storing biometric data indefinitely for future use", "Encrypting data only during its transmission", "Ensuring the data is collected solely for research purposes", "Obtaining explicit consent from the data subject"], "answer": 3, "explanation": "Biometric data is considered a special category of data under laws like the GDPR, requiring explicit consent from data subjects before collection or processing to ensure their privacy rights are respected.", "c": "II.A"}, {"n": 13, "q": "What does the principle of safety and reliability in AI governance emphasize?", "options": ["Preventing external access to sensitive AI data.", "Limiting the scalability of AI systems in industries.", "Ensuring AI systems perform consistently as expected.", "Designing AI systems with fully transparent processes."], "answer": 2, "explanation": "Safety and reliability focus on making AI systems perform as intended under various conditions while minimizing risks or unintended consequences. This principle is vital for the trustworthiness of AI applications.", "c": "I.A"}, {"n": 14, "q": "Why is it important for organizations to assign specific roles for AI governance?", "options": ["To increase technical efficiency in AI model optimization processes.", "To reduce the overall cost of implementing AI across industries.", "To simplify the deployment of new AI systems and technologies.", "To ensure accountability and clarify responsibilities for stakeholders."], "answer": 3, "explanation": "Clearly defining roles ensures accountability and clarifies stakeholder responsibilities, which is essential for maintaining transparency, addressing risks, and aligning AI systems with organizational goals.", "c": "I.B"}, {"n": 15, "q": "Why is stakeholder training in AI terminology critical for successful governance?", "options": ["It ensures stakeholders prioritize technical scalability above all else.", "It focuses on optimizing data collection for AI model performance.", "It limits the involvement of non-technical teams in AI governance processes.", "It enhances stakeholder understanding of AI concepts and fosters informed decisions."], "answer": 3, "explanation": "Training stakeholders in AI terminology builds foundational knowledge, enabling informed decision-making and ensuring alignment with governance goals. This shared understanding supports effective collaboration.", "c": "I.B"}, {"n": 16, "q": "What is a unique benefit of using a small, open-source AI model for deployment in an agile environment?", "options": ["The model’s deployment process requires no ethical review.", "The model provides the highest level of accuracy across applications.", "The model eliminates the need for external oversight mechanisms.", "The model can be retrained with minimal computational resources."], "answer": 3, "explanation": "Small, open-source models are lightweight and can be quickly retrained or adapted for specific needs, making them ideal for agile environments that require frequent iterations.", "c": "IV.A"}, {"n": 17, "q": "In the context of AI governance, what is the role of risk management policies?", "options": ["Balancing innovation with organizational risk tolerance", "Eliminating all potential risks before deployment", "Identifying technical bottlenecks in AI systems", "Prioritizing cost reduction during AI training"], "answer": 0, "explanation": "Risk management policies aim to balance the benefits of innovation with an organization's ability to tolerate risks. These policies guide the identification, assessment, and mitigation of potential risks associated with AI systems. Eliminating all risks is unrealistic, and cost reduction is not the focus of governance.", "c": "I.C"}, {"n": 18, "q": "Why do AI developers need to be aware of governance principles during model development?", "options": ["To maximize the cost-effectiveness of AI model implementation.", "To align the development process with ethical guidelines and regulatory requirements.", "To ensure that models are scalable and adaptable to all industry standards.", "To reduce the time required for deployment by focusing only on performance."], "answer": 1, "explanation": "Developers need to incorporate ethical guidelines and regulatory requirements during model development to ensure that AI systems are aligned with governance standards and do not introduce risks or harms.", "c": "III.A"}, {"n": 19, "q": "What is the purpose of validation testing in AI model development?", "options": ["To reduce redundancy in the training data for improved accuracy", "To assess whether the model meets predefined functional requirements", "To integrate various components of the system into a cohesive workflow", "To optimize the hyperparameters for maximum training efficiency"], "answer": 1, "explanation": "Validation testing ensures that the AI model aligns with functional and business requirements. This type of testing evaluates overall performance, unlike hyperparameter optimization or component integration.", "c": "III.B"}, {"n": 20, "q": "What is a key goal of the Measure function in the NIST AI RMF?", "options": ["Identifying risks associated with early-stage AI development", "Setting compliance policies for AI across industries", "Assessing the effectiveness of implemented risk controls", "Documenting stakeholder responsibilities for AI oversight"], "answer": 2, "explanation": "The Measure function focuses on assessing the effectiveness of controls and metrics used to mitigate AI risks, providing insights for continual improvement and refinement.", "c": "II.D"}, {"n": 21, "q": "Which principle should guide the deployment of AI systems to align with ethical governance?", "options": ["Competitive secrecy", "Autonomy from human oversight", "Profit maximization", "Transparency and accountability"], "answer": 3, "explanation": "Ethical AI governance emphasizes transparency in decision-making and accountability for outcomes. This builds trust among stakeholders and ensures systems adhere to societal values. Profit and secrecy are business priorities but do not align directly with ethical governance principles.", "c": "IV.C"}, {"n": 22, "q": "Which activity is uniquely required for companies deploying proprietary AI models to ensure ethical use?", "options": ["Implementing a bias mitigation strategy during development", "Tracking compliance with open-source community guidelines", "Reviewing model updates provided by third parties", "Conducting external vendor audits"], "answer": 0, "explanation": "Proprietary AI models must incorporate bias mitigation strategies in development to ensure fairness, as the company holds sole responsibility for ethical outcomes.", "c": "IV.B"}, {"n": 23, "q": "Why is it important to document AI model limitations and risks during deployment?", "options": ["To reduce the need for stakeholder consultations during model updates.", "To prioritize operational efficiency over ethical concerns.", "To ensure that secondary uses are appropriately managed and controlled.", "To minimize the involvement of external regulators and auditors."], "answer": 2, "explanation": "Documenting limitations and risks allows for informed decision-making, ensuring that the AI model is used within its intended scope, reducing the likelihood of unintended applications. Reducing external input or prioritizing efficiency may compromise governance.", "c": "IV.C"}, {"n": 24, "q": "What distinguishes minimal-risk AI systems from high-risk systems under the EU AI Act?", "options": ["Minimal-risk systems face no transparency or documentation requirements", "Minimal-risk systems require external audits in select deployment cases", "Minimal-risk systems are exempt from all regulatory oversight processes", "Minimal-risk systems pose negligible risks to fundamental rights or safety"], "answer": 3, "explanation": "Minimal-risk AI systems, such as basic recommendation engines, do not significantly impact safety or fundamental rights. Therefore, they are exempt from extensive regulatory obligations applied to high-risk systems.", "c": "II.C"}, {"n": 25, "q": "What is the primary objective of continuous monitoring in AI governance?", "options": ["To increase the scalability of AI systems within the organization.", "To ensure the AI system meets predefined goals consistently.", "To replace outdated AI models with minimal business disruption.", "To prevent unauthorized access to AI systems and their outputs."], "answer": 1, "explanation": "Continuous monitoring ensures that the AI system aligns with its intended purpose and meets organizational and regulatory requirements over time. It allows for the detection of performance degradation, bias, or drift, enabling timely corrective actions. While scalability and security are important, they are not the core purpose of continuous monitoring.", "c": "IV.C"}, {"n": 26, "q": "What is a key requirement for developers of general-purpose AI under the EU AI Act?", "options": ["Designing models exclusively for minimal-risk applications", "Ensuring models comply with sector-specific regulations when applicable", "Providing unrestricted access to source code for all stakeholders", "Limiting the adaptability of their models to prevent misuse"], "answer": 1, "explanation": "Developers of general-purpose AI models must ensure compliance with applicable sector-specific laws when their models are adapted for use in regulated industries. This aligns with the principle of shared accountability.", "c": "II.C"}, {"n": 27, "q": "When is it most appropriate to use retrieval-augmented generation (RAG) for an AI deployment?", "options": ["When the organization needs a lightweight, unsupervised learning model", "When the model must incorporate dynamic, domain-specific knowledge", "When the focus is on high-volume transactional data processing", "When the AI must perform well on resource-constrained edge devices"], "answer": 1, "explanation": "Retrieval-augmented generation combines external knowledge retrieval with generative models, making it ideal for applications requiring up-to-date, specialized information. It is less relevant for unsupervised learning or resource-constrained settings.", "c": "IV.A"}, {"n": 28, "q": "Why is it important to conduct regular audits of AI systems in the context of consumer protection laws?", "options": ["To identify and address potential risks of unfair or deceptive practices", "To eliminate the need for user consent in data processing", "To maximize the system’s profitability", "To reduce the costs associated with compliance"], "answer": 0, "explanation": "Regular audits ensure AI systems remain compliant with consumer protection laws, identifying and mitigating risks related to unfair or deceptive practices. This proactive approach enhances accountability and safeguards user trust.", "c": "II.B"}, {"n": 29, "q": "What is the goal of incorporating real-world scenarios in model validation?", "options": ["Increasing the model’s ability to generalize across unrelated use cases.", "Assessing the model’s ability to perform reliably under realistic conditions.", "Reducing the computational complexity of large-scale simulations.", "Enhancing the speed at which the model produces accurate predictions."], "answer": 1, "explanation": "Real-world scenarios test the AI model’s reliability and robustness in conditions it will encounter post-deployment. Computational complexity and prediction speed are secondary to this primary objective.", "c": "III.B"}, {"n": 30, "q": "Why is it essential to align AI systems with data minimization and purpose limitation principles?", "options": ["To limit AI deployment to non-regulated environments", "To reduce risks associated with over-collection and misuse of data", "To enhance the efficiency of data processing algorithms", "To ensure the scalability of AI models across industries"], "answer": 1, "explanation": "Data minimization and purpose limitation reduce the risks of over-collection and data misuse, ensuring compliance with privacy laws and fostering trust in AI systems.", "c": "II.A"}, {"n": 31, "q": "What role does documentation play in AI deactivation policies?", "options": ["Reducing the complexity of governance frameworks for improved operational focus.", "Providing a transparent record of decisions, processes, and criteria for deactivation.", "Simplifying internal audits by omitting unnecessary regulatory compliance details.", "Ensuring that only technical failures are addressed without broader stakeholder input."], "answer": 1, "explanation": "Documentation ensures transparency in decision-making, compliance with regulations, and accountability. Omitting compliance details or limiting stakeholder input weakens governance effectiveness.", "c": "IV.C"}, {"n": 32, "q": "Why is liability typically higher for companies deploying proprietary AI models compared to using third-party models?", "options": ["Proprietary models are exempt from compliance requirements.", "Intellectual property laws reduce external risks.", "Deployment timelines are controlled exclusively by the company.", "Companies retain full responsibility for all outcomes generated."], "answer": 3, "explanation": "When deploying proprietary AI models, companies bear full liability for model performance, including errors, biases, or adverse outcomes, increasing their legal and reputational risk.", "c": "IV.B"}, {"n": 33, "q": "What is a critical step to manage ethical risks in deploying AI systems that influence human decision-making?", "options": ["Automating updates to the AI model without oversight", "Defining model scalability limits in service agreements", "Conducting stakeholder workshops to identify biases", "Training the AI system on open-source datasets exclusively"], "answer": 2, "explanation": "Engaging stakeholders helps identify potential biases in the AI system, ensuring ethical considerations are integrated into the deployment process to build trust and fairness.", "c": "IV.C"}, {"n": 34, "q": "Which aspect is essential for inclusion in a model card to ensure transparency?", "options": ["A summary of the model’s intended uses and limitations", "Detailed specifications of hardware used during training", "Comprehensive logs of every training iteration performed", "Historical datasets used during earlier versions of the model"], "answer": 0, "explanation": "Model cards document the intended uses and limitations of the model to provide clarity to stakeholders, enabling informed decisions about deployment and reducing misuse risks.", "c": "III.C"}, {"n": 35, "q": "Which key aspect does the NIST ARIA program emphasize for AI safety?", "options": ["Data minimization and encryption techniques", "Continuous evaluation of AI system performance", "Limiting AI applications to low-risk domains", "Exclusive focus on pre-deployment testing"], "answer": 1, "explanation": "The NIST ARIA program emphasizes continuous evaluation of AI systems, ensuring ongoing safety and reliability across all phases of the AI lifecycle, including post-deployment.", "c": "II.D"}, {"n": 36, "q": "Which of the following best describes the concept of algorithmic transparency?", "options": ["The ability of an algorithm to update itself automatically.", "The clarity with which the workings of an algorithm are explained and understood.", "The ability of an algorithm to be tested for efficiency.", "The speed at which an algorithm processes data."], "answer": 1, "explanation": "Algorithmic transparency refers to making the logic, decision-making processes, and potential biases of an algorithm understandable to stakeholders. This is crucial for building trust and ensuring accountability. Other aspects, like speed or self-updating capabilities, do not directly address transparency.", "c": "I.A"}, {"n": 37, "q": "Which of the following is a primary obligation for providers under the EU AI Act?", "options": ["Maintaining records of all system usage after deployment", "Conducting conformity assessments before market release", "Ensuring the AI system’s deployment follows local laws", "Certifying user training programs for AI system operators"], "answer": 1, "explanation": "Providers are responsible for ensuring that AI systems undergo conformity assessments before they are placed on the market, verifying compliance with safety, transparency, and ethical requirements.", "c": "II.C"}, {"n": 38, "q": "What is a primary ethical concern when deploying AI models with predictive capabilities in hiring?", "options": ["Incorporating historical data for benchmarking purposes", "Increasing recruitment timelines due to model training", "Reducing the role of human judgment in recruitment decisions", "Ensuring fairness and avoiding discriminatory outcomes"], "answer": 3, "explanation": "Predictive AI models in hiring must be designed and monitored to prevent bias or discrimination, ensuring ethical and fair decision-making processes.", "c": "II.B"}, {"n": 39, "q": "Which scenario would likely trigger liability for manufacturing defects in an AI-powered product?", "options": ["Users misunderstand the device’s setup instructions and misuse it", "The manufacturer includes warnings about the device’s limitations", "An AI device causes harm due to a faulty sensor component", "The device performs poorly in scenarios outside its intended use"], "answer": 2, "explanation": "Manufacturing defects occur when specific components fail to meet design specifications, leading to harm. Such defects are a primary focus of product liability laws and necessitate thorough quality assurance processes.", "c": "II.B"}, {"n": 40, "q": "Why is documenting corrective actions an essential part of AI issue management?", "options": ["To prioritize minimizing disruptions in short-term system operations.", "To ensure transparency and track the effectiveness of interventions.", "To simplify audits by focusing solely on high-priority incidents.", "To expedite retraining processes by limiting stakeholder involvement."], "answer": 1, "explanation": "Documenting corrective actions provides a clear record of how issues were addressed, fostering accountability and transparency. This practice also aids in assessing whether interventions achieve desired outcomes.", "c": "III.C"}, {"n": 41, "q": "What is a significant risk of deploying a large-scale generative AI model in a customer service environment?", "options": ["The model’s slower response times in chat systems", "The model’s over-reliance on specific linguistic patterns", "The model’s inability to handle simple queries efficiently", "The model’s potential to generate unverified or inappropriate outputs"], "answer": 3, "explanation": "Generative AI models can produce outputs that sound convincing but may be factually incorrect or inappropriate for customer service contexts. Ensuring alignment with organizational standards requires ongoing monitoring and filtering mechanisms.", "c": "IV.A"}, {"n": 42, "q": "How do trade secret laws affect the use of datasets for AI training?", "options": ["They exempt data used for research purposes from protection", "They allow free use of datasets shared in collaborative projects", "Trade secret protections apply only to anonymized data", "They prohibit unauthorized access and use of confidential datasets"], "answer": 3, "explanation": "Trade secret laws protect confidential datasets from unauthorized access or use, meaning organizations must obtain explicit authorization to use such data for AI training.", "c": "II.B"}, {"n": 43, "q": "Which principle is central to AI accountability?", "options": ["Assigning responsibility for AI outcomes to non-human actors", "Avoiding the documentation of decision-making processes", "Ensuring clear responsibility for decisions and impacts of AI systems", "Delegating accountability solely to third-party vendors"], "answer": 2, "explanation": "AI accountability requires that organizations assign clear responsibility for the decisions and impacts of their AI systems. This involves maintaining oversight, implementing monitoring mechanisms, and ensuring ethical and legal compliance throughout the AI lifecycle.", "c": "I.A"}, {"n": 44, "q": "What consumer protection risk is posed by AI systems that rely on opaque algorithms for credit scoring?", "options": ["Reduced operational costs for financial institutions", "Increased transparency for end-users", "Improved accuracy in predicting loan default risks", "Disproportionate financial exclusion for certain demographics"], "answer": 3, "explanation": "Opaque algorithms can lead to biased credit scoring, disproportionately affecting vulnerable populations. This violates consumer protection laws that prohibit discriminatory practices and demand fairness and transparency in financial services.", "c": "II.B"}, {"n": 45, "q": "Which principle is foundational for building an effective AI governance program?", "options": ["Ensuring accountability for AI systems and their outcomes.", "Automating data collection to improve AI development speed.", "Minimizing public awareness of AI risks to maintain trust.", "Replacing manual oversight with machine-based decision systems."], "answer": 0, "explanation": "Accountability is a core principle of AI governance, requiring that developers and organizations take responsibility for the actions and outcomes of their AI systems. Automation and risk minimization without transparency do not align with governance principles.", "c": "I.B"}, {"n": 46, "q": "What is a key consideration when scheduling maintenance for an AI model?", "options": ["Ensuring minimal disruption to production workflows and user experience", "Focusing on decreasing computational time during each retraining phase", "Reducing the overall complexity of the model’s feature set", "Prioritizing retraining cycles based solely on data volume increases"], "answer": 0, "explanation": "Maintenance should be scheduled strategically to minimize impact on production systems, ensuring continued service reliability while addressing updates or fixes.", "c": "III.C"}, {"n": 47, "q": "Which stakeholder responsibility is emphasized by the OECD framework to achieve trustworthy AI?", "options": ["Limiting stakeholder involvement to the AI design phase", "Collaborating across sectors to develop ethical AI guidelines", "Delegating all policy decisions to governmental entities", "Establishing direct AI governance by independent users"], "answer": 1, "explanation": "The OECD emphasizes multi-stakeholder collaboration, ensuring that ethical guidelines and best practices for AI are co-developed and adopted across industries and regions.", "c": "II.D"}, {"n": 48, "q": "What information should be documented about the datasets used for testing readiness?", "options": ["The source, quality checks, and relevance to the production environment", "The preprocessing algorithms applied to optimize data distributions", "The total duration of preprocessing and feature selection phases", "The size of training subsets excluded during validation processes"], "answer": 0, "explanation": "Documenting dataset details ensures transparency and provides evidence of alignment with production requirements, supporting compliance and performance validation.", "c": "III.B"}, {"n": 49, "q": "How can AI governance professionals ensure the quality of data used in training models?", "options": ["By prioritizing the quantity of data over its accuracy and reliability", "By conducting thorough data validation and documentation processes", "By restricting data sources to internal organizational databases only", "By ensuring the model performs well during initial testing phases"], "answer": 1, "explanation": "Data validation and documentation ensure the accuracy, consistency, and reliability of the data used in training. Prioritizing data quality over quantity reduces risks of bias and improves model performance, while focusing solely on internal data may limit diversity and applicability.", "c": "III.B"}, {"n": 50, "q": "What is an advantage of automating parts of the monitoring and maintenance process?", "options": ["Simplifying the hyperparameter tuning process during retraining cycles", "Reducing the volume of data required for continuous monitoring", "Reducing human error and increasing the consistency of monitoring outcomes", "Increasing the overall speed of predictions during model inference"], "answer": 2, "explanation": "Automation minimizes errors and ensures consistent execution of monitoring and maintenance tasks, making governance processes more efficient and reliable.", "c": "IV.C"}, {"n": 51, "q": "How should AI governance professionals evaluate data quantity for training purposes?", "options": ["By ensuring sufficient data to support reliable and robust modeling", "By prioritizing internal data sources to ensure consistency", "By selecting smaller datasets to simplify training workflows", "By maximizing data volume regardless of its relevance to the model"], "answer": 0, "explanation": "Sufficient data quantity is necessary to train AI models effectively, ensuring reliability and robustness. Quantity must be balanced with quality and relevance, avoiding excessive or irrelevant data that could undermine the model's performance.", "c": "III.B"}, {"n": 52, "q": "Which aspect is most critical when assessing the ethical impact of an AI model?", "options": ["The model's performance against predefined technical benchmarks", "The ability of the model to produce creative and unexpected outcomes", "The diversity of the development team’s background and expertise", "The alignment of the model’s decisions with societal norms and values"], "answer": 3, "explanation": "Ethical impact assessments focus on how well the AI model aligns with societal values, ensuring it avoids harm and bias. Technical benchmarks are essential but do not address broader ethical implications.", "c": "III.A"}, {"n": 53, "q": "What is the primary reason for involving data engineers in incident analysis for AI models?", "options": ["Data engineers can identify issues in preprocessing pipelines affecting model performance.", "Data engineers focus on optimizing model hyperparameters for improved accuracy.", "Data engineers collaborate on retraining strategies to eliminate model drift.", "Data engineers ensure compliance with regulatory guidelines during audits."], "answer": 0, "explanation": "Data engineers are essential in understanding how data transformations, errors, or biases during preprocessing can lead to downstream incidents. While retraining and compliance are important, addressing pipeline issues is their primary role in incident analysis.", "c": "III.C"}, {"n": 54, "q": "Which of the following actions best supports ethical AI deployment?", "options": ["Focusing solely on achieving maximum operational efficiency.", "Developing a clear process for documenting decision rationale.", "Eliminating human oversight in AI decision-making processes.", "Deploying AI systems that operate without external audits."], "answer": 1, "explanation": "Documenting decision rationale increases transparency, enabling stakeholders to assess whether AI systems operate ethically and within regulatory bounds. Efficiency and autonomy are secondary to ensuring ethical deployment and accountability.", "c": "IV.C"}, {"n": 55, "q": "What is a crucial step in auditing AI systems for compliance with non-discrimination laws in housing?", "options": ["Allowing the AI system to operate without human review", "Prioritizing efficiency metrics over fairness in housing allocation", "Ensuring geographic data is excluded from decision-making", "Testing the system’s outputs across all demographic groups for fairness"], "answer": 3, "explanation": "Auditing outputs across demographic groups helps identify and correct any biases, ensuring fairness and compliance with non-discrimination laws in housing applications.", "c": "II.B"}, {"n": 56, "q": "What is a key purpose of public disclosures related to post-market monitoring?", "options": ["Supports ongoing identification of potential risks", "Minimizes the cost of retraining cycles", "Enhances scalability of the AI system", "Aligns the model design with training data"], "answer": 0, "explanation": "Post-market monitoring disclosures outline processes for identifying issues after deployment, ensuring risk management rather than focusing on scalability or retraining costs.", "c": "III.C"}, {"n": 57, "q": "Which governance activity helps ensure that an AI model’s outcomes remain aligned with ethical principles over time?", "options": ["Conducting regular reviews of decision-making outputs for compliance", "Increasing the frequency of retraining cycles using larger datasets", "Optimizing infrastructure to improve scalability and throughput", "Automating hyperparameter tuning to enhance decision consistency"], "answer": 0, "explanation": "Periodic reviews assess whether the AI system’s decisions continue to adhere to ethical, legal, and organizational standards. While retraining and optimization are important, they do not directly address ethical alignment.", "c": "IV.C"}, {"n": 58, "q": "How should the scope of an AI use case be defined to ensure successful governance?", "options": ["By limiting the involvement of external stakeholders", "By balancing achievable objectives with business priorities", "By focusing exclusively on technical challenges", "By selecting the largest possible dataset for training"], "answer": 1, "explanation": "The scope of an AI use case should balance achievable objectives with business priorities, ensuring the AI model delivers measurable value within the defined constraints. This approach reduces overreach and supports sustainable development.", "c": "III.A"}, {"n": 59, "q": "Which governance challenge arises from the data dependency of AI systems?", "options": ["The increased computational costs associated with data collection.", "The reliance on high-quality and unbiased datasets for accuracy.", "The inability to scale AI models to larger datasets.", "The reduced adaptability of AI systems to different environments."], "answer": 1, "explanation": "AI systems heavily rely on the quality and representativeness of their training data. Poor-quality or biased datasets can lead to inaccurate or unfair outcomes, underscoring the need for robust data governance practices.", "c": "I.A"}, {"n": 60, "q": "What is the purpose of public disclosures about training data quality?", "options": ["Enhances system alignment with API standards", "Simplifies the deployment process for developers", "Demonstrates the reliability of the system’s foundation", "Increases the speed of data processing pipelines"], "answer": 2, "explanation": "Highlighting training data quality reassures stakeholders about the robustness of the model, focusing on foundational trust rather than operational efficiency.", "c": "III.C"}, {"n": 61, "q": "Which method can be used to address risks related to insufficient validation testing?", "options": ["Using separate datasets for training, validation, and testing phases", "Reducing the number of iterations in the validation process", "Automating feature engineering to enhance data consistency", "Increasing the size of the training dataset for improved reliability"], "answer": 0, "explanation": "Keeping datasets separate prevents data leakage and ensures that validation and testing accurately reflect the model’s ability to generalize. This reduces the risk of overfitting and false confidence in performance metrics.", "c": "III.B"}, {"n": 62, "q": "Which of the following is considered a breach of the EU AI Act that incurs the highest penalties?", "options": ["Failure to establish transparency mechanisms for AI systems", "Misclassification of AI systems by their associated risks", "Non-compliance with limited-risk system documentation rules", "Deployment of prohibited AI systems within the EU market"], "answer": 3, "explanation": "Deploying prohibited AI systems, such as those violating fundamental rights, attracts the highest penalties under the EU AI Act, reflecting the severity of the breach.", "c": "II.C"}, {"n": 63, "q": "Which requirement is essential for obtaining valid user consent under data privacy laws in AI applications?", "options": ["Using default settings to enable data collection", "Providing users with clear, accessible information", "Limiting consent to only high-risk processing activities", "Embedding consent mechanisms in AI model training"], "answer": 1, "explanation": "Valid consent must be informed, specific, and freely given. Users should receive clear and accessible information about data collection, its purpose, and their rights. Default or vague consent does not meet legal standards.", "c": "II.A"}, {"n": 64, "q": "Which of the following AI applications is considered limited-risk under the EU AI Act?", "options": ["An AI system for traffic light automation in smart cities", "A chatbot providing general customer service responses", "A predictive maintenance tool used in industrial equipment", "A real-time facial recognition system used in public venues"], "answer": 1, "explanation": "Limited-risk AI systems, like chatbots, interact with users but do not significantly affect safety, fundamental rights, or decision-making. They require transparency obligations, such as informing users they are interacting with an AI system.", "c": "II.C"}, {"n": 65, "q": "Which of the following is an example of misalignment with AI system objectives?", "options": ["A self-driving car prioritizing efficiency over passenger safety.", "An AI assistant providing inaccurate weather updates.", "A recommendation system offering products not in stock.", "A chatbot failing to recognize complex natural language inputs."], "answer": 0, "explanation": "Misalignment occurs when an AI system's goals or behaviors conflict with ethical or safety considerations, as in the case of a self-driving car prioritizing efficiency over human safety. Such risks can have severe consequences for individuals and society.", "c": "I.A"}, {"n": 66, "q": "Which periodic activity is most effective in assessing the fairness of an AI model over time?", "options": ["Retraining the AI model with an expanded dataset every quarter", "Automating the tuning of hyperparameters for improved model accuracy", "Measuring computational efficiency to detect signs of system fatigue", "Monitoring key performance indicators related to bias and discrimination"], "answer": 3, "explanation": "Fairness assessments involve continuously tracking metrics like demographic parity and equalized odds to detect and mitigate biases. Retraining or computational efficiency evaluations, while useful, do not directly address fairness concerns over time.", "c": "IV.C"}, {"n": 67, "q": "What should be the core element of external communication plans related to AI risks?", "options": ["Clear explanations of the model's risks, mitigation efforts, and potential unintended consequences.", "Restricting the communication of risks to only internal stakeholders within the organization.", "Minimizing the amount of detailed risk information shared to avoid public concern.", "Focusing only on how the AI model improves operational performance without mentioning risks."], "answer": 0, "explanation": "Clear communication about risks and mitigation efforts ensures stakeholders are well-informed and prepared for potential unintended consequences. Restricting risk communication or focusing only on performance undermines effective governance and trust.", "c": "IV.C"}, {"n": 68, "q": "How can an organization ensure an AI model aligns with its ethical standards post-deployment?", "options": ["By replacing all legacy systems with AI-driven alternatives", "By restricting access to the model for non-technical staff", "By establishing a governance committee to review decisions", "By issuing periodic public reports on system usage"], "answer": 2, "explanation": "A governance committee can provide regular oversight, ensuring that AI systems continue to align with ethical standards and organizational values. Transparency and stakeholder inclusion are key components of effective AI governance.", "c": "IV.C"}, {"n": 69, "q": "How can governance professionals use impact assessments to support AI accountability?", "options": ["By documenting decisions and processes for evaluating risks associated with AI models", "By automating the validation process to reduce manual oversight in AI deployment", "By developing AI models that do not require compliance with external regulations", "By ensuring that AI models achieve maximum computational efficiency in production"], "answer": 0, "explanation": "Impact assessments document the processes and decisions involved in risk evaluation, promoting transparency and accountability. This allows organizations to demonstrate compliance and address concerns raised by stakeholders.", "c": "III.A"}, {"n": 70, "q": "What role does data minimization play in mitigating bias in AI systems?", "options": ["It ensures only relevant data is used in training.", "It standardizes input data across different sources.", "It improves algorithmic transparency for end users.", "It eliminates the need for manual data processing."], "answer": 0, "explanation": "By limiting data to what is relevant and necessary, data minimization reduces the inclusion of potentially biased or irrelevant information, improving fairness in AI systems.", "c": "II.A"}, {"n": 71, "q": "Which principle emphasizes the need for oversight throughout the AI lifecycle?", "options": ["Safety reduces risks during system operation.", "Accountability ensures human responsibility is maintained.", "Transparency clarifies decision-making to all users.", "Fairness ensures unbiased decision-making processes."], "answer": 1, "explanation": "Accountability emphasizes maintaining human oversight and responsibility throughout the AI lifecycle, from design to deployment, ensuring ethical and reliable operation.", "c": "I.A"}, {"n": 72, "q": "What is a legal consideration for AI systems designed for cross-border e-commerce under WTO agreements?", "options": ["Complying with intellectual property protections for AI-generated content", "Maintaining interoperability with payment systems in various countries", "Reducing computational delays to enhance user experience globally", "Ensuring the model supports multilingual interfaces for global customers"], "answer": 0, "explanation": "WTO agreements include provisions related to intellectual property, requiring organizations to ensure that AI-generated content does not infringe on copyrights or patents in cross-border operations.", "c": "II.B"}, {"n": 73, "q": "Which of the following best describes the concept of \"Algorithmic Accountability\"?", "options": ["Reducing the computational complexity of algorithms", "Ensuring algorithms operate without human intervention", "Guaranteeing that algorithms achieve maximum accuracy", "Holding developers responsible for AI system outcomes"], "answer": 3, "explanation": "Algorithmic accountability involves holding AI developers and organizations responsible for the decisions and outcomes generated by their AI systems. This concept is fundamental for addressing ethical concerns, promoting transparency, and maintaining public trust.", "c": "I.A"}, {"n": 74, "q": "What does Executive Order 14110 require from U.S. federal agencies in relation to AI?", "options": ["To develop and deploy AI solutions within six months", "To restrict AI research to certain sectors only", "To align AI research and development efforts with ethical guidelines", "To disclose proprietary AI algorithms to the public"], "answer": 2, "explanation": "Executive Order 14110 requires federal agencies to align AI research, development, and deployment with ethical guidelines and ensure AI technologies are used securely and responsibly.", "c": "II.C"}, {"n": 75, "q": "Which practice enhances the value of documentation for compliance purposes?", "options": ["Recording all assumptions and limitations identified during testing", "Minimizing the detail in records to streamline auditing processes", "Using only high-level summaries to describe training procedures", "Automating the generation of documentation to reduce manual input"], "answer": 0, "explanation": "Including assumptions and limitations ensures transparency and provides critical context for compliance evaluations. This practice supports informed decision-making and risk management.", "c": "III.B"}, {"n": 76, "q": "Which best practice enhances human oversight during AI model development?", "options": ["Automating decisions to eliminate manual intervention during system testing", "Prioritizing efficiency over stakeholder engagement and iterative reviews", "Limiting feedback collection to avoid delays in the deployment timeline", "Establishing review checkpoints to evaluate ethical and technical outcomes"], "answer": 3, "explanation": "Review checkpoints allow governance professionals to assess ethical and technical outcomes, ensuring human oversight is maintained and potential issues are addressed promptly during development.", "c": "III.A"}, {"n": 77, "q": "What is a primary benefit of security testing during AI system deployment?", "options": ["Ensuring that sensitive data remains protected during operations.", "Enhancing the compatibility of AI systems across various platforms.", "Reducing the system’s reliance on manual intervention in decisions.", "Increasing the speed at which AI models are retrained and updated."], "answer": 0, "explanation": "Security testing evaluates whether AI systems handle sensitive data securely and maintain user privacy. It also identifies vulnerabilities that could be exploited. Enhancing compatibility or reducing manual intervention is not the primary purpose of security testing.", "c": "IV.C"}, {"n": 78, "q": "What is the key objective of incident response planning in AI governance?", "options": ["Increasing the interpretability of AI systems to external stakeholders", "Simplifying the model architecture to reduce operational risks", "Ensuring rapid and coordinated actions to mitigate impacts of incidents", "Automating routine updates to the system’s configuration settings"], "answer": 2, "explanation": "Incident response planning ensures that organizations can address and recover from issues effectively, minimizing harm. It focuses on coordination and readiness, rather than interpretability or architectural simplifications.", "c": "I.C"}, {"n": 79, "q": "How does maintaining data lineage enhance accountability in AI governance?", "options": ["By prioritizing datasets that require minimal oversight during training", "By increasing the efficiency of model deployment workflows", "By limiting external audits to reduce compliance delays", "By providing traceable records of data sources and transformations"], "answer": 3, "explanation": "Traceable records allow stakeholders to identify the origins and processing history of data, ensuring accountability and enabling investigations into potential issues. This level of transparency is crucial for building trust and compliance in AI systems.", "c": "III.B"}, {"n": 80, "q": "What is a critical data governance requirement for high-risk AI systems under the EU AI Act?", "options": ["Limiting the use of external data sources for training purposes", "Storing all training data in publicly accessible repositories", "Avoiding any preprocessing of datasets before training models", "Ensuring data is free from errors and properly representative"], "answer": 3, "explanation": "High-risk AI systems must use data that is accurate, representative, and free from biases to ensure fairness and reliability. This reduces risks associated with discriminatory or harmful outcomes in critical decision-making.", "c": "II.C"}, {"n": 81, "q": "How does the EU AI Act define the responsibility of providers in updating deployed AI systems?", "options": ["Providers must notify distributors of updates within 24 hours", "Providers must issue updates when new risks are identified", "Providers must ensure updates are compatible with all sectors", "Providers must seek consent before deploying all system updates"], "answer": 1, "explanation": "Providers are required to release updates to mitigate newly identified risks or vulnerabilities, ensuring that deployed AI systems remain compliant with evolving standards.", "c": "II.C"}, {"n": 82, "q": "How should the roles of AI developers, deployers, and users be integrated for effective governance?", "options": ["Developers create the systems while deployers are responsible for data collection. Users are only responsible for regulatory compliance.", "Developers create the systems, deployers implement and monitor them, and users provide ongoing feedback to ensure alignment with governance expectations.", "Developers and users are responsible for regulatory compliance, while deployers focus solely on system optimization.", "Developers and deployers share equal responsibility for the ethical use of AI, while users have no active governance role."], "answer": 1, "explanation": "Effective governance requires a collaborative approach: developers build the AI systems, deployers implement and monitor them in operational environments, and users provide ongoing feedback to ensure that the systems align with organizational and governance standards.", "c": "I.B"}, {"n": 83, "q": "What is a key role of data governance in AI governance frameworks?", "options": ["Increasing the volume of data collected", "Automating data storage processes", "Ensuring data quality and proper use", "Reducing the cost of data analysis"], "answer": 2, "explanation": "Data governance ensures that data used in AI systems is accurate, consistent, and ethically sourced. It also governs how data is stored, shared, and processed, ensuring compliance with privacy laws and ethical considerations. Simply collecting or automating processes does not address governance objectives.", "c": "I.C"}, {"n": 84, "q": "What is the primary function of third-party risk assessments in AI governance?", "options": ["Identifying vulnerabilities in external partnerships", "Reducing the total cost of implementation", "Simplifying the procurement process for AI tools", "Enhancing the accuracy of AI models"], "answer": 0, "explanation": "Third-party risk assessments identify vulnerabilities in external partnerships, such as non-compliance or data breaches, helping to safeguard organizational operations and compliance.", "c": "I.C"}, {"n": 85, "q": "What is the primary governance concern when deploying an AI model in a regulated environment such as healthcare?", "options": ["Ensuring compatibility with existing non-AI systems", "Reducing the complexity of model maintenance and updates", "Enabling rapid scaling of the model across global systems", "Ensuring model transparency and explainability for patient outcomes"], "answer": 3, "explanation": "In healthcare, AI models must be transparent and explainable to meet regulatory standards and ensure patient safety. The ability to explain model decisions is crucial for trust and accountability in healthcare applications.", "c": "IV.A"}, {"n": 86, "q": "Which of the following is a critical component of an AI impact assessment?", "options": ["Determining the best algorithms for achieving higher performance metrics", "Reviewing stakeholder feedback exclusively after model deployment", "Identifying potential biases in the training dataset used for the AI model", "Selecting computational frameworks that enhance system reliability"], "answer": 2, "explanation": "Identifying biases in the training dataset is essential for assessing the fairness and equity of the AI model. Addressing such biases during the impact assessment minimizes risks of discriminatory or unethical outcomes.", "c": "III.A"}, {"n": 87, "q": "How does cross-functional collaboration enhance the efficacy of AI governance programs?", "options": ["By limiting stakeholder involvement to technical decision-making.", "By accelerating the deployment of AI systems across sectors.", "By reducing the likelihood of operational system failures.", "By integrating diverse insights to address complex governance issues."], "answer": 3, "explanation": "Collaboration ensures that diverse insights from technical, legal, and ethical perspectives are integrated, addressing multifaceted governance challenges and improving the effectiveness of the program.", "c": "I.B"}, {"n": 88, "q": "How does implementing operational controls support risk management in AI models?", "options": ["By reducing reliance on iterative feedback during the development process", "By minimizing human oversight to streamline automated decision-making", "By continuously monitoring for deviations and addressing issues proactively", "By focusing primarily on meeting technical specifications over ethical concerns"], "answer": 2, "explanation": "Operational controls ensure continuous monitoring and proactive risk mitigation, addressing deviations before they escalate and maintaining compliance with ethical and operational standards.", "c": "III.A"}, {"n": 89, "q": "Why is it essential to identify risks to groups rather than just individuals in AI governance?", "options": ["Group-level risks often require fewer resources to address.", "Group-level risks do not need extensive stakeholder input for resolution.", "Individual risks are inherently less significant in governance programs.", "The scale of harm can be larger, affecting societal structures and norms."], "answer": 3, "explanation": "Risks to groups can lead to widespread societal harm, such as reinforcing systemic biases or undermining social cohesion. Addressing these risks requires comprehensive governance measures to protect societal structures and ensure fairness.", "c": "I.A"}, {"n": 90, "q": "What is the primary goal of updating data privacy policies for AI systems?", "options": ["Reducing the complexity of AI models", "Ensuring faster processing times", "Maintaining compliance with evolving regulations", "Eliminating the need for manual oversight"], "answer": 2, "explanation": "Updating data privacy policies ensures compliance with new or changing regulations, such as updates to GDPR or other global privacy frameworks. The aim is to protect individuals' data rights while aligning AI practices with legal requirements.", "c": "I.C"}, {"n": 91, "q": "Which of the following best defines the principle of \"Explainability\" in AI?", "options": ["Ensuring that AI systems produce accurate results consistently", "Demonstrating that AI models meet performance benchmarks", "Providing stakeholders with insights into how AI decisions are made", "Guaranteeing that AI operates without human intervention"], "answer": 2, "explanation": "Explainability refers to the ability to describe how and why an AI system arrives at specific decisions or outcomes. This principle is critical for fostering trust, meeting regulatory requirements, and ensuring accountability, particularly in high-stakes scenarios such as healthcare or finance.", "c": "I.A"}, {"n": 92, "q": "Which international regulation specifically governs cross-border data flows in AI systems?", "options": ["GDPR ensures compliance with data sovereignty rules and transfer restrictions", "PIPL focuses exclusively on ethical considerations in AI decision-making", "CCPA establishes transparency requirements for data processing practices", "HIPAA regulates data security for healthcare-related AI applications"], "answer": 0, "explanation": "GDPR governs cross-border data flows by enforcing data sovereignty rules and restricting data transfers outside the EU unless specific conditions are met, ensuring privacy and compliance across jurisdictions.", "c": "II.A"}, {"n": 93, "q": "Which law is most applicable to an AI model designed for financial risk assessment in the United States?", "options": ["The Health Insurance Portability and Accountability Act (HIPAA)", "The Sarbanes-Oxley Act (SOX)", "The Electronic Communications Privacy Act (ECPA)", "The Gramm-Leach-Bliley Act (GLBA)"], "answer": 3, "explanation": "The GLBA governs the privacy and security of consumer financial information. AI models in financial risk assessment must comply with GLBA to protect sensitive data and ensure transparency in risk evaluations.", "c": "II.B"}, {"n": 94, "q": "What is a potential consequence of poor data privacy practices in AI governance?", "options": ["Decreased system scalability", "Regulatory fines and reputational damage", "Enhanced data diversity", "Increased model interpretability"], "answer": 1, "explanation": "Poor data privacy practices expose organizations to regulatory fines, legal actions, and reputational harm. These consequences can damage trust and hinder AI adoption.", "c": "II.A"}, {"n": 95, "q": "Which licensing feature in open-source AI agreements may impact the scalability of AI deployments?", "options": ["Limitation on the number of simultaneous deployments", "Requirement to attribute the model’s original developers", "Obligation to share derivative models under the same license", "Restriction on modifying the source code for internal use"], "answer": 2, "explanation": "Copyleft provisions in open-source licenses require derivative works to be distributed under the same license, potentially hindering scalability in proprietary or large-scale deployments.", "c": "IV.B"}, {"n": 96, "q": "Which principle is essential for managing third-party risks in AI supply chains?", "options": ["Efficiency in resource allocation and usage", "Accountability through contractual obligations", "Scalability in AI deployment and testing", "Transparency in vendor pricing models"], "answer": 1, "explanation": "Accountability through contracts ensures that third parties understand and meet their obligations, reducing risks associated with AI supply chains.", "c": "I.C"}, {"n": 97, "q": "How can governance professionals address the risk of overfitting during training?", "options": ["By prioritizing complex algorithms with extensive feature sets", "By using cross-validation techniques to assess model performance", "By minimizing the amount of labeled data used for training", "By reducing the number of iterations in the training process"], "answer": 1, "explanation": "Cross-validation evaluates a model’s ability to generalize by testing it on multiple subsets of data, mitigating overfitting. This ensures the model is robust and performs well on unseen datasets.", "c": "III.B"}, {"n": 98, "q": "What strategy should be implemented to ensure that external communications about AI risks are well-received?", "options": ["Prioritizing confidentiality to minimize public awareness of risks and challenges.", "Limiting the communication of risks to prevent overwhelming stakeholders with information.", "Focusing on complex jargon and technical details to emphasize model sophistication.", "Using clear, accessible language and providing practical examples to explain potential risks."], "answer": 3, "explanation": "Clear and accessible language, supported by examples, ensures that stakeholders can easily understand the risks associated with AI systems, fostering trust and effective governance. Overcomplicating the message or limiting communication undermines transparency.", "c": "IV.C"}, {"n": 99, "q": "How can an AI system in credit scoring comply with non-discrimination laws?", "options": ["By using historical data regardless of whether it contains bias", "By prioritizing speed and automation over fairness considerations", "By penalizing applicants from low-income neighborhoods", "By avoiding the use of legally protected characteristics such as race or gender"], "answer": 3, "explanation": "Avoiding the use of protected characteristics like race or gender in credit scoring models ensures compliance with non-discrimination laws and reduces the risk of biased outcomes.", "c": "II.B"}, {"n": 100, "q": "What is a key distinction between ISO 22989 and ISO 42001?", "options": ["ISO 22989 targets specific industries, while ISO 42001 applies only to governments", "ISO 22989 emphasizes machine learning models, while ISO 42001 centers on robotics", "ISO 22989 addresses regulatory enforcement, while ISO 42001 focuses on accountability", "ISO 22989 provides technical specifications, while ISO 42001 focuses on organizational governance"], "answer": 3, "explanation": "ISO 22989 provides foundational principles and terminology for understanding AI systems, whereas ISO 42001 focuses on implementing governance systems to manage risks and ensure responsible AI use within organizations.", "c": "II.D"}];
+const LIMIT = 180 * 60;           // exam time, seconds
+const BREAK = 15 * 60;            // optional break, seconds
+const TARGET = 80;                // readiness target, percent
+const KEY = "aigp-easy-2-v2";
+const DOMAINS = {I:"Foundations of AI governance", II:"Laws, standards and frameworks", III:"Governing AI development", IV:"Governing AI deployment and use"};
+// Where each domain is taught in the IAPP AIGP training (participant guide modules)
+const MODULES = {
+  I:"Module 1 Foundations of AI, Module 2 AI impacts and responsible principles, Module 3 AI governance and risk management",
+  II:"Module 4 AI regulation, Module 5 Other laws that apply to AI (standards: Modules 2 and 3)",
+  III:"Module 6 Governing AI development (release and monitoring: Module 7)",
+  IV:"Module 7 Governing AI deployment (model types: Module 1)"
+};
+const COMP = {
+ "I.A":["What AI is and why it needs governance","Review AI definitions and types, the harms AI can cause, what makes AI different (opacity, autonomy, scale, probabilistic outputs) and the core responsible AI principles."],
+ "I.B":["Roles, teams and expectations","Learn who does what in an AI governance program: roles and accountability, cross-functional teams, training and awareness, and how duties differ for developers, deployers and users."],
+ "I.C":["Policies across the AI life cycle","Study life cycle policies (use case review, risk, data, testing, deployment, incidents), how to update privacy, security and IP policies for AI, and third-party risk controls."],
+ "II.A":["Privacy laws applied to AI","Revise lawful basis, transparency, purpose limitation, minimization, privacy by design, controller and processor duties, cross-border transfers, DPIAs, automated decisions and special category data."],
+ "II.B":["Other laws applied to AI","Review how intellectual property, non-discrimination (hiring, credit, housing, insurance), consumer protection and product liability laws apply to AI systems and training data."],
+ "II.C":["AI-specific laws","Focus on the EU AI Act: risk tiers with examples, high-risk requirements, GPAI duties, provider, deployer and distributor roles, enforcement and penalties. Skim the US and South Korea AI laws too."],
+ "II.D":["Standards and frameworks","Learn the NIST AI RMF functions (Govern, Map, Measure, Manage) and what sits in each, the OECD AI Principles, and the purpose of ISO/IEC 22989, 42001 and 42005."],
+ "III.A":["Designing and building AI","Practice use case definition, impact assessments, design choices with human oversight and metrics, risk tools such as harms matrices and mitigation hierarchies, and documenting design decisions."],
+ "III.B":["Data, training and testing","Revise data governance (lawful rights, quality, fit for purpose), lineage and provenance, the kinds of testing (validation, bias, security, adversarial) and documenting test results."],
+ "III.C":["Release, monitoring and maintenance","Study release readiness (model cards, conformity), monitoring and retraining, audits, red teaming and threat modeling, incident causes such as drift, and public disclosures."],
+ "IV.A":["Deciding to deploy","Compare model types (classic vs generative, open source vs proprietary, small vs large) and deployment options (cloud, on-premise, edge, fine-tuning, RAG, agents) against business and risk needs."],
+ "IV.B":["Assessing the AI system","Review impact assessments for a chosen system, key vendor and licensing terms, and the extra duties and liability of deploying your own proprietary model."],
+ "IV.C":["Governing deployment and use","Focus on post-deployment governance: monitoring for drift and new risks, incident handling, secondary uses and downstream harm, external communication and deactivation controls."]
+};
+const L = ["A","B","C","D","E"];
+const $ = id => document.getElementById(id);
+
+let S = null;                     // attempt state
+let tick = null;
+let revFilter = "all", resFilter = "bad";
+
+function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
+function clearSave(){ try{ localStorage.removeItem(KEY); }catch(e){} }
+
+function shuffle(a){ a=a.slice(); for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
+function fmt(sec){ sec=Math.max(0,Math.round(sec)); const h=Math.floor(sec/3600), m=Math.floor(sec%3600/60), s=sec%60;
+  return (h? h+":"+String(m).padStart(2,"0") : m) + ":" + String(s).padStart(2,"0"); }
+
+function show(screen){
+  ["sStart","sQ","sBreak","sReview","sResults"].forEach(id => $(id).hidden = id !== screen);
+  const inExam = screen==="sQ" || screen==="sReview";
+  $("foot").hidden = !inExam;
+  $("qpos").hidden = screen!=="sQ";
+  $("timer").hidden = !(inExam || screen==="sBreak") || (S && S.timerHidden && screen!=="sBreak");
+  $("hideTimer").hidden = !inExam;
+  $("btnLayout").hidden = screen!=="sQ";
+  $("main").scrollTop = 0;
+}
+
+/* ---------- Start ---------- */
+function startAttempt(ids, mode, shuffled){
+  S = { mode, order: shuffled ? shuffle(ids) : ids, answers:{}, flags:{}, cur:0,
+        elapsed:0, ended:false, timerHidden:false, brk:"none", breakLeft:BREAK, pendingGo:null,
+        instant: mode==="practice" || $("optInstant").checked, split:false };
+  save(); begin();
+}
+function begin(){
+  clearInterval(tick);
+  if(S.instant===undefined) S.instant = S.mode==="practice";
+  tick = setInterval(()=>{ if(!S || S.ended) return;
+    if(S.brk==="on"){ S.breakLeft--; paintBreak(); if(S.breakLeft<=0) endBreak(); if(S.breakLeft%10===0) save(); return; }
+    S.elapsed++; paintTimer();
+    if(S.mode==="exam" && S.elapsed>=limit()) finish(true);
+    if(S.elapsed%10===0) save(); },1000);
+  $("hideTimer").textContent = S.timerHidden ? "Show time" : "Hide time";
+  if(S.brk==="offered" || S.brk==="on") openBreak();
+  else { renderQ(); show("sQ"); }
+  paintTimer();
+}
+function limit(){ return Math.round(LIMIT * S.order.length / QUESTIONS.length); }
+function mid(){ return (S.mode==="exam" && S.order.length>=40) ? Math.floor(S.order.length/2) : null; }
+function paintTimer(){
+  const t=$("timer");
+  if(S.brk==="on"){ t.textContent="Break "+fmt(S.breakLeft); t.classList.remove("warn"); return; }
+  if(S.mode==="exam"){ const left=limit()-S.elapsed; t.textContent="Time left "+fmt(left); t.classList.toggle("warn", left<=600); }
+  else { t.textContent="Elapsed "+fmt(S.elapsed); t.classList.remove("warn"); }
+}
+
+/* ---------- Break ---------- */
+function openBreak(){
+  const on = S.brk==="on";
+  $("brkOffer").hidden = on; $("brkOn").hidden = !on;
+  $("brkExamLeft").textContent = fmt(limit()-S.elapsed);
+  paintBreak(); show("sBreak");
+  (on ? $("btnEndBreak") : $("btnTakeBreak")).focus();
+}
+function paintBreak(){
+  $("brkClock").textContent = fmt(S.breakLeft);
+  $("brkExamLeft2").textContent = fmt(limit()-S.elapsed);
+  if(S.brk==="on") paintTimer();
+}
+function endBreak(){
+  S.brk="done"; const n=S.pendingGo ?? mid(); S.pendingGo=null; save(); paintTimer();
+  S.cur=n; renderQ(); show("sQ");
+}
+
+/* ---------- Question ---------- */
+function renderQ(){
+  const qi=S.order[S.cur], q=QUESTIONS[qi], picked=S.answers[qi];
+  const locked = S.instant && picked!==undefined;
+  // Layout: scenario questions always split (scenario left, question right); others follow the Layout toggle
+  const hasScen = !!q.scenario, split = hasScen || S.split;
+  $("qBody").classList.toggle("split", split);
+  $("qScen").hidden = !hasScen;
+  if(hasScen){ const st=$("qScenTxt"); st.innerHTML=""; q.scenario.split(/\n\s*\n/).forEach(par=>{ const p=document.createElement("p"); p.textContent=par.trim(); st.appendChild(p); }); }
+  const stem=$("qStem");
+  if(hasScen) $("qRight").insertBefore(stem, $("qChoices")); else $("qLeft").appendChild(stem);
+  $("qLeft").scrollTop=0;
+  $("btnLayout").textContent = hasScen ? "Layout: scenario split" : (S.split ? "Layout: side by side" : "Layout: stacked");
+  $("btnLayout").setAttribute("aria-pressed", String(!!S.split));
+  $("qLabel").textContent = "Question "+(S.cur+1)+" of "+S.order.length;
+  $("qpos").textContent = (S.cur+1)+" / "+S.order.length;
+  $("qStem").textContent = q.q;
+  $("qFlagTag").hidden = !S.flags[qi];
+  const box=$("qChoices"); box.innerHTML="";
+  q.options.forEach((txt,i)=>{
+    const lab=document.createElement("label");
+    lab.className="choice";
+    if(locked){ lab.classList.add("locked"); if(i===q.answer) lab.classList.add("right"); else if(i===picked) lab.classList.add("wrong"); }
+    else if(picked===i) lab.classList.add("sel");
+    lab.innerHTML='<input type="radio" name="opt" id="opt'+i+'" value="'+i+'"'+(picked===i?" checked":"")+(locked?" disabled":"")+'><span class="letter">'+L[i]+'</span><span class="txt"></span>';
+    lab.querySelector(".txt").textContent=txt;
+    lab.querySelector("input").addEventListener("change",()=>choose(i));
+    box.appendChild(lab);
+  });
+  const fb=$("qFeedback");
+  if(locked){ const ok=picked===q.answer; fb.hidden=false; fb.className="feedback "+(ok?"ok":"bad");
+    fb.innerHTML="<b></b><span></span>"; fb.querySelector("b").textContent= ok?"Correct":"Incorrect. The answer is "+L[q.answer]+".";
+    fb.querySelector("span").textContent=q.explanation; }
+  else fb.hidden=true;
+  $("btnPrev").disabled = S.cur===0;
+  $("btnNext").innerHTML = S.cur===S.order.length-1 ? "Review &rarr;" : "Next &rarr;";
+  const f=!!S.flags[qi]; $("btnFlag").classList.toggle("flagged",f); $("btnFlag").innerHTML = f? "&#9873; Unflag" : "&#9873; Flag";
+  $("btnEnd").textContent = S.mode==="practice" ? "Finish" : "End exam";
+  $("prog").style.width = (Object.keys(S.answers).length/S.order.length*100)+"%";
+}
+function choose(i){
+  const qi=S.order[S.cur];
+  if(S.instant && S.answers[qi]!==undefined) return;
+  S.answers[qi]=i; save(); renderQ();
+}
+function go(n){
+  if(n<0||n>=S.order.length) return;
+  const m=mid();
+  if(m!==null && S.brk==="none" && S.cur<m && n>=m){ S.brk="offered"; S.pendingGo=n; save(); openBreak(); return; }
+  S.cur=n; save(); renderQ(); show("sQ");
+}
+
+/* ---------- Review screen ---------- */
+function renderReview(){
+  const ans=S.order.filter(q=>S.answers[q]!==undefined).length, fl=S.order.filter(q=>S.flags[q]).length;
+  $("revSummary").textContent = ans+" answered · "+(S.order.length-ans)+" unanswered · "+fl+" flagged";
+  const g=$("revGrid"); g.innerHTML="";
+  S.order.forEach((qi,pos)=>{
+    const a=S.answers[qi]!==undefined, f=!!S.flags[qi];
+    if(revFilter==="flagged"&&!f) return; if(revFilter==="unanswered"&&a) return;
+    const b=document.createElement("button"); b.type="button"; b.className="cell"+(a?" ans":"")+(f?" flg":"")+(pos===S.cur?" cur":"");
+    b.textContent=pos+1; b.setAttribute("aria-label","Question "+(pos+1)+(a?", answered":", unanswered")+(f?", flagged":""));
+    b.onclick=()=>go(pos); g.appendChild(b);
+  });
+  if(!g.children.length) g.innerHTML='<p class="muted">No questions match this filter.</p>';
+}
+function openReview(){ renderReview(); show("sReview"); }
+
+/* ---------- Finish ---------- */
+function askEnd(){
+  const un=S.order.filter(q=>S.answers[q]===undefined).length, fl=S.order.filter(q=>S.flags[q]).length;
+  let msg = un ? un+" question"+(un>1?"s are":" is")+" unanswered and will count as wrong. " : "All questions are answered. ";
+  if(fl) msg += fl+" question"+(fl>1?"s are":" is")+" still flagged. ";
+  msg += "You cannot change answers after ending.";
+  $("cfTitle").textContent = S.mode==="practice" ? "Finish this session?" : "End the exam?";
+  $("cfYes").textContent = S.mode==="practice" ? "Finish" : "End exam";
+  $("cfBody").textContent=msg; $("confirm").hidden=false; $("cfNo").focus();
+}
+function finish(auto){
+  $("confirm").hidden=true; clearInterval(tick); S.ended=true; S.auto=!!auto; save(); renderResults(); show("sResults");
+  if(S.order.length===QUESTIONS.length){
+    const ok=S.order.filter(q=>resultOf(q)==="ok").length;
+    try{ localStorage.setItem(KEY+"-last", JSON.stringify({pct:Math.round(ok/S.order.length*100), at:new Date().toISOString().slice(0,10), mode:S.mode})); }catch(e){}
+  }
+}
+function resultOf(qi){ const a=S.answers[qi]; return a===undefined ? "skip" : a===QUESTIONS[qi].answer ? "ok" : "bad"; }
+function renderResults(){
+  const n=S.order.length; let ok=0,bad=0,skip=0;
+  S.order.forEach(qi=>{ const r=resultOf(qi); r==="ok"?ok++:r==="bad"?bad++:skip++; });
+  const pct=Math.round(ok/n*100), pass=pct>=TARGET;
+  $("ringTxt").textContent=pct+"%";
+  const C=2*Math.PI*52; $("ringArc").setAttribute("stroke-dasharray",(C*pct/100)+" "+C);
+  $("ringArc").setAttribute("stroke", pass?"var(--ok)":"var(--bad)");
+  $("resHead").textContent = ok+" of "+n+" correct";
+  const v=$("resVerdict"); v.className="verdict "+(pass?"ok":"bad");
+  v.textContent = (pass? "At or above the "+TARGET+"% target" : "Below the "+TARGET+"% target") + (S.auto?" · time ran out":"");
+  $("stCorrect").textContent=ok; $("stWrong").textContent=bad; $("stSkip").textContent=skip; $("stTime").textContent=fmt(S.elapsed);
+  $("btnRetakeWrong").hidden = (bad+skip)===0;
+  $("prog").style.width="100%";
+  renderAnalysis();
+  renderResList();
+}
+function band(p){ return p>=TARGET ? ["g","Strong","var(--ok)"] : p>=60 ? ["a","Borderline","var(--flag)"] : ["r","Needs work","var(--bad)"]; }
+function renderAnalysis(){
+  const dom={}, comp={};
+  S.order.forEach((qi,pos)=>{
+    const c=QUESTIONS[qi].c, d=c.split(".")[0], ok=resultOf(qi)==="ok";
+    (dom[d] ||= {t:0,k:0}); dom[d].t++; if(ok) dom[d].k++;
+    (comp[c] ||= {t:0,k:0,miss:[]}); comp[c].t++; if(ok) comp[c].k++; else comp[c].miss.push(pos);
+  });
+  // Domains
+  const box=$("anaDomains"); box.innerHTML="";
+  const dkeys=["I","II","III","IV"].filter(d=>dom[d]);
+  dkeys.forEach(d=>{
+    const x=dom[d], p=Math.round(x.k/x.t*100), [cls,lab,col]=band(p);
+    const el=document.createElement("div"); el.className="dom";
+    el.innerHTML='<div class="nm"><small>Domain '+d+'</small><span></span><span class="st '+cls+'">'+lab+'</span></div><div class="val">'+x.k+'/'+x.t+' &middot; '+p+'%</div><div class="track" role="img" aria-label="'+p+' percent"><i style="width:'+p+'%;background:'+col+'"></i><b title="80% target"></b></div><div class="mods"><span>Study in training:</span> </div>';
+    el.querySelector(".nm span").textContent=DOMAINS[d];
+    el.querySelector(".mods").append(MODULES[d]);
+    box.appendChild(el);
+  });
+  // Summary sentence
+  const ranked=dkeys.map(d=>({d,p:dom[d].k/dom[d].t})).sort((a,b)=>a.p-b.p);
+  const weakC=Object.entries(comp).filter(([c,x])=>x.miss.length).map(([c,x])=>({c,...x,p:x.k/x.t})).sort((a,b)=>a.p-b.p || b.miss.length-a.miss.length);
+  const sum=$("anaSummary");
+  if(!weakC.length) sum.textContent="No missed questions. Every domain is at 100%.";
+  else if(ranked[0].p>=TARGET/100) sum.textContent="Every domain is at or above the 80% target. Tidy up the few topics below to build a safety margin.";
+  else sum.textContent="Your weakest domain is Domain "+ranked[0].d+" ("+DOMAINS[ranked[0].d]+") at "+Math.round(ranked[0].p*100)+"%. Start with the topics below, in this order.";
+  // Focus list: competencies under 75%, else the ones with any misses
+  let focus=weakC.filter(x=>x.p<TARGET/100); if(!focus.length) focus=weakC;
+  focus=focus.slice(0,5);
+  const fb=$("anaFocus"); fb.innerHTML="";
+  if(!focus.length) fb.innerHTML='<p class="muted" style="margin:0">Nothing to fix in this attempt. Try another practice set to confirm.</p>';
+  focus.forEach((x,i)=>{
+    const p=Math.round(x.p*100), [cls,lab]=band(p);
+    const el=document.createElement("div"); el.className="fitem";
+    el.innerHTML='<h3><small>'+(i+1)+'. '+x.c+'</small><span class="nm"></span><span class="st '+cls+'">'+x.k+'/'+x.t+' &middot; '+p+'%</span></h3><p></p><div class="qchips">Missed:</div>';
+    el.querySelector(".nm").textContent=COMP[x.c][0];
+    el.querySelector("p").textContent=COMP[x.c][1];
+    const chips=el.querySelector(".qchips");
+    x.miss.forEach(pos=>{ const b=document.createElement("button"); b.type="button"; b.className="qchip"; b.textContent="Q"+(pos+1);
+      b.onclick=()=>jumpTo(pos); chips.appendChild(b); });
+    fb.appendChild(el);
+  });
+  // Full competency table
+  const rows=Object.keys(COMP).filter(c=>comp[c]).map(c=>{ const x=comp[c], p=Math.round(x.k/x.t*100), [cls,lab]=band(p);
+    return '<tr><td class="n">'+c+'</td><td>'+COMP[c][0]+'</td><td class="n">'+x.k+'/'+x.t+'</td><td class="n">'+p+'%</td><td><span class="st '+cls+'" style="margin:0">'+lab+'</span></td></tr>'; });
+  $("anaTable").innerHTML='<thead><tr><th>Code</th><th>Competency</th><th>Score</th><th>%</th><th>Status</th></tr></thead><tbody>'+rows.join("")+'</tbody>';
+}
+function jumpTo(pos){ resFilter="all"; setTabs("resTabs","all"); renderResList(); const el=$("ri"+pos); if(el) el.scrollIntoView({block:"start"}); }
+function renderResList(){
+  const g=$("resGrid"), list=$("resList"); g.innerHTML=""; list.innerHTML="";
+  S.order.forEach((qi,pos)=>{
+    const r=resultOf(qi);
+    const c=document.createElement("button"); c.type="button"; c.className="cell "+(r==="ok"?"r-ok":r==="bad"?"r-bad":"")+(S.flags[qi]?" flg":"");
+    c.textContent=pos+1; c.setAttribute("aria-label","Question "+(pos+1)+": "+(r==="ok"?"correct":r==="bad"?"incorrect":"unanswered"));
+    c.onclick=()=>jumpTo(pos);
+    g.appendChild(c);
+    const show = resFilter==="all" || (resFilter==="bad" && r!=="ok") || (resFilter==="ok" && r==="ok") || (resFilter==="flagged" && S.flags[qi]);
+    if(!show) return;
+    const q=QUESTIONS[qi], a=S.answers[qi];
+    const d=document.createElement("article"); d.className="ritem "+r; d.id="ri"+pos;
+    d.innerHTML='<div class="row" style="justify-content:space-between"><b></b><span class="tag '+r+'"></span></div><div class="ctag"></div><details class="rscen" hidden><summary>Show scenario</summary><div></div></details><p></p><div class="ans"><span class="you"></span><span class="key"></span></div><div class="exp"></div>';
+    d.querySelector("b").textContent="Question "+(pos+1)+(S.flags[qi]?"  ⚑":"");
+    d.querySelector(".tag").textContent= r==="ok"?"Correct":r==="bad"?"Incorrect":"Unanswered";
+    d.querySelector(".ctag").textContent=q.c+" · "+COMP[q.c][0];
+    if(q.scenario){ const s=d.querySelector(".rscen"); s.hidden=false; s.querySelector("div").textContent=q.scenario; }
+    d.querySelector("p").textContent=q.q;
+    d.querySelector(".you").textContent="Your answer: "+(a===undefined?"none":L[a]+". "+q.options[a]);
+    d.querySelector(".key").textContent="Correct answer: "+L[q.answer]+". "+q.options[q.answer];
+    d.querySelector(".exp").textContent=q.explanation;
+    list.appendChild(d);
+  });
+  if(!list.children.length) list.innerHTML='<p class="muted">No questions match this filter.</p>';
+}
+function setTabs(id,f){ $(id).querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-pressed", String(t.dataset.f===f))); }
+
+/* ---------- Wiring ---------- */
+$("btnStart").onclick=()=>{ startAttempt(QUESTIONS.map((_,i)=>i), $("modePractice").checked?"practice":"exam", $("optShuffle").checked); };
+$("btnResume").onclick=()=>{ S=load(); if(!S) return; if(S.ended){ renderResults(); show("sResults"); } else begin(); };
+$("btnPrev").onclick=()=>go(S.cur-1);
+$("btnNext").onclick=()=>{ if(S.cur===S.order.length-1) openReview(); else go(S.cur+1); };
+$("btnFlag").onclick=()=>{ const qi=S.order[S.cur]; if(S.flags[qi]) delete S.flags[qi]; else S.flags[qi]=true; save(); renderQ(); };
+$("btnReview").onclick=()=>{ if(!$("sReview").hidden) show("sQ"); else openReview(); };
+$("btnEnd").onclick=askEnd;
+$("cfNo").onclick=()=>{ $("confirm").hidden=true; };
+$("btnTakeBreak").onclick=()=>{ S.brk="on"; S.breakLeft=BREAK; save(); openBreak(); };
+$("btnSkipBreak").onclick=endBreak;
+$("btnEndBreak").onclick=endBreak;
+$("cfYes").onclick=()=>finish(false);
+$("btnLayout").onclick=()=>{ S.split=!S.split; save(); renderQ(); };
+$("modePractice").onchange=$("modeExam").onchange=()=>{ const pr=$("modePractice").checked; $("optInstant").checked = pr || $("optInstant").dataset.user==="1"; $("optInstant").disabled = pr; };
+$("optInstant").onchange=()=>{ $("optInstant").dataset.user = $("optInstant").checked ? "1" : "0"; };
+$("hideTimer").onclick=()=>{ S.timerHidden=!S.timerHidden; save(); $("timer").hidden=S.timerHidden; $("hideTimer").textContent=S.timerHidden?"Show time":"Hide time"; };
+$("revTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; revFilter=t.dataset.f; setTabs("revTabs",revFilter); renderReview(); };
+$("resTabs").onclick=e=>{ const t=e.target.closest(".tab"); if(!t) return; resFilter=t.dataset.f; setTabs("resTabs",resFilter); renderResList(); };
+$("btnRetakeWrong").onclick=()=>{ const ids=S.order.filter(qi=>resultOf(qi)!=="ok"); const m=S.mode; resFilter="bad"; setTabs("resTabs","bad"); startAttempt(ids,m,false); };
+$("btnNew").onclick=()=>{ clearSave(); S=null; $("btnResume").hidden=true; $("prog").style.width="0"; show("sStart"); };
+
+document.addEventListener("keydown",e=>{
+  if(!S || S.ended || e.ctrlKey || e.metaKey || e.altKey) return;
+  if(!$("confirm").hidden){ if(e.key==="Escape") $("confirm").hidden=true; return; }
+  if(!$("sBreak").hidden) return;
+  if($("sQ").hidden) { if(e.key.toLowerCase()==="r") show("sQ"); return; }
+  const k=e.key.toLowerCase();
+  const idx="abcde".indexOf(k)>-1?"abcde".indexOf(k):"12345".indexOf(k);
+  if(idx>-1 && k.length===1 && idx<QUESTIONS[S.order[S.cur]].options.length){ choose(idx); e.preventDefault(); }
+  else if(k==="arrowright") { $("btnNext").click(); e.preventDefault(); }
+  else if(k==="arrowleft") { go(S.cur-1); e.preventDefault(); }
+  else if(k==="f") $("btnFlag").click();
+  else if(k==="r") openReview();
+});
+
+/* Restore a saved attempt, if any */
+(function init(){
+  const saved=load();
+  if(saved && saved.order && saved.order.length){
+    $("btnResume").hidden=false;
+    const done=Object.keys(saved.answers||{}).length;
+    $("btnResume").textContent = saved.ended ? "View last results" : "Resume saved attempt ("+done+" of "+saved.order.length+" answered)";
+  }
+  show("sStart");
+})();
+</script>
+
+</body>
+</html>
