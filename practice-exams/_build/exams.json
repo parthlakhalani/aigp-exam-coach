@@ -18,6 +18,24 @@
     "data": "data/easy-3.json"
   },
   {
+    "id": "easy-4",
+    "level": "Easy",
+    "set": 4,
+    "data": "data/easy-4.json"
+  },
+  {
+    "id": "easy-5",
+    "level": "Easy",
+    "set": 5,
+    "data": "data/easy-5.json"
+  },
+  {
+    "id": "easy-6",
+    "level": "Easy",
+    "set": 6,
+    "data": "data/easy-6.json"
+  },
+  {
     "id": "medium-1",
     "level": "Medium",
     "set": 1,
